@@ -1,0 +1,5 @@
+﻿<Project>
+	<PropertyGroup>
+		<CodeAnalysisRuleSet>$(MSBuildThisFileDirectory)roslynator.ruleset</CodeAnalysisRuleSet>
+	</PropertyGroup>
+</Project>
