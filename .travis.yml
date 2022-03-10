@@ -1,0 +1,11 @@
+language: csharp
+solution: BlueprintsNet.sln
+mono: none
+dotnet: 6.0.0
+
+install:
+  - nuget restore
+
+script:
+  - dotnet build
+  - dotnet test
