@@ -11,15 +11,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Directory.Build.props = Directory.Build.props
 		.github\workflows\pipeline.yml = .github\workflows\pipeline.yml
 		README.md = README.md
-		roslynator.config = roslynator.config
-		roslynator.ruleset = roslynator.ruleset
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C00352FF-756F-43A9-8417-6CF9362952ED}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{C99E3B06-3CF0-4D23-9EE3-0123DF7EC21E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlueprintsNet.Wpf.Tests", "tests\BlueprintsNet.Wpf.Tests\BlueprintsNet.Wpf.Tests.csproj", "{3C1DD2CF-3C17-4B2A-B0E4-7DC2C8462A39}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlueprintsNet.Wpf.Tests", "tests\BlueprintsNet.Wpf.Tests\BlueprintsNet.Wpf.Tests.csproj", "{3C1DD2CF-3C17-4B2A-B0E4-7DC2C8462A39}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
