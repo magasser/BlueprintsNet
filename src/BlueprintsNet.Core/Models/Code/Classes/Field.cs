@@ -1,10 +1,14 @@
 ﻿
 namespace BlueprintsNet.Core.Models;
 
-public class Field<T> : InstanceValueBase<T>
+public class Field : InstanceValueBase
 {
-    public Field(AccessModifier accessModifier, T value)
-        : base(accessModifier, value)
+    public Field(string name,
+                 AccessModifier accessModifier,
+                 Type type)
+        : base(name,
+               accessModifier,
+               type)
     {
     }
 
