@@ -1,13 +1,12 @@
-﻿using System.Windows;
-
+﻿
 namespace BlueprintsNet.Wpf.Views;
 
 /// <summary>
 /// Interaction logic for MainWindow.xaml
 /// </summary>
-public partial class MainView : Window
+public partial class MainWindow
 {
-    public MainView()
+    public MainWindow()
     {
         InitializeComponent();
     }
