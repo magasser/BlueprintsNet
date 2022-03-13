@@ -14,7 +14,9 @@
         <ToolBarTray>
 
             <ToolBar>
+
                 <!-- TODO: Check how to make hover dropdown button like Visual Studio -->
+
                 <mah:DropDownButton Content="{x:Static resx:Resources.File}" Style="{StaticResource ToolBarDropDownButtonStyle}">
 
                     <mah:DropDownButton.Items>
@@ -28,6 +30,18 @@
                             </mah:DropDownButton.Items>
 
                         </mah:DropDownButton>
+
+                        <mah:DropDownButton Content="{x:Static resx:Resources.Open}" Style="{StaticResource ToolBarDropDownButtonStyle}">
+
+                            <mah:DropDownButton.Items>
+
+                                <Button Content="{x:Static resx:Resources.Project}" />
+
+                            </mah:DropDownButton.Items>
+
+                        </mah:DropDownButton>
+
+                        <Button Content="{x:Static resx:Resources.Exit}" />
 
                     </mah:DropDownButton.Items>
 

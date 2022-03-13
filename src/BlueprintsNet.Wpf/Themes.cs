@@ -3,7 +3,7 @@ namespace BlueprintsNet.Wpf;
 
 internal static class Themes
 {
-    public const string Dark = "Dark";
+    public const string Dark = "Dark.Default";
 
-    public const string Light = "Light";
+    public const string Light = "Light.Default";
 }

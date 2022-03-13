@@ -2,14 +2,11 @@
 
 namespace BlueprintsNet.Wpf.Models.Blueprints;
 
-public abstract class BlueprintBase : IBlueprint
+public abstract class BPBase : IBlueprint
 {
-    protected BlueprintBase()
-        : this(new Position { X = 0, Y = 0 })
-    {
-    }
+    protected BPBase() : this(new Position { X = 0, Y = 0 }) { }
 
-    protected BlueprintBase(Position position)
+    protected BPBase(Position position)
     {
         Position = position.MustNotBeNull();
     }
