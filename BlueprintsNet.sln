@@ -21,8 +21,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlueprintsNet.Wpf.Tests", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlueprintsNet.Core", "src\BlueprintsNet.Core\BlueprintsNet.Core.csproj", "{C076D9C3-682B-4B0D-BDDB-04FD8F7B2D17}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlueprintsNet.Serialization", "src\BlueprintsNet.Serialization\BlueprintsNet.Serialization.csproj", "{A653D944-E069-467E-ADAF-81A95ABE325B}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,10 +39,6 @@ Global
 		{C076D9C3-682B-4B0D-BDDB-04FD8F7B2D17}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C076D9C3-682B-4B0D-BDDB-04FD8F7B2D17}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C076D9C3-682B-4B0D-BDDB-04FD8F7B2D17}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A653D944-E069-467E-ADAF-81A95ABE325B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A653D944-E069-467E-ADAF-81A95ABE325B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A653D944-E069-467E-ADAF-81A95ABE325B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A653D944-E069-467E-ADAF-81A95ABE325B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

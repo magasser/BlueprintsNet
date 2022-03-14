@@ -1,6 +1,6 @@
 ﻿using BlueprintsNet.Core.Models;
 
-namespace BlueprintsNet.Wpf.Models.Blueprints;
+namespace BlueprintsNet.Core.Models.Blueprints;
 
 public abstract class BPBase : IBlueprint
 {
@@ -10,6 +10,8 @@ public abstract class BPBase : IBlueprint
     {
         Position = position.MustNotBeNull();
     }
+
+    public abstract string DisplayName { get; }
 
     public Position Position { get; set; }
 }

@@ -1,3 +1,3 @@
 ﻿global using Light.GuardClauses;
 
-global using BlueprintsNet.Core.Models;
+global using BlueprintsNet.Core.Constants;
