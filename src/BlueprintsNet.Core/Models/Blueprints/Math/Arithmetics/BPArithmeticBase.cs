@@ -3,7 +3,7 @@ namespace BlueprintsNet.Core.Models.Blueprints;
 
 public abstract class BPArithmeticBase : BPMathBase, IBPArithmetic
 {
-    internal BPArithmeticBase()
+    protected BPArithmeticBase()
     {
         Inputs = new List<Integer.In> { new Integer.In(), new Integer.In() };
     }

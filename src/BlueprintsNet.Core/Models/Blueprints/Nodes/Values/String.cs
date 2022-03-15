@@ -1,25 +1,25 @@
-﻿using System;
-using System.Linq;
-
+﻿
 namespace BlueprintsNet.Core.Models.Blueprints;
 
-public class String : NodeBase
+public class String : ValueBase
 {
     private String(string displayName) : base(displayName) { }
 
     private String() { }
 
-    public class In : String
-    {
-        internal In(string displayName) : base(displayName) { }
+    public override Type Type => typeof(String);
 
-        internal In() { }
+    public class In : String, IInValue
+    {
+        public In(string displayName) : base(displayName) { }
+
+        public In() { }
     }
 
-    public class Out : String
+    public class Out : String, IOutValue
     {
-        internal Out(string displayName) : base(displayName) { }
+        public Out(string displayName) : base(displayName) { }
 
-        internal Out() { }
+        public Out() { }
     }
 }

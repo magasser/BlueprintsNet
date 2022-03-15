@@ -1,7 +1,7 @@
 ﻿
 namespace BlueprintsNet.Core.Models.Blueprints;
 
-public interface IBPMath
+public interface IValue
 {
-    Integer.Out Out { get; }
+    Type Type { get; }
 }

@@ -8,18 +8,18 @@ internal static class BPNames
     public const string Minus = "Minus";
     public const string Multiply = "Multiply";
     public const string Divide = "Divide";
-    #endregion
+    #endregion Math
 
     #region FlowControl
     public const string If = "If";
     public const string For = "For";
     public const string ForEach = "ForEach";
     public const string While = "While";
-    #endregion
+    #endregion FlowControl
 
     #region Operators
     public const string And = "And";
     public const string Or = "Or";
     public const string Not = "Not";
-    #endregion
+    #endregion Operators
 }

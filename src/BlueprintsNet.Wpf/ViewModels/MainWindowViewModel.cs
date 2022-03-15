@@ -1,20 +1,14 @@
-﻿using BlueprintsNet.Wpf.Options;
-using ControlzEx.Theming;
+﻿using System.Windows;
 using Microsoft.Extensions.Options;
-using System.Windows;
+using ControlzEx.Theming;
+using BlueprintsNet.Wpf.Options;
 
 namespace BlueprintsNet.Wpf.ViewModels;
 
 public class MainWindowViewModel : BindableBase
 {
-    private readonly ThemeOptions _themeOptions;
-
-    public MainWindowViewModel(IOptions<ThemeOptions> options)
+    public MainWindowViewModel()
     {
-        _themeOptions = options.MustNotBeNull()
-                            .Value
-                            .MustNotBeNull();
-
         LoadedCommand = new DelegateCommand(OnLoaded);
     }
 

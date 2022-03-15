@@ -1,24 +1,21 @@
-﻿using BlueprintsNet.Wpf.Options;
-using BlueprintsNet.Wpf.Views;
-using ControlzEx.Theming;
-using MahApps.Metro.Theming;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
+﻿using System.IO;
+using System.Windows;
+using System.Runtime.Versioning;
 using Prism.Ioc;
 using Prism.Regions;
-using System.IO;
-using System.Windows;
+using MahApps.Metro.Theming;
+using Microsoft.Extensions.Options;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using ControlzEx.Theming;
+using BlueprintsNet.Wpf.Views;
+using BlueprintsNet.Wpf.Options;
 
 namespace BlueprintsNet.Wpf;
 
-/// <summary>
-/// Interaction logic for App.xaml
-/// </summary>
+[SupportedOSPlatform("windows7.0")]
 public partial class App
 {
-    private string? _themeValue;
-
     protected override Window CreateShell()
     {
         return Container.Resolve<MainWindow>();

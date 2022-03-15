@@ -3,7 +3,7 @@ namespace BlueprintsNet.Core.Models.Blueprints;
 
 public class BPFor : BPFlowControlBase
 {
-    internal BPFor()
+    public BPFor()
     {
         OutBody = new Connection.Out(NodeNames.Body);
         OutCompleted = new Connection.Out(NodeNames.Completed);

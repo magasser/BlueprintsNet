@@ -5,8 +5,8 @@ public abstract class BPMathBase : BPBase, IBPMath
 {
     protected BPMathBase()
     {
-        Out = new Number.Out();
+        Out = new Integer.Out();
     }
 
-    public Number.Out Out { get; }
+    public Integer.Out Out { get; }
 }

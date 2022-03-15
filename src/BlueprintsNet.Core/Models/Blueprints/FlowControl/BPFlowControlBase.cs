@@ -3,12 +3,12 @@ namespace BlueprintsNet.Core.Models.Blueprints;
 
 public abstract class BPFlowControlBase : BPBase, IBPFlowControl
 {
-    internal BPFlowControlBase()
+    protected BPFlowControlBase()
     {
-        In = new InNode();
+        In = new Connection.In();
     }
 
-    public InNode In { get; }
+    public Connection.In In { get; }
 
-    public abstract OutNode Out { get; }
+    public abstract Connection.Out Out { get; }
 }

@@ -11,9 +11,9 @@ internal static class NodeNames
     public const string True = "True";
 
     public const string False = "False";
-    #endregion
+    #endregion Out
 
     #region Value
     public const string Condition = "Condition";
-    #endregion
+    #endregion Value
 }

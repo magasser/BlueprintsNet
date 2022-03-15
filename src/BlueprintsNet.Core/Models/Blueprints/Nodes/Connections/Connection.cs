@@ -20,6 +20,8 @@ public class Connection : NodeBase
 
         public Out() { }
 
+        public bool HasNext => Next is not null;
+
         public In? Next { get; set; }
     }
 }
