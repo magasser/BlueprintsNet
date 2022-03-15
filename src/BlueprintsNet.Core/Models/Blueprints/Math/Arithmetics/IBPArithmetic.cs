@@ -3,5 +3,5 @@ namespace BlueprintsNet.Core.Models.Blueprints;
 
 public interface IBPArithmetic
 {
-    IList<NumberNode> Inputs { get; }
+    IList<Number.In> Inputs { get; }
 }

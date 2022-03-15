@@ -5,8 +5,8 @@ public abstract class BPArithmeticBase : BPMathBase, IBPArithmetic
 {
     internal BPArithmeticBase()
     {
-        Inputs = new List<NumberNode> { new NumberNode(), new NumberNode() };
+        Inputs = new List<Integer.In> { new Integer.In(), new Integer.In() };
     }
 
-    public IList<NumberNode> Inputs { get; }
+    public IList<Integer.In> Inputs { get; }
 }

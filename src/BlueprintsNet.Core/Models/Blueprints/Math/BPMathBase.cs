@@ -5,10 +5,8 @@ public abstract class BPMathBase : BPBase, IBPMath
 {
     protected BPMathBase()
     {
-        Result = new NumberNode();
+        Out = new Number.Out();
     }
 
-    public NumberNode Result { get; }
-
-    public override string DisplayName => throw new NotImplementedException();
+    public Number.Out Out { get; }
 }

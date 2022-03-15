@@ -3,5 +3,5 @@ namespace BlueprintsNet.Core.Models.Blueprints;
 
 public interface IBPMath
 {
-    NumberNode Result { get; }
+    Number.Out Out { get; }
 }

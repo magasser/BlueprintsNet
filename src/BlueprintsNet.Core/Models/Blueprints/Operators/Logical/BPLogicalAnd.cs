@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace BlueprintsNet.Core.Models.Blueprints;
 
-internal class BPMethod : BPBase
+public class BPLogicalAnd : BPLogicalBase
 {
-    public override string DisplayName => throw new NotImplementedException();
+    public override string DisplayName => BPNames.And;
 }

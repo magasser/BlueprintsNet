@@ -3,7 +3,7 @@ namespace BlueprintsNet.Core.Models.Blueprints;
 
 public interface IBPFlow
 {
-    InNode In { get; }
+    Connection.In In { get; }
 
-    OutNode Out { get; }
+    Connection.Out Out { get; }
 }

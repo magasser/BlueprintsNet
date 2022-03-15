@@ -5,18 +5,18 @@ public class BPIf : BPFlowControlBase
 {
     internal BPIf()
     {
-        OutTrue = new OutNode(NodeNames.True);
-        OutFalse = new OutNode(NodeNames.False);
-        Condition = new BoolNode(NodeNames.Condition);
+        OutTrue = new Connection.Out(NodeNames.True);
+        OutFalse = new Connection.Out(NodeNames.False);
+        Condition = new Bool.In(NodeNames.Condition);
     }
 
     public override string DisplayName => BPNames.If;
 
-    public override OutNode Out => OutTrue;
+    public override Connection Out => OutTrue;
 
-    public OutNode OutTrue { get; }
+    public Connection OutTrue { get; }
 
-    public OutNode OutFalse { get; }
+    public Connection OutFalse { get; }
 
-    public BoolNode Condition { get; }
+    public Bool Condition { get; }
 }
