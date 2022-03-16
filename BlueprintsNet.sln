@@ -19,7 +19,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{C99E3B06
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlueprintsNet.Wpf.Tests", "tests\BlueprintsNet.Wpf.Tests\BlueprintsNet.Wpf.Tests.csproj", "{3C1DD2CF-3C17-4B2A-B0E4-7DC2C8462A39}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlueprintsNet.Core", "src\BlueprintsNet.Core\BlueprintsNet.Core.csproj", "{C076D9C3-682B-4B0D-BDDB-04FD8F7B2D17}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlueprintsNet.Core", "src\BlueprintsNet.Core\BlueprintsNet.Core.csproj", "{C076D9C3-682B-4B0D-BDDB-04FD8F7B2D17}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

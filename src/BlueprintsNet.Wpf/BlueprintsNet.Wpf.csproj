@@ -10,7 +10,38 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <PackageReference Include="MahApps.Metro" Version="2.4.9" />
+	  <PackageReference Include="MahApps.Metro.IconPacks" Version="4.11.0" />
+	  <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
+	  <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="6.0.0" />
+	  <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39" />
+	  <PackageReference Include="Prism.DryIoc" Version="8.1.97" />
+	  <PackageReference Include="Prism.Microsoft.DependencyInjection.Extensions" Version="8.0.62" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <ProjectReference Include="..\BlueprintsNet.Core\BlueprintsNet.Core.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Properties\Resources.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>Resources.resx</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Update="Properties\Resources.resx">
+	    <Generator>PublicResXFileCodeGenerator</Generator>
+	    <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="appsettings.json">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
 	</ItemGroup>
 
 </Project>

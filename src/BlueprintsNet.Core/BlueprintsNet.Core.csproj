@@ -11,4 +11,9 @@
 	  <None Remove="Models\Code\Method.cs~RFf0b1fb3f.TMP" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Models\Blueprints\Operators\Bitwise\" />
+	  <Folder Include="Models\Blueprints\Operators\Equality\" />
+	</ItemGroup>
+
 </Project>
