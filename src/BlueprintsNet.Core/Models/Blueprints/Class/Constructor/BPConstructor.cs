@@ -1,11 +1,11 @@
 ﻿
 namespace BlueprintsNet.Core.Models.Blueprints;
 
-public class BPMethod : BPBase, IBPFlow
+public class BPConstructor : BPBase, IBPFlow
 {
-    public BPMethod(string displayName,
-                    IReadOnlyList<IInValue>? inValues,
-                    IOutValue? outValue)
+    public BPConstructor(string displayName,
+                         IReadOnlyList<IInValue>? inValues,
+                         IOutValue? outValue)
     {
         DisplayName = displayName.MustNotBeNullOrWhiteSpace();
         InValues = inValues;
@@ -15,9 +15,9 @@ public class BPMethod : BPBase, IBPFlow
         Out = new Connection.Out();
     }
 
-    public BPMethod(string displayName, IReadOnlyList<IInValue>? inValues) : this(displayName, inValues, null) { }
+    public BPConstructor(string displayName, IReadOnlyList<IInValue>? inValues) : this(displayName, inValues, null) { }
 
-    public BPMethod(string displayName) : this(displayName, null) { }
+    public BPConstructor(string displayName) : this(displayName, null) { }
 
     public override string DisplayName { get; }
 
