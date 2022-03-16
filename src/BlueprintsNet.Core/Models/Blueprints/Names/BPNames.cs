@@ -22,4 +22,9 @@ internal static class BPNames
     public const string Or = "Or";
     public const string Not = "Not";
     #endregion Operators
+
+    #region Class
+    public const string Set = "Set";
+    public const string Return = "Return";
+    #endregion Class
 }

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace BlueprintsNet.Core.Models.Blueprints;
 
-internal class BPMethod : BPBase
+public class BPMethod : BPBase
 {
     public BPMethod(string displayName,
                     IReadOnlyList<IInValue>? inValues,
