@@ -1,12 +1,17 @@
 ﻿using System.IO;
 using System.Windows;
 using System.Runtime.Versioning;
+
 using Prism.Ioc;
 using Prism.Regions;
+
 using MahApps.Metro.Theming;
+
 using Microsoft.Extensions.Options;
+
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+
 using ControlzEx.Theming;
 using BlueprintsNet.Wpf.Views;
 using BlueprintsNet.Wpf.Options;

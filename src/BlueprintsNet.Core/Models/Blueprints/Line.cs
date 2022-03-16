@@ -3,7 +3,7 @@ namespace BlueprintsNet.Core.Models.Blueprints;
 
 public class Line
 {
-    public Line(Position start, Position end)
+    public Line(INode start, INode end)
     {
         Start = start.MustNotBeNull();
         End = end.MustNotBeNull();
@@ -11,9 +11,9 @@ public class Line
         FixPositions = new List<Position>();
     }
 
-    public Position Start { get; }
+    public INode Start { get; }
 
-    public Position End { get; }
+    public INode End { get; }
 
     List<Position> FixPositions { get; }
 }

@@ -9,9 +9,9 @@ public class Integer : ValueBase
 
     public class In : Integer, IInValue
     {
-        internal In(string displayName) : base(displayName) { }
+        public In(string displayName) : base(displayName) { }
 
-        internal In() { }
+        public In() { }
     }
 
     public class Out : Integer, IOutValue

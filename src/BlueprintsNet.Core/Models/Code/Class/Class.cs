@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-
+﻿
 namespace BlueprintsNet.Core.Models.Code;
 
 public class Class

@@ -1,7 +1,11 @@
 ﻿
 namespace BlueprintsNet.Core.Models.Blueprints;
 
-public interface IBPArithmetic
+public interface IBPArithmetic : IBPMath
 {
-    IList<Integer.In> Inputs { get; }
+    Integer.In In1 { get; }
+
+    Integer.In In2 { get; }
+
+    List<Integer.In> AdditionalInputs { get; }
 }

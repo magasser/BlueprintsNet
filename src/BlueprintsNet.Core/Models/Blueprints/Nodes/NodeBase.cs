@@ -8,8 +8,7 @@ public abstract class NodeBase : INode
         DisplayName = displayName.MustNotBeNull();
     }
 
-    internal NodeBase() : this(string.Empty) { }
-
+    protected NodeBase() : this(string.Empty) { }
 
     public string DisplayName { get; }
 }

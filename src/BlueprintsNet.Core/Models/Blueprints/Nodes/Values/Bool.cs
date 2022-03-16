@@ -9,15 +9,15 @@ public class Bool : ValueBase
 
     public class In : Bool, IInValue
     {
-        internal In(string displayName) : base(displayName) { }
+        public In(string displayName) : base(displayName) { }
 
-        internal In() { }
+        public In() { }
     }
 
     public class Out : Bool, IOutValue
     {
-        internal Out(string displayName) : base(displayName) { }
+        public Out(string displayName) : base(displayName) { }
 
-        internal Out() { }
+        public Out() { }
     }
 }
