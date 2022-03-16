@@ -1,5 +1,5 @@
 ﻿
-namespace BlueprintsNet.Core.Constants;
+namespace BlueprintsNet.Core.Models.Blueprints;
 
 internal static class NodeNames
 {

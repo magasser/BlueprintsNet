@@ -7,7 +7,7 @@ public interface IBPLogical
 
     Bool.In In2 { get; }
 
-    IList<Bool.In> AdditionalInputs { get; }
+    List<Bool.In> AdditionalInputs { get; }
 
     Bool.Out Out { get; }
 }

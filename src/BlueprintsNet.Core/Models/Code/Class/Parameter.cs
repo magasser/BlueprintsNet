@@ -1,13 +1,15 @@
 ﻿
-namespace BlueprintsNet.Core.Models;
+namespace BlueprintsNet.Core.Models.Code;
 
-public class Parameter : Value
+public record Parameter
 {
     public Parameter(string name, Type type)
-        : base(type)
     {
         Name = name.MustNotBeNullOrWhiteSpace();
+        Type = type.MustNotBeNull();
     }
 
     public string Name { get; set; }
+
+    public Type Type { get; set; }
 }

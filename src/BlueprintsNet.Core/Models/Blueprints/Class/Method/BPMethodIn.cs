@@ -4,7 +4,7 @@ namespace BlueprintsNet.Core.Models.Blueprints;
 public class BPMethodIn : BPBase
 {
     public BPMethodIn(string displayName,
-        IReadOnlyList<IInValue>? inValues)
+        List<IInValue> inValues)
     {
         DisplayName = displayName.MustNotBeNullOrWhiteSpace();
         InValues = inValues;
@@ -12,7 +12,7 @@ public class BPMethodIn : BPBase
         Out = new Connection.Out();
     }
 
-    public BPMethodIn(string displayName) : this(displayName, null) { }
+    public BPMethodIn(string displayName) : this(displayName, new List<IInValue>()) { }
 
     public override string DisplayName { get; }
 
@@ -20,5 +20,5 @@ public class BPMethodIn : BPBase
 
     public bool HasInValues => !InValues.IsNullOrEmpty();
 
-    public IReadOnlyList<IInValue>? InValues { get; }
+    public List<IInValue> InValues { get; }
 }

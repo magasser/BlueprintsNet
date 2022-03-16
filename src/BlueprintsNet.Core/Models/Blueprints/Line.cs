@@ -1,4 +1,5 @@
-﻿namespace BlueprintsNet.Core.Models.Blueprints;
+﻿
+namespace BlueprintsNet.Core.Models.Blueprints;
 
 public class Line
 {
@@ -14,5 +15,5 @@ public class Line
 
     public Position End { get; }
 
-    IList<Position> FixPositions { get; }
+    List<Position> FixPositions { get; }
 }

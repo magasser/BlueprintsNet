@@ -7,8 +7,6 @@ public class String : ValueBase
 
     private String() { }
 
-    public override Type Type => typeof(String);
-
     public class In : String, IInValue
     {
         public In(string displayName) : base(displayName) { }

@@ -7,8 +7,6 @@ public class Bool : ValueBase
 
     private Bool() { }
 
-    public override Type Type => typeof(Bool);
-
     public class In : Bool, IInValue
     {
         internal In(string displayName) : base(displayName) { }

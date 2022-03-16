@@ -1,10 +1,10 @@
 ﻿
-namespace BlueprintsNet.Core.Models.Blueprints.Class.Constructor;
+namespace BlueprintsNet.Core.Models.Blueprints;
 
 public class BPConstructorIn : BPBase
 {
     public BPConstructorIn(string displayName,
-        IReadOnlyList<IInValue>? inValues)
+        List<IInValue> inValues)
     {
         DisplayName = displayName.MustNotBeNullOrWhiteSpace();
         InValues = inValues;
@@ -12,7 +12,7 @@ public class BPConstructorIn : BPBase
         Out = new Connection.Out();
     }
 
-    public BPConstructorIn(string displayName) : this(displayName, null) { }
+    public BPConstructorIn(string displayName) : this(displayName, new List<IInValue>()) { }
 
     public override string DisplayName { get; }
 
@@ -20,5 +20,5 @@ public class BPConstructorIn : BPBase
 
     public bool HasInValues => !InValues.IsNullOrEmpty();
 
-    public IReadOnlyList<IInValue>? InValues { get; }
+    public List<IInValue> InValues { get; }
 }

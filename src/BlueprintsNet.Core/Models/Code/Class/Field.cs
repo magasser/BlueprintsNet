@@ -1,16 +1,22 @@
 ﻿
-namespace BlueprintsNet.Core.Models;
+namespace BlueprintsNet.Core.Models.Code;
 
-public class Field : InstanceValueBase
+public record Field
 {
     public Field(string name,
                  AccessModifier accessModifier,
                  Type type)
-        : base(name,
-               accessModifier,
-               type)
     {
+        Name = name.MustNotBeNullOrWhiteSpace();
+        AccessModifier = accessModifier.MustBeValidEnumValue();
+        Type = type.MustNotBeNull();
     }
+
+    public string Name { get; set; }
+
+    public Type Type { get; set; }
+
+    public AccessModifier AccessModifier { get; set; }
 
     public bool IsStatic { get; private set; }
 
@@ -23,9 +29,7 @@ public class Field : InstanceValueBase
     public bool TrySetStatic(bool isStatic)
     {
         if (isStatic && IsConstant)
-        {
             return false;
-        }
 
         IsStatic = isStatic;
         return true;
@@ -34,9 +38,7 @@ public class Field : InstanceValueBase
     public bool TrySetReadonly(bool isReadonly)
     {
         if (isReadonly && IsConstant)
-        {
             return false;
-        }
 
         IsReadonly = isReadonly;
         return true;
@@ -45,9 +47,7 @@ public class Field : InstanceValueBase
     public bool TrySetConstant(bool isConstant)
     {
         if (!CanBeConstant)
-        {
             return false;
-        }
 
         if (isConstant)
         {

@@ -17,7 +17,7 @@ public abstract class BPLogicalBase : BPBase, IBPLogical
 
     public Bool.In In2 { get; }
 
-    public IList<Bool.In> AdditionalInputs { get; }
+    public List<Bool.In> AdditionalInputs { get; }
 
     public Bool.Out Out { get; }
 }

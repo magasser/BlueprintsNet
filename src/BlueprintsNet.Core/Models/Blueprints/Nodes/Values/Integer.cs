@@ -7,8 +7,6 @@ public class Integer : ValueBase
 
     private Integer() { }
 
-    public override Type Type => typeof(Integer);
-
     public class In : Integer, IInValue
     {
         internal In(string displayName) : base(displayName) { }
