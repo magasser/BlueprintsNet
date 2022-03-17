@@ -5,15 +5,23 @@
 		<LangVersion>10.0</LangVersion>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-	</PropertyGroup>
 
+		<AssemblyName>BlueprintsNet.Core</AssemblyName>
+		<RootNamespace>BlueprintsNet.Core</RootNamespace>
+	</PropertyGroup>
+	
 	<ItemGroup>
-	  <None Remove="Models\Code\Method.cs~RFf0b1fb3f.TMP" />
+		<InternalsVisibleTo Include="$(AssemblyName).Tests" />
+		<InternalsVisibleTo Include="$(AssemblyName).DependencyInjection" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <Folder Include="Models\Blueprints\Operators\Bitwise\" />
 	  <Folder Include="Models\Blueprints\Operators\Equality\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.1" />
 	</ItemGroup>
 
 </Project>
