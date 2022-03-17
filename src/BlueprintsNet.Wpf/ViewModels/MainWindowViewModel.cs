@@ -1,13 +1,10 @@
-﻿using System.Windows;
-using Microsoft.Extensions.Options;
-using ControlzEx.Theming;
-using BlueprintsNet.Wpf.Options;
+﻿using BlueprintsNet.Core.Services;
 
 namespace BlueprintsNet.Wpf.ViewModels;
 
 public class MainWindowViewModel : BindableBase
 {
-    public MainWindowViewModel()
+    public MainWindowViewModel(IProjectService service)
     {
         LoadedCommand = new DelegateCommand(OnLoaded);
     }
