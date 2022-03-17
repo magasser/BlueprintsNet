@@ -13,14 +13,19 @@
 	  <PackageReference Include="MahApps.Metro" Version="2.4.9" />
 	  <PackageReference Include="MahApps.Metro.IconPacks" Version="4.11.0" />
 	  <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
+	  <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
 	  <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="6.0.0" />
 	  <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39" />
 	  <PackageReference Include="Prism.DryIoc" Version="8.1.97" />
 	  <PackageReference Include="Prism.Microsoft.DependencyInjection.Extensions" Version="8.0.62" />
+	  <PackageReference Include="Serilog.Extensions.Logging" Version="3.1.0" />
+	  <PackageReference Include="Serilog.Settings.Configuration" Version="3.3.0" />
+	  <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\BlueprintsNet.Core\BlueprintsNet.Core.csproj" />
+	  <ProjectReference Include="..\BlueprintsNet.Core.DependencyInjection\BlueprintsNet.Core.DependencyInjection.csproj" />
+	  <ProjectReference Include="..\BlueprintsNet.Serialization.DependencyInjection\BlueprintsNet.Serialization.DependencyInjection.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

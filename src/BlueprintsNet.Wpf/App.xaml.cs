@@ -7,8 +7,8 @@ using Prism.Regions;
 
 using MahApps.Metro.Theming;
 
+using Serilog;
 using Microsoft.Extensions.Options;
-
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -67,7 +67,10 @@ public partial class App
 
         containerRegistry.RegisterServices(
             services => services.Configure<ThemeOptions>(
-                Container.Resolve<IConfiguration>()
-                    .GetSection(ThemeOptions.Key)));
+                 Container.Resolve<IConfiguration>()
+                     .GetSection(ThemeOptions.Key))
+                            .AddLogging(builder => builder.AddSerilog(dispose: true))
+                            .AddBlueprintsNetCore()
+                            .AddBlueprintsNetSerialization());
     }
 }
