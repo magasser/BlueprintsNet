@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-
-namespace BlueprintsNet.Core.Models;
+﻿
+namespace BlueprintsNet.Core.Models.Project;
 
 public class Dependency { }

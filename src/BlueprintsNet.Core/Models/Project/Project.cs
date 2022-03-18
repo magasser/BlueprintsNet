@@ -1,5 +1,5 @@
 ﻿
-namespace BlueprintsNet.Core.Models;
+namespace BlueprintsNet.Core.Models.Project;
 
 public class Project
 {

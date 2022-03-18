@@ -15,6 +15,7 @@ using Microsoft.Extensions.DependencyInjection;
 using ControlzEx.Theming;
 using BlueprintsNet.Wpf.Views;
 using BlueprintsNet.Wpf.Options;
+using BlueprintsNet.Core.Domain;
 
 namespace BlueprintsNet.Wpf;
 
@@ -70,7 +71,6 @@ public partial class App
                  Container.Resolve<IConfiguration>()
                      .GetSection(ThemeOptions.Key))
                             .AddLogging(builder => builder.AddSerilog(dispose: true))
-                            .AddBlueprintsNetCore()
-                            .AddBlueprintsNetSerialization());
+                            .AddBlueprintsNetCore(SerializerType.Xml));
     }
 }
