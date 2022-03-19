@@ -1,5 +1,5 @@
 ﻿
-namespace BlueprintsNet.Core.Models.Files;
+namespace BlueprintsNet.Core.Files;
 
 internal record ClassFileInfo
 {

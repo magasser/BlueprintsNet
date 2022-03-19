@@ -1,5 +1,4 @@
-﻿using BlueprintsNet.Core.Models.Files;
-using BlueprintsNet.Core.Models.Projects;
+﻿using BlueprintsNet.Core.Files;
 
 namespace BlueprintsNet.Core.Services;
 

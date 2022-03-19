@@ -1,4 +1,5 @@
-﻿namespace BlueprintsNet.Core.Models.Blueprints;
+﻿
+namespace BlueprintsNet.Core.Models.Blueprints;
 
 public interface IBlueprint
 {

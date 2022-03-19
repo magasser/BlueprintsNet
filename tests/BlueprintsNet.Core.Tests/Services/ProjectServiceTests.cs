@@ -1,6 +1,7 @@
-﻿using BlueprintsNet.Core.Services;
-using BlueprintsNet.Core.Models.Code;
-using BlueprintsNet.Core.Models.Files;
+﻿using BlueprintsNet.Core.Files;
+using BlueprintsNet.Core.Domain;
+using BlueprintsNet.Core.Services;
+using BlueprintsNet.Core.Models.Classes;
 using BlueprintsNet.Core.Models.Projects;
 
 namespace BlueprintsNet.Core.Tests.Services;

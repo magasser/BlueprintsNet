@@ -1,5 +1,5 @@
 ﻿
-namespace BlueprintsNet.Core.Models.Code;
+namespace BlueprintsNet.Core.Models.Classes;
 
 public class Class
 {
