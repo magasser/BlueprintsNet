@@ -8,7 +8,7 @@ public abstract class BPFlowControlBase : BPBase, IBPFlowControl
         In = new Connection.In();
     }
 
-    public Connection.In In { get; }
+    public Connection.In In { get; init; }
 
-    public abstract Connection.Out Out { get; }
+    public abstract Connection.Out Out { get; init; }
 }

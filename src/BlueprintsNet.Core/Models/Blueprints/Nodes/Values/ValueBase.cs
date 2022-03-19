@@ -6,4 +6,6 @@ public abstract class ValueBase : NodeBase, IValue
     protected ValueBase(string displayName) : base(displayName) { }
 
     protected ValueBase() { }
+
+    public abstract DataType DataType { get; init; }
 }

@@ -1,9 +1,9 @@
 ﻿
 namespace BlueprintsNet.Core.Models.Files;
 
-internal record ClassFileInfo
+internal record ProjectFileInfo
 {
-    public string Extension { get; init; } = "bnc";
+    public string Extension { get; init; } = "bnproj";
 
     public Version Version { get; init; } = new Version(0, 1, 0);
 }

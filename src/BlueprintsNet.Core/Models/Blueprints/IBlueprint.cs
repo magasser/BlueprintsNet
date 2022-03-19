@@ -1,10 +1,8 @@
-﻿using BlueprintsNet.Core.Models;
-
-namespace BlueprintsNet.Core.Models.Blueprints;
+﻿namespace BlueprintsNet.Core.Models.Blueprints;
 
 public interface IBlueprint
 {
-    string DisplayName { get; }
+    string DisplayName { get; init; }
 
     Position Position { get; set; }
 }

@@ -13,6 +13,7 @@ public class Method
         _parameters = new List<Parameter>();
 
         Start = new BPMethodIn(name);
+        Return = new BPReturn();
 
         Blueprints = new List<IBlueprint>();
     }
@@ -23,9 +24,11 @@ public class Method
 
     public IReadOnlyList<Parameter> Parameters => _parameters;
 
-    public BPMethodIn Start { get; }
+    public BPMethodIn Start { get; init; }
 
-    public List<IBlueprint> Blueprints { get; }
+    public BPReturn Return { get; init; }
+
+    public List<IBlueprint> Blueprints { get; init; }
 
     public bool AddParameter(Parameter parameter)
     {

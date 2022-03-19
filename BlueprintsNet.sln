@@ -25,6 +25,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlueprintsNet.Core.Dependen
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlueprintsNet.Core.Tests", "tests\BlueprintsNet.Core.Tests\BlueprintsNet.Core.Tests.csproj", "{4C501ED9-FB00-47AC-A23C-4D48D19BAD03}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlueprintsNet.Core.IntegrationTests", "tests\BlueprintsNet.Core.IntegrationTests\BlueprintsNet.Core.IntegrationTests.csproj", "{D7874C3E-0DF3-4713-AE62-780AB6362982}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{4C501ED9-FB00-47AC-A23C-4D48D19BAD03}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C501ED9-FB00-47AC-A23C-4D48D19BAD03}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C501ED9-FB00-47AC-A23C-4D48D19BAD03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7874C3E-0DF3-4713-AE62-780AB6362982}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7874C3E-0DF3-4713-AE62-780AB6362982}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7874C3E-0DF3-4713-AE62-780AB6362982}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7874C3E-0DF3-4713-AE62-780AB6362982}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -61,6 +67,7 @@ Global
 		{C076D9C3-682B-4B0D-BDDB-04FD8F7B2D17} = {C00352FF-756F-43A9-8417-6CF9362952ED}
 		{DCFFF419-D2B5-436B-9972-1C2F02D44694} = {C00352FF-756F-43A9-8417-6CF9362952ED}
 		{4C501ED9-FB00-47AC-A23C-4D48D19BAD03} = {C99E3B06-3CF0-4D23-9EE3-0123DF7EC21E}
+		{D7874C3E-0DF3-4713-AE62-780AB6362982} = {C99E3B06-3CF0-4D23-9EE3-0123DF7EC21E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {04DBB806-23AE-44F6-BBBD-1BF67139E3C0}

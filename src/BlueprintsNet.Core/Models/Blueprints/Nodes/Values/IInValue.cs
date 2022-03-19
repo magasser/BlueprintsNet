@@ -1,4 +1,4 @@
 ﻿
 namespace BlueprintsNet.Core.Models.Blueprints;
 
-public interface IInValue : INode { }
+public interface IInValue : IValue, INode { }

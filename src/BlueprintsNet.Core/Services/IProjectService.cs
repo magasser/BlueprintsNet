@@ -1,14 +1,14 @@
-﻿using BlueprintsNet.Core.Models.Project;
+﻿using BlueprintsNet.Core.Models.Projects;
 
 namespace BlueprintsNet.Core.Services;
 
 public interface IProjectService
 {
-    Class LoadClass(string path);
+    Class LoadClass(string name, string folderPath);
 
     void SaveClass(Class @class);
 
-    Project LoadProject(string path);
+    Project LoadProject(string name, string folderPath);
 
     void SaveProject(Project project);
 }

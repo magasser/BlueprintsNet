@@ -11,9 +11,9 @@ public class Line
         FixPositions = new List<Position>();
     }
 
-    public INode Start { get; }
+    public INode Start { get; init; }
 
-    public INode End { get; }
+    public INode End { get; init; }
 
-    List<Position> FixPositions { get; }
+    public List<Position> FixPositions { get; init; }
 }

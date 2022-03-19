@@ -3,11 +3,11 @@ namespace BlueprintsNet.Core.Models.Blueprints;
 
 public interface IBPLogical
 {
-    Bool.In In1 { get; }
+    Bool.In In1 { get; init; }
 
-    Bool.In In2 { get; }
+    Bool.In In2 { get; init; }
 
-    List<Bool.In> AdditionalInputs { get; }
+    List<Bool.In> AdditionalInputs { get; init; }
 
-    Bool.Out Out { get; }
+    Bool.Out Out { get; init; }
 }

@@ -3,5 +3,10 @@ namespace BlueprintsNet.Core.Models.Blueprints;
 
 public class BPPlus : BPArithmeticBase
 {
-    public override string DisplayName => BPNames.Plus;
+    public BPPlus()
+    {
+        DisplayName = BPNames.Plus;
+    }
+
+    public override string DisplayName { get; init; }
 }

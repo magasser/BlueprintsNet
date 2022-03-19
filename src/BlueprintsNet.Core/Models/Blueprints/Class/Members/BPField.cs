@@ -9,7 +9,7 @@ public class BPField : BPBase
         OutValue = outValue.MustNotBeNull();
     }
 
-    public override string DisplayName { get; }
+    public override string DisplayName { get; init; }
 
-    public IOutValue OutValue { get; }
+    public IOutValue OutValue { get; init; }
 }

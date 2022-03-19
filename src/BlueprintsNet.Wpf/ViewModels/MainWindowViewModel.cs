@@ -1,10 +1,9 @@
-﻿using BlueprintsNet.Core.Services;
-
+﻿
 namespace BlueprintsNet.Wpf.ViewModels;
 
 public class MainWindowViewModel : BindableBase
 {
-    public MainWindowViewModel(IProjectService service)
+    public MainWindowViewModel()
     {
         LoadedCommand = new DelegateCommand(OnLoaded);
     }

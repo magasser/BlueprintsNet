@@ -10,5 +10,5 @@ public abstract class NodeBase : INode
 
     protected NodeBase() : this(string.Empty) { }
 
-    public string DisplayName { get; }
+    public string DisplayName { get; init; }
 }

@@ -19,17 +19,17 @@ public class BPMethod : BPBase, IBPFlow
 
     public BPMethod(string displayName) : this(displayName, null) { }
 
-    public override string DisplayName { get; }
+    public override string DisplayName { get; init; }
 
-    public Connection.In In { get; }
+    public Connection.In In { get; init; }
 
-    public Connection.Out Out { get; }
+    public Connection.Out Out { get; init; }
 
     public bool HasInValues => !InValues.IsNullOrEmpty();
 
-    public IReadOnlyList<IInValue>? InValues { get; }
+    public IReadOnlyList<IInValue>? InValues { get; init; }
 
     public bool HasOutValue => OutValue is not null;
 
-    public IOutValue? OutValue { get; }
+    public IOutValue? OutValue { get; init; }
 }

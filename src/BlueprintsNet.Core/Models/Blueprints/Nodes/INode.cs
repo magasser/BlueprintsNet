@@ -3,5 +3,5 @@ namespace BlueprintsNet.Core.Models.Blueprints;
 
 public interface INode
 {
-    string DisplayName { get; }
+    string DisplayName { get; init; }
 }

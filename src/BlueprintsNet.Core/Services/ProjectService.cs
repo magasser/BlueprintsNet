@@ -1,10 +1,13 @@
 ﻿using BlueprintsNet.Core.Models.Files;
-using BlueprintsNet.Core.Models.Project;
+using BlueprintsNet.Core.Models.Projects;
 
 namespace BlueprintsNet.Core.Services;
 
 internal class ProjectService : IProjectService
 {
+    private static readonly ClassFileInfo _classFileInfo = new();
+    private static readonly ProjectFileInfo _projectFileInfo = new();
+
     private readonly ILogger<ProjectService> _logger;
     private readonly ISerializerService _serializerService;
     private readonly IFileService _fileService;
@@ -18,15 +21,16 @@ internal class ProjectService : IProjectService
         _fileService = fileService.MustNotBeNull();
     }
 
-    public Class LoadClass(string path)
+    public Class LoadClass(string name, string folderPath)
     {
-        path.MustNotBeNullOrWhiteSpace();
+        name.MustNotBeNullOrWhiteSpace();
+        folderPath.MustNotBeNullOrWhiteSpace();
 
-        _logger.LogTrace("Load class from: {Path}.", path);
+        var path = Path.Combine(folderPath, $"{name}.{_classFileInfo.Extension}");
+
+        _logger.LogTrace("Try to load class from: {Path}.", path);
 
         var content = _fileService.Read(path);
-
-        _logger.LogDebug("Read content: {Content}.", content);
 
         var classFile = _serializerService.Deserialize<ClassFile>(content);
 
@@ -41,30 +45,53 @@ internal class ProjectService : IProjectService
     {
         @class.MustNotBeNull();
 
-        _logger.LogTrace("Save class: {Class}.", @class);
+        _logger.LogTrace("Try to save class: {Class}.", @class);
 
-        var classFileInfo = new ClassFileInfo();
-
-        _logger.LogDebug("Save with class file info: {ClassFileInfo}.", classFileInfo);
-
-        var classFile = new ClassFile(classFileInfo, @class);
+        var classFile = new ClassFile(_classFileInfo, @class);
 
         var content = _serializerService.Serialize(classFile);
 
-        _logger.LogDebug("Created content: {Content}.", content);
+        var path = Path.Combine(@class.FolderPath, $"{@class.Name}.{_classFileInfo.Extension}");
 
-        _fileService.Write(@class.Path, content);
+        _fileService.Write(path, content);
 
-        _logger.LogInformation("Saved class: {Class}.", @class);
+        _logger.LogDebug("Saved class: {Class}.", @class);
     }
 
-    public Project LoadProject(string path)
+    public Project LoadProject(string name, string folderPath)
     {
-        throw new NotImplementedException();
+        name.MustNotBeNullOrWhiteSpace();
+        folderPath.MustNotBeNullOrWhiteSpace();
+
+        var path = Path.Combine(folderPath, $"{name}.{_projectFileInfo.Extension}");
+
+        _logger.LogTrace("Try to load project from: {Path}.", path);
+
+        var content = _fileService.Read(path);
+
+        var projectFile = _serializerService.Deserialize<ProjectFile>(content);
+
+        var project = projectFile.Project;
+
+        _logger.LogInformation("Loaded project: {Project}", project);
+
+        return project;
     }
 
     public void SaveProject(Project project)
     {
-        throw new NotImplementedException();
+        project.MustNotBeNull();
+
+        _logger.LogTrace("Try to save project: {Project}.", project);
+
+        var projectFile = new ProjectFile(_projectFileInfo, project);
+
+        var content = _serializerService.Serialize(projectFile);
+
+        var path = Path.Combine(project.FolderPath, $"{project.Name}.{_projectFileInfo.Extension}");
+
+        _fileService.Write(path, content);
+
+        _logger.LogDebug("Saved project: {Project}.", project);
     }
 }
