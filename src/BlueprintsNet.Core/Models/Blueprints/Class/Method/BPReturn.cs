@@ -8,15 +8,17 @@ public class BPReturn : BPBase
         OutValue = outValue;
 
         In = new Connection.In();
+
+        DisplayName = BPNames.Return;
     }
 
     public BPReturn() : this(null) { }
 
-    public override string DisplayName => BPNames.Return;
+    public override string DisplayName { get; init; }
 
-    public Connection.In In { get; }
+    public Connection.In In { get; init; }
 
     public bool HasOutValue => OutValue is not null;
 
-    public IOutValue? OutValue { get; }
+    public IOutValue? OutValue { get; set; }
 }

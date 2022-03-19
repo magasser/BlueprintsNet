@@ -12,6 +12,7 @@
 	
 	<ItemGroup>
 		<InternalsVisibleTo Include="$(AssemblyName).Tests" />
+		<InternalsVisibleTo Include="$(AssemblyName).IntegrationTests" />
 		<InternalsVisibleTo Include="$(AssemblyName).DependencyInjection" />
 	</ItemGroup>
 
@@ -22,6 +23,8 @@
 
 	<ItemGroup>
 	  <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.1" />
+	  <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+	  <PackageReference Include="System.Configuration.ConfigurationManager" Version="6.0.0" />
 	</ItemGroup>
 
 </Project>

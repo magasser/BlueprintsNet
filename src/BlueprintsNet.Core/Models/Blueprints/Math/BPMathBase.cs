@@ -8,5 +8,5 @@ public abstract class BPMathBase : BPBase, IBPMath
         Out = new Integer.Out();
     }
 
-    public Integer.Out Out { get; }
+    public Integer.Out Out { get; init; }
 }

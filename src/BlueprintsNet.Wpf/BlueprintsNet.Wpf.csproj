@@ -25,7 +25,6 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\BlueprintsNet.Core.DependencyInjection\BlueprintsNet.Core.DependencyInjection.csproj" />
-	  <ProjectReference Include="..\BlueprintsNet.Serialization.DependencyInjection\BlueprintsNet.Serialization.DependencyInjection.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

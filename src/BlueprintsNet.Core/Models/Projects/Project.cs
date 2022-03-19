@@ -1,25 +1,25 @@
 ﻿
-namespace BlueprintsNet.Core.Models;
+namespace BlueprintsNet.Core.Models.Projects;
 
 public class Project
 {
     public Project(Guid id,
                    string name,
-                   string path,
+                   string folderPath,
                    IEnumerable<Class> classes)
     {
         Id = id.MustNotBeDefault();
         Name = name.MustNotBeNullOrWhiteSpace();
-        Path = path.MustNotBeNullOrWhiteSpace();
+        FolderPath = folderPath.MustNotBeNullOrWhiteSpace();
         Classes = classes.MustNotBeNull()
                       .ToList();
     }
 
-    public Guid Id { get; }
+    public Guid Id { get; init; }
 
     public string Name { get; set; }
 
-    public string Path { get; set; }
+    public string FolderPath { get; set; }
 
-    public List<Class> Classes { get; }
+    public List<Class> Classes { get; init; }
 }

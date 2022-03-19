@@ -1,5 +1,5 @@
 ﻿
-namespace BlueprintsNet.Core.Models;
+namespace BlueprintsNet.Core.Models.Code;
 
 public enum AccessModifier
 {

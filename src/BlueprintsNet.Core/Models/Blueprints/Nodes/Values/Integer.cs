@@ -3,9 +3,18 @@ namespace BlueprintsNet.Core.Models.Blueprints;
 
 public class Integer : ValueBase
 {
-    private Integer(string displayName) : base(displayName) { }
+    private Integer(string displayName)
+        : base(displayName)
+    {
+        DataType = DataType.Integer;
+    }
 
-    private Integer() { }
+    private Integer()
+    {
+        DataType = DataType.Integer;
+    }
+
+    public override DataType DataType { get; init; }
 
     public class In : Integer, IInValue
     {

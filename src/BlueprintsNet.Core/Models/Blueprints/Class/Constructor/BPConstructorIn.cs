@@ -3,6 +3,8 @@ namespace BlueprintsNet.Core.Models.Blueprints;
 
 public class BPConstructorIn : BPBase
 {
+    private BPConstructorIn() { }
+
     public BPConstructorIn(string displayName,
         List<IInValue> inValues)
     {
@@ -14,11 +16,11 @@ public class BPConstructorIn : BPBase
 
     public BPConstructorIn(string displayName) : this(displayName, new List<IInValue>()) { }
 
-    public override string DisplayName { get; }
+    public override string DisplayName { get; init; }
 
-    public Connection.Out Out { get; }
+    public Connection.Out Out { get; init; }
 
     public bool HasInValues => !InValues.IsNullOrEmpty();
 
-    public List<IInValue> InValues { get; }
+    public List<IInValue> InValues { get; init; }
 }

@@ -17,15 +17,15 @@ public class Constructor
         Blueprints = new List<IBlueprint>();
     }
 
-    public string ClassName { get; }
+    public string ClassName { get; init; }
 
     public AccessModifier AccessModifier { get; set; }
 
     public IReadOnlyList<Parameter> Parameters => _parameters;
 
-    public BPConstructorIn Start { get; }
+    public BPConstructorIn Start { get; init; }
 
-    public List<IBlueprint> Blueprints { get; }
+    public List<IBlueprint> Blueprints { get; init; }
 
     public bool AddParameter(Parameter parameter)
     {

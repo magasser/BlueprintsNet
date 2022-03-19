@@ -11,9 +11,9 @@ public abstract class BPArithmeticBase : BPMathBase, IBPArithmetic
         AdditionalInputs = new List<Integer.In>();
     }
 
-    public Integer.In In1 { get; }
+    public Integer.In In1 { get; init; }
 
-    public Integer.In In2 { get; }
+    public Integer.In In2 { get; init; }
 
-    public List<Integer.In> AdditionalInputs { get; }
+    public List<Integer.In> AdditionalInputs { get; init; }
 }

@@ -13,11 +13,11 @@ public abstract class BPLogicalBase : BPBase, IBPLogical
         Out = new Bool.Out();
     }
 
-    public Bool.In In1 { get; }
+    public Bool.In In1 { get; init; }
 
-    public Bool.In In2 { get; }
+    public Bool.In In2 { get; init; }
 
-    public List<Bool.In> AdditionalInputs { get; }
+    public List<Bool.In> AdditionalInputs { get; init; }
 
-    public Bool.Out Out { get; }
+    public Bool.Out Out { get; init; }
 }

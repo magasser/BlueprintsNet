@@ -7,13 +7,16 @@ public class BPFor : BPFlowControlBase
     {
         OutBody = new Connection.Out(NodeNames.Body);
         OutCompleted = new Connection.Out(NodeNames.Completed);
+
+        DisplayName = BPNames.For;
+        Out = OutBody;
     }
 
-    public override string DisplayName => BPNames.For;
+    public override string DisplayName { get; init; }
 
-    public override Connection.Out Out => OutBody;
+    public override Connection.Out Out { get; init; }
 
-    public Connection.Out OutBody { get; }
+    public Connection.Out OutBody { get; init; }
 
-    public Connection.Out OutCompleted { get; }
+    public Connection.Out OutCompleted { get; init; }
 }

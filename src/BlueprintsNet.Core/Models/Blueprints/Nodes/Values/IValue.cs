@@ -1,4 +1,7 @@
 ﻿
 namespace BlueprintsNet.Core.Models.Blueprints;
 
-public interface IValue { }
+public interface IValue
+{
+    DataType DataType { get; }
+}
