@@ -1,9 +1,10 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using BlueprintsNet.Core.Files;
+using BlueprintsNet.Core.Domain;
 using BlueprintsNet.Core.Services;
-using BlueprintsNet.Core.Models.Code;
-using BlueprintsNet.Core.Models.Files;
 using BlueprintsNet.Core.JsonConverters;
+using BlueprintsNet.Core.Models.Classes;
 using BlueprintsNet.Core.Models.Projects;
 using BlueprintsNet.Core.Models.Blueprints;
 

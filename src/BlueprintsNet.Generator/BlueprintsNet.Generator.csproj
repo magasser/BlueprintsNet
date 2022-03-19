@@ -6,10 +6,10 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 
-		<AssemblyName>BlueprintsNet.Core</AssemblyName>
-		<RootNamespace>BlueprintsNet.Core</RootNamespace>
+		<AssemblyName>BlueprintsNet.Generator</AssemblyName>
+		<RootNamespace>BlueprintsNet.Generator</RootNamespace>
 	</PropertyGroup>
-	
+
 	<ItemGroup>
 		<InternalsVisibleTo Include="$(AssemblyName).Tests" />
 		<InternalsVisibleTo Include="$(AssemblyName).IntegrationTests" />
@@ -17,13 +17,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.1" />
-	  <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-	  <PackageReference Include="System.Configuration.ConfigurationManager" Version="6.0.0" />
+		<PackageReference Include="System.CodeDom" Version="6.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\BlueprintsNet.Core.Abstractions\BlueprintsNet.Core.Abstractions.csproj" />
+		<ProjectReference Include="..\BlueprintsNet.Generator.Abstractions\BlueprintsNet.Generator.Abstractions.csproj" />
 	</ItemGroup>
 
 </Project>

@@ -1,32 +1,29 @@
 ﻿
-namespace BlueprintsNet.Core.Models.Code;
+namespace BlueprintsNet.Core.Models.Classes;
 
-public class Method
+public class Constructor
 {
     private readonly List<Parameter> _parameters;
 
-    public Method(string name, AccessModifier accessModifier)
+    public Constructor(string className, AccessModifier accessModifier)
     {
-        Name = name.MustNotBeNullOrWhiteSpace();
+        ClassName = className.MustNotBeNullOrWhiteSpace();
         AccessModifier = accessModifier.MustBeValidEnumValue();
 
         _parameters = new List<Parameter>();
 
-        Start = new BPMethodIn(name);
-        Return = new BPReturn();
+        Start = new BPConstructorIn(ClassName);
 
         Blueprints = new List<IBlueprint>();
     }
 
-    public string Name { get; set; }
+    public string ClassName { get; init; }
 
     public AccessModifier AccessModifier { get; set; }
 
     public IReadOnlyList<Parameter> Parameters => _parameters;
 
-    public BPMethodIn Start { get; init; }
-
-    public BPReturn Return { get; init; }
+    public BPConstructorIn Start { get; init; }
 
     public List<IBlueprint> Blueprints { get; init; }
 

@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<LangVersion>10.0</LangVersion>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+
+		<AssemblyName>BlueprintsNet.Core.Abstractions</AssemblyName>
+		<RootNamespace>BlueprintsNet.Core</RootNamespace>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Folder Include="Models\Blueprints\Operators\Bitwise\" />
+	  <Folder Include="Models\Blueprints\Operators\Equality\" />
+	</ItemGroup>
+
+</Project>
