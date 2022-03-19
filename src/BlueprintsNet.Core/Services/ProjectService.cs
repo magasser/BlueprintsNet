@@ -1,5 +1,4 @@
-﻿using System.Configuration;
-using BlueprintsNet.Core.Models.Files;
+﻿using BlueprintsNet.Core.Models.Files;
 using BlueprintsNet.Core.Models.Project;
 
 namespace BlueprintsNet.Core.Services;
@@ -19,18 +18,10 @@ internal class ProjectService : IProjectService
         _fileService = fileService.MustNotBeNull();
     }
 
-    public Project LoadProject(string path)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void SaveProject(Project project)
-    {
-        throw new NotImplementedException();
-    }
-
     public Class LoadClass(string path)
     {
+        path.MustNotBeNullOrWhiteSpace();
+
         _logger.LogTrace("Load class from: {Path}.", path);
 
         var content = _fileService.Read(path);
@@ -48,13 +39,11 @@ internal class ProjectService : IProjectService
 
     public void SaveClass(Class @class)
     {
+        @class.MustNotBeNull();
+
         _logger.LogTrace("Save class: {Class}.", @class);
 
-        var classSection = (NameValueConfigurationCollection)ConfigurationManager.GetSection(ConfigKeys.ClassSection);
-        var fileExtension = classSection[ConfigKeys.ExtensionKey].Value;
-        var version = new Version(classSection[ConfigKeys.VersionKey].Value);
-
-        var classFileInfo = new ClassFileInfo(fileExtension, version);
+        var classFileInfo = new ClassFileInfo();
 
         _logger.LogDebug("Save with class file info: {ClassFileInfo}.", classFileInfo);
 
@@ -67,5 +56,15 @@ internal class ProjectService : IProjectService
         _fileService.Write(@class.Path, content);
 
         _logger.LogInformation("Saved class: {Class}.", @class);
+    }
+
+    public Project LoadProject(string path)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void SaveProject(Project project)
+    {
+        throw new NotImplementedException();
     }
 }

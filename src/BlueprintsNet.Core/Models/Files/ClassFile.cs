@@ -1,4 +1,4 @@
 ﻿
 namespace BlueprintsNet.Core.Models.Files;
 
-public record ClassFile(ClassFileInfo ClassFileInfo, Class Class);
+internal record ClassFile(ClassFileInfo ClassFileInfo, Class Class);

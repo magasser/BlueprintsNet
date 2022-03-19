@@ -9,14 +9,6 @@
 		<AssemblyName>BlueprintsNet.Core</AssemblyName>
 		<RootNamespace>BlueprintsNet.Core</RootNamespace>
 	</PropertyGroup>
-
-	<ItemGroup>
-	  <None Remove="Core.config" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <EmbeddedResource Include="Core.config" />
-	</ItemGroup>
 	
 	<ItemGroup>
 		<InternalsVisibleTo Include="$(AssemblyName).Tests" />
