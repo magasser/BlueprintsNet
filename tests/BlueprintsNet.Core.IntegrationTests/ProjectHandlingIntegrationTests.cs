@@ -54,7 +54,10 @@ public class ProjectHandlingIntegrationTests
     public void Saving_and_then_loading_class_Should_create_class_file_And_load_equivalent_class()
     {
         // Arrange
-        var @class = new Class(ClassName, ProjectDirectoryPath, AccessModifier.Public);
+        var @class = new Class(ClassName,
+                               ProjectName,
+                               ProjectDirectoryPath,
+                               AccessModifier.Public);
 
         var methodWithBlueprints = new Method("SomeMethod1", AccessModifier.Public);
         methodWithBlueprints.Start.InValues
@@ -74,8 +77,8 @@ public class ProjectHandlingIntegrationTests
         @class.Fields
             .AddRange(new Field[]
             {
-                new Field("SomeField1", AccessModifier.Public, typeof(Bool)),
-                new Field("SomeField2", AccessModifier.Private, typeof(Models.Blueprints.String))
+                new Field("SomeField1", AccessModifier.Public, "bool"),
+                new Field("SomeField2", AccessModifier.Private, "string")
             });
         // Act
         _projectService.SaveClass(@class);
@@ -95,7 +98,10 @@ public class ProjectHandlingIntegrationTests
     public void Saving_and_then_loading_project_Should_create_project_file_And_load_equivalent_project()
     {
         // Arrange
-        var @class = new Class(ClassName, ProjectDirectoryPath, AccessModifier.Public);
+        var @class = new Class(ClassName,
+                               ProjectName,
+                               ProjectDirectoryPath,
+                               AccessModifier.Public);
 
         var methodWithBlueprints = new Method("SomeMethod1", AccessModifier.Public);
         methodWithBlueprints.Start.InValues
@@ -115,8 +121,8 @@ public class ProjectHandlingIntegrationTests
         @class.Fields
             .AddRange(new Field[]
             {
-                new Field("SomeField1", AccessModifier.Public, typeof(Bool)),
-                new Field("SomeField2", AccessModifier.Private, typeof(Models.Blueprints.String))
+                new Field("SomeField1", AccessModifier.Public, "bool"),
+                new Field("SomeField2", AccessModifier.Private, "string")
             });
 
         var project = new Project(new Guid("4BA267AD-5341-4085-8E7F-3C1EA2CFD2A7"),

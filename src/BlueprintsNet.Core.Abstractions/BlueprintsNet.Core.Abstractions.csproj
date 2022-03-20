@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
@@ -9,7 +9,7 @@
 		<AssemblyName>BlueprintsNet.Core.Abstractions</AssemblyName>
 		<RootNamespace>BlueprintsNet.Core</RootNamespace>
 	</PropertyGroup>
-
+	
 	<ItemGroup>
 	  <Folder Include="Models\Blueprints\Operators\Bitwise\" />
 	  <Folder Include="Models\Blueprints\Operators\Equality\" />

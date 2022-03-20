@@ -5,16 +5,16 @@ public record Field
 {
     public Field(string name,
                  AccessModifier accessModifier,
-                 Type type)
+                 string type)
     {
         Name = name.MustNotBeNullOrWhiteSpace();
         AccessModifier = accessModifier.MustBeValidEnumValue();
-        Type = type.MustNotBeNull();
+        Type = type.MustNotBeNullOrWhiteSpace();
     }
 
     public string Name { get; set; }
 
-    public Type Type { get; set; }
+    public string Type { get; set; }
 
     public AccessModifier AccessModifier { get; set; }
 
@@ -23,8 +23,6 @@ public record Field
     public bool IsReadonly { get; private set; }
 
     public bool IsConstant { get; private set; }
-
-    public bool CanBeConstant => Type.IsValueType;
 
     public bool TrySetStatic(bool isStatic)
     {
@@ -46,9 +44,6 @@ public record Field
 
     public bool TrySetConstant(bool isConstant)
     {
-        if (!CanBeConstant)
-            return false;
-
         if (isConstant)
         {
             IsStatic = false;

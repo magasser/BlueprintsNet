@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<LangVersion>10.0</LangVersion>
+		<ImplicitUsings>enable</ImplicitUsings>
+
+		<IsPackable>false</IsPackable>
+
+		<AssemblyName>BlueprintsNet.Generator.Tests</AssemblyName>
+		<RootNamespace>BlueprintsNet.Generator.Tests</RootNamespace>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\src\BlueprintsNet.Generator\BlueprintsNet.Generator.csproj" />
+	</ItemGroup>
+
+</Project>

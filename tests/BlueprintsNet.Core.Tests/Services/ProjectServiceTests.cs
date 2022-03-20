@@ -117,7 +117,10 @@ public class ProjectServiceTests
         const string content = "file content";
         var classFile = new ClassFile(
             new ClassFileInfo(), 
-            new Class("Test", path, AccessModifier.Public));
+            new Class("Test",
+                      "TestClasses",
+                      path,
+                      AccessModifier.Public));
 
         var readCall = A.CallTo(() => _fileService.Read($"{path}\\Test.{classFile.ClassFileInfo.Extension}"));
         readCall.Returns(content);
@@ -138,7 +141,10 @@ public class ProjectServiceTests
         // Arrange
         const string path = "file\\path";
         const string content = "file content";
-        var @class = new Class("Test", "file\\path", AccessModifier.Public);
+        var @class = new Class("Test",
+                               "TestClasses",
+                               "file\\path",
+                               AccessModifier.Public);
         var classFile = new ClassFile(new ClassFileInfo(), @class);
 
         A.CallTo(() => _serializerService.Serialize(classFile))
@@ -163,18 +169,18 @@ public class ProjectServiceTests
         var projectFile = new ProjectFile(
             new ProjectFileInfo(),
             new Project(new Guid("4BA267AD-5341-4085-8E7F-3C1EA2CFD2A7"),
-                        "Test",
+                        "TestClasses",
                         path,
                         Array.Empty<Class>()));
 
-        var readCall = A.CallTo(() => _fileService.Read($"{path}\\Test.{projectFile.ProjectFileInfo.Extension}"));
+        var readCall = A.CallTo(() => _fileService.Read($"{path}\\TestClasses.{projectFile.ProjectFileInfo.Extension}"));
         readCall.Returns(content);
 
         A.CallTo(() => _serializerService.Deserialize<ProjectFile>(content))
             .Returns(projectFile);
 
         // Act
-        _subject.LoadProject("Test", path);
+        _subject.LoadProject("TestClasses", path);
 
         // Assert
         readCall.MustHaveHappenedOnceExactly();
@@ -187,7 +193,7 @@ public class ProjectServiceTests
         const string path = "file\\path";
         const string content = "file content";
         var project = new Project(new Guid("4BA267AD-5341-4085-8E7F-3C1EA2CFD2A7"),
-                                  "Test",
+                                  "TestClasses",
                                   path,
                                   Array.Empty<Class>());
         var projectFile = new ProjectFile(
@@ -197,7 +203,7 @@ public class ProjectServiceTests
         A.CallTo(() => _serializerService.Serialize(projectFile))
             .Returns(content);
 
-        var writeCall = A.CallTo(() => _fileService.Write($"{path}\\Test.{projectFile.ProjectFileInfo.Extension}", content));
+        var writeCall = A.CallTo(() => _fileService.Write($"{path}\\TestClasses.{projectFile.ProjectFileInfo.Extension}", content));
         writeCall.DoesNothing();
 
         // Act

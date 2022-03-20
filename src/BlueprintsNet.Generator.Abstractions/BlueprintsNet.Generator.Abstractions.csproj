@@ -10,4 +10,8 @@
 		<RootNamespace>BlueprintsNet.Generator</RootNamespace>
 	</PropertyGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\BlueprintsNet.Core.Abstractions\BlueprintsNet.Core.Abstractions.csproj" />
+	</ItemGroup>
+
 </Project>
