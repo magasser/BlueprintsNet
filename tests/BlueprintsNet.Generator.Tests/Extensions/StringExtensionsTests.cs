@@ -30,9 +30,9 @@ public class StringExtensionsTests
     #endregion Validation
 
     [TestCase("", 0, ExpectedResult = "")]
-    [TestCase("", 1, ExpectedResult = "\t")]
-    [TestCase("indent", 2, ExpectedResult = "\t\tindent")]
-    [TestCase("  indent", 3, ExpectedResult = "\t\t\t  indent")]
+    [TestCase("", 1, ExpectedResult = "    ")]
+    [TestCase("indent", 2, ExpectedResult = "        indent")]
+    [TestCase("  indent", 3, ExpectedResult = "              indent")]
     public string When_Indent_Then_return_indented_string(string subject, int indentLevel)
     {
         // Act - Assert
@@ -40,11 +40,11 @@ public class StringExtensionsTests
     }
 
     [TestCase("\n", 0, ExpectedResult = "\n")]
-    [TestCase("\n", 1, ExpectedResult = "\t\r\n\t")]
-    [TestCase("\r\n", 1, ExpectedResult = "\t\r\n\t")]
-    [TestCase("\r", 1, ExpectedResult = "\t\r\n\t")]
-    [TestCase("before\nafter", 2, ExpectedResult = "\t\tbefore\r\n\t\tafter")]
-    [TestCase("before\r\nmiddle\r\nafter", 3, ExpectedResult = "\t\t\tbefore\r\n\t\t\tmiddle\r\n\t\t\tafter")]
+    [TestCase("\n", 1, ExpectedResult = "    \r\n    ")]
+    [TestCase("\r\n", 1, ExpectedResult = "    \r\n    ")]
+    [TestCase("\r", 1, ExpectedResult = "    \r\n    ")]
+    [TestCase("before\nafter", 2, ExpectedResult = "        before\r\n        after")]
+    [TestCase("before\r\nmiddle\r\nafter", 3, ExpectedResult = "            before\r\n            middle\r\n            after")]
     public string When_IndentLines_Then_return_indented_lines(string subject, int indentLevel)
     {
         // Act - Assert
