@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<LangVersion>10.0</LangVersion>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+
+		<AssemblyName>BlueprintsNet.Generator.Abstractions</AssemblyName>
+		<RootNamespace>BlueprintsNet.Generator</RootNamespace>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\BlueprintsNet.Core.Abstractions\BlueprintsNet.Core.Abstractions.csproj" />
+	</ItemGroup>
+
+</Project>

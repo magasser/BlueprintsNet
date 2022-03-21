@@ -1,0 +1,110 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32228.430
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlueprintsNet.Wpf", "src\BlueprintsNet.Wpf\BlueprintsNet.Wpf.csproj", "{A18F0C8A-93DC-41F6-A488-881E9A27394F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7253DED3-A765-468A-B279-B30F6B72D069}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		Directory.Build.props = Directory.Build.props
+		.github\workflows\pipeline.yml = .github\workflows\pipeline.yml
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C00352FF-756F-43A9-8417-6CF9362952ED}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{C99E3B06-3CF0-4D23-9EE3-0123DF7EC21E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlueprintsNet.Wpf.Tests", "tests\BlueprintsNet.Wpf.Tests\BlueprintsNet.Wpf.Tests.csproj", "{3C1DD2CF-3C17-4B2A-B0E4-7DC2C8462A39}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlueprintsNet.Core", "src\BlueprintsNet.Core\BlueprintsNet.Core.csproj", "{C076D9C3-682B-4B0D-BDDB-04FD8F7B2D17}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlueprintsNet.Core.DependencyInjection", "src\BlueprintsNet.Core.DependencyInjection\BlueprintsNet.Core.DependencyInjection.csproj", "{DCFFF419-D2B5-436B-9972-1C2F02D44694}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlueprintsNet.Core.Tests", "tests\BlueprintsNet.Core.Tests\BlueprintsNet.Core.Tests.csproj", "{4C501ED9-FB00-47AC-A23C-4D48D19BAD03}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlueprintsNet.Core.IntegrationTests", "tests\BlueprintsNet.Core.IntegrationTests\BlueprintsNet.Core.IntegrationTests.csproj", "{D7874C3E-0DF3-4713-AE62-780AB6362982}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlueprintsNet.Generator", "src\BlueprintsNet.Generator\BlueprintsNet.Generator.csproj", "{DD410F00-CFD5-4358-87EF-34FA0F2E0CB0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlueprintsNet.Core.Abstractions", "src\BlueprintsNet.Core.Abstractions\BlueprintsNet.Core.Abstractions.csproj", "{BB2ACED6-14BC-4914-B6D9-2116449A631A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlueprintsNet.Generator.Abstractions", "src\BlueprintsNet.Generator.Abstractions\BlueprintsNet.Generator.Abstractions.csproj", "{14F4D3F3-FBF9-4729-9D4B-77A4C1B4FD65}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlueprintsNet.Generator.DependencyInjection", "src\BlueprintsNet.Generator.DependencyInjection\BlueprintsNet.Generator.DependencyInjection.csproj", "{ABE39E0E-1E1A-475F-8FF2-BB612FB57C7E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlueprintsNet.Generator.Tests", "tests\BlueprintsNet.Generator.Tests\BlueprintsNet.Generator.Tests.csproj", "{50E68D07-C423-475A-A022-F10DFCF2C8CA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A18F0C8A-93DC-41F6-A488-881E9A27394F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A18F0C8A-93DC-41F6-A488-881E9A27394F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A18F0C8A-93DC-41F6-A488-881E9A27394F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A18F0C8A-93DC-41F6-A488-881E9A27394F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C1DD2CF-3C17-4B2A-B0E4-7DC2C8462A39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C1DD2CF-3C17-4B2A-B0E4-7DC2C8462A39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C1DD2CF-3C17-4B2A-B0E4-7DC2C8462A39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C1DD2CF-3C17-4B2A-B0E4-7DC2C8462A39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C076D9C3-682B-4B0D-BDDB-04FD8F7B2D17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C076D9C3-682B-4B0D-BDDB-04FD8F7B2D17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C076D9C3-682B-4B0D-BDDB-04FD8F7B2D17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C076D9C3-682B-4B0D-BDDB-04FD8F7B2D17}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCFFF419-D2B5-436B-9972-1C2F02D44694}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCFFF419-D2B5-436B-9972-1C2F02D44694}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCFFF419-D2B5-436B-9972-1C2F02D44694}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCFFF419-D2B5-436B-9972-1C2F02D44694}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C501ED9-FB00-47AC-A23C-4D48D19BAD03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C501ED9-FB00-47AC-A23C-4D48D19BAD03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C501ED9-FB00-47AC-A23C-4D48D19BAD03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C501ED9-FB00-47AC-A23C-4D48D19BAD03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7874C3E-0DF3-4713-AE62-780AB6362982}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7874C3E-0DF3-4713-AE62-780AB6362982}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7874C3E-0DF3-4713-AE62-780AB6362982}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7874C3E-0DF3-4713-AE62-780AB6362982}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD410F00-CFD5-4358-87EF-34FA0F2E0CB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD410F00-CFD5-4358-87EF-34FA0F2E0CB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD410F00-CFD5-4358-87EF-34FA0F2E0CB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD410F00-CFD5-4358-87EF-34FA0F2E0CB0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB2ACED6-14BC-4914-B6D9-2116449A631A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB2ACED6-14BC-4914-B6D9-2116449A631A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB2ACED6-14BC-4914-B6D9-2116449A631A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB2ACED6-14BC-4914-B6D9-2116449A631A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14F4D3F3-FBF9-4729-9D4B-77A4C1B4FD65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14F4D3F3-FBF9-4729-9D4B-77A4C1B4FD65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14F4D3F3-FBF9-4729-9D4B-77A4C1B4FD65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14F4D3F3-FBF9-4729-9D4B-77A4C1B4FD65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABE39E0E-1E1A-475F-8FF2-BB612FB57C7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABE39E0E-1E1A-475F-8FF2-BB612FB57C7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABE39E0E-1E1A-475F-8FF2-BB612FB57C7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABE39E0E-1E1A-475F-8FF2-BB612FB57C7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50E68D07-C423-475A-A022-F10DFCF2C8CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50E68D07-C423-475A-A022-F10DFCF2C8CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50E68D07-C423-475A-A022-F10DFCF2C8CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50E68D07-C423-475A-A022-F10DFCF2C8CA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A18F0C8A-93DC-41F6-A488-881E9A27394F} = {C00352FF-756F-43A9-8417-6CF9362952ED}
+		{3C1DD2CF-3C17-4B2A-B0E4-7DC2C8462A39} = {C99E3B06-3CF0-4D23-9EE3-0123DF7EC21E}
+		{C076D9C3-682B-4B0D-BDDB-04FD8F7B2D17} = {C00352FF-756F-43A9-8417-6CF9362952ED}
+		{DCFFF419-D2B5-436B-9972-1C2F02D44694} = {C00352FF-756F-43A9-8417-6CF9362952ED}
+		{4C501ED9-FB00-47AC-A23C-4D48D19BAD03} = {C99E3B06-3CF0-4D23-9EE3-0123DF7EC21E}
+		{D7874C3E-0DF3-4713-AE62-780AB6362982} = {C99E3B06-3CF0-4D23-9EE3-0123DF7EC21E}
+		{DD410F00-CFD5-4358-87EF-34FA0F2E0CB0} = {C00352FF-756F-43A9-8417-6CF9362952ED}
+		{BB2ACED6-14BC-4914-B6D9-2116449A631A} = {C00352FF-756F-43A9-8417-6CF9362952ED}
+		{14F4D3F3-FBF9-4729-9D4B-77A4C1B4FD65} = {C00352FF-756F-43A9-8417-6CF9362952ED}
+		{ABE39E0E-1E1A-475F-8FF2-BB612FB57C7E} = {C00352FF-756F-43A9-8417-6CF9362952ED}
+		{50E68D07-C423-475A-A022-F10DFCF2C8CA} = {C99E3B06-3CF0-4D23-9EE3-0123DF7EC21E}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {04DBB806-23AE-44F6-BBBD-1BF67139E3C0}
+	EndGlobalSection
+EndGlobal
