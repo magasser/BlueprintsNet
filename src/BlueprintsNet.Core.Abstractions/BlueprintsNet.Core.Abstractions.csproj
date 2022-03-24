@@ -9,10 +9,18 @@
 		<AssemblyName>BlueprintsNet.Core.Abstractions</AssemblyName>
 		<RootNamespace>BlueprintsNet.Core</RootNamespace>
 	</PropertyGroup>
+
+	<PropertyGroup>
+		<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+	</PropertyGroup>
 	
 	<ItemGroup>
 	  <Folder Include="Models\Blueprints\Operators\Bitwise\" />
 	  <Folder Include="Models\Blueprints\Operators\Equality\" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\BlueprintsNet.SourceGenerators\BlueprintsNet.SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
 	</ItemGroup>
 
 </Project>
