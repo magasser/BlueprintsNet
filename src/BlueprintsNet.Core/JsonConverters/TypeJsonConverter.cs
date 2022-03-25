@@ -1,5 +1,4 @@
-﻿
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace BlueprintsNet.Core.JsonConverters;
 
@@ -11,7 +10,9 @@ public class TypeJsonConverter : JsonConverter<Type>
                                    bool hasExistingValue,
                                    JsonSerializer serializer)
     {
-        return reader.Value as string switch
+        var jsonString = reader.Value as string;
+
+        return jsonString switch
         {
             var typeName when typeName == typeof(Bool).FullName => typeof(Bool),
             var typeName when typeName == typeof(Integer).FullName => typeof(Integer),

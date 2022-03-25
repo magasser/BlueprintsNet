@@ -15,4 +15,8 @@
 	  <Folder Include="Models\Blueprints\Operators\Equality\" />
 	</ItemGroup>
 
+	<ItemGroup>
+		<ProjectReference Include="..\BlueprintsNet.SourceGenerators\BlueprintsNet.SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+	</ItemGroup>
+
 </Project>
