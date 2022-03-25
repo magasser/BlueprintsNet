@@ -9,7 +9,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 namespace BlueprintsNet.SourceGenerators
 {
     [Generator]
-    internal class BlueprintInterfaceGenerator : ISourceGenerator
+    public class BlueprintInterfaceGenerator : ISourceGenerator
     {
         public void Execute(GeneratorExecutionContext context)
         {
@@ -26,17 +26,17 @@ namespace BlueprintsNet.Core
     {
 ");
 
-            blueprints.ForEach(blueprint =>
-            {
-                sourceBuilder.AppendLine($"        string Generate({blueprint.Identifier.ValueText} bp);");
-                sourceBuilder.Append(Environment.NewLine);
-            });
+            blueprints.ForEach(blueprint => sourceBuilder.Append("        ")
+                                                .Append("string Generate(")
+                                                .Append(blueprint.Identifier.ValueText)
+                                                .AppendLine(" bp);")
+                                                .Append(Environment.NewLine));
 
             sourceBuilder.Append(
     @"    }
 }");
 
-            context.AddSource($"IBlueprintGenerator.g.cs", SourceText.From(sourceBuilder.ToString(), Encoding.UTF8));
+            context.AddSource("IBlueprintGenerator.g.cs", SourceText.From(sourceBuilder.ToString(), Encoding.UTF8));
         }
 
         public void Initialize(GeneratorInitializationContext context)
@@ -44,7 +44,7 @@ namespace BlueprintsNet.Core
             context.RegisterForSyntaxNotifications(() => new BlueprintFinder());
 
 #if DEBUG
-            /*if (false && !Debugger.IsAttached)
+            /*if (!Debugger.IsAttached)
             {
                 Debugger.Launch();
             }*/
@@ -75,8 +75,6 @@ namespace BlueprintsNet.Core
                                             return identifierText == "IBlueprint" || identifierText.StartsWith("BP");
                                         })
                         != null;
-                    var t = declarationSyntax.Identifier.ValueText
-                                .StartsWith("BP");
                     if (isBlueprint && !isAbstract)
                     {
                         Blueprints.Add(declarationSyntax);
