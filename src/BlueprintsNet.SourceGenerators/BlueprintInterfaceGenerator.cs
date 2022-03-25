@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Text;
-using System.Diagnostics;
 using System.Collections.Generic;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Text;
@@ -45,10 +44,10 @@ namespace BlueprintsNet.Core
             context.RegisterForSyntaxNotifications(() => new BlueprintFinder());
 
 #if DEBUG
-            if (false && !Debugger.IsAttached)
+            /*if (false && !Debugger.IsAttached)
             {
                 Debugger.Launch();
-            }
+            }*/
 #endif
         }
 
