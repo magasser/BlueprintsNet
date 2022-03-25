@@ -5,12 +5,12 @@ public abstract class BPLogicalBase : BPBase, IBPLogical
 {
     protected BPLogicalBase()
     {
-        In1 = new Bool.In();
-        In2 = new Bool.In();
+        In1 = new Bool.In(this);
+        In2 = new Bool.In(this);
 
         AdditionalInputs = new List<Bool.In>();
 
-        Out = new Bool.Out();
+        Out = new Bool.Out(this);
     }
 
     public Bool.In In1 { get; init; }

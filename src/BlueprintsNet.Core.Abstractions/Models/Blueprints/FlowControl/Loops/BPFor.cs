@@ -5,8 +5,8 @@ public class BPFor : BPFlowControlBase
 {
     public BPFor()
     {
-        OutBody = new Connection.Out(NodeNames.Body);
-        OutCompleted = new Connection.Out(NodeNames.Completed);
+        OutBody = new Connection.Out(this, NodeNames.Body);
+        OutCompleted = new Connection.Out(this, NodeNames.Completed);
 
         DisplayName = BPNames.For;
         Out = OutBody;

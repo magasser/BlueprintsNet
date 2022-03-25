@@ -3,30 +3,33 @@ namespace BlueprintsNet.Core.Models.Blueprints;
 
 public class Integer : ValueBase
 {
-    private Integer(string displayName)
-        : base(displayName)
+    private Integer(IBlueprint parent, string displayName)
+        : base(parent, displayName)
     {
-        DataType = DataType.Integer;
+        DataType = DataType.Bool;
     }
 
-    private Integer()
+    private Integer(IBlueprint parent)
+        : base(parent)
     {
-        DataType = DataType.Integer;
+        DataType = DataType.Bool;
     }
 
     public override DataType DataType { get; init; }
 
     public class In : Integer, IInValue
     {
-        public In(string displayName) : base(displayName) { }
+        public In(IBlueprint parent, string displayName) : base(parent, displayName) { }
 
-        public In() { }
+        public In(IBlueprint parent) : base(parent) { }
+
+        public IOutValue? Previous { get; set; }
     }
 
     public class Out : Integer, IOutValue
     {
-        public Out(string displayName) : base(displayName) { }
+        public Out(IBlueprint parent, string displayName) : base(parent, displayName) { }
 
-        public Out() { }
+        public Out(IBlueprint parent) : base(parent) { }
     }
 }

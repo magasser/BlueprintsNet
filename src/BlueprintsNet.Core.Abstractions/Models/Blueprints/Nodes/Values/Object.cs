@@ -3,17 +3,17 @@ namespace BlueprintsNet.Core.Models.Blueprints;
 
 public class Object : ValueBase
 {
-    private Object() { }
-
-    private Object(string displayName, string objectType)
-        : base(displayName)
+    private Object(IBlueprint parent,
+                   string displayName,
+                   string objectType)
+        : base(parent, displayName)
     {
         ObjectType = objectType.MustNotBeNullOrWhiteSpace();
         DataType = DataType.Object;
     }
 
-    private Object(string objectType)
-        : this(string.Empty, objectType)
+    private Object(IBlueprint parent, string objectType)
+        : this(parent, string.Empty, objectType)
     {
         DataType = DataType.Object;
     }
@@ -24,19 +24,23 @@ public class Object : ValueBase
 
     public class In : Object, IInValue
     {
-        private In() { }
+        public In(IBlueprint parent,
+                  string displayName,
+                  string objectType)
+            : base(parent, displayName, objectType) { }
 
-        public In(string displayName, string objectType) : base(displayName, objectType) { }
+        public In(IBlueprint parent, string objectType) : base(parent, objectType) { }
 
-        public In(string objectType) : base(objectType) { }
+        public IOutValue? Previous { get; set; }
     }
 
     public class Out : Object, IOutValue
     {
-        private Out() { }
+        public Out(IBlueprint parent,
+                   string displayName,
+                   string objectType)
+            : base(parent, displayName, objectType) { }
 
-        public Out(string displayName, string objectType) : base(displayName, objectType) { }
-
-        public Out(string objectType) : base(objectType) { }
+        public Out(IBlueprint parent, string objectType) : base(parent, objectType) { }
     }
 }

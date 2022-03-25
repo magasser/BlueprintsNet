@@ -5,8 +5,8 @@ public abstract class BPArithmeticBase : BPMathBase, IBPArithmetic
 {
     protected BPArithmeticBase()
     {
-        In1 = new Integer.In();
-        In2 = new Integer.In();
+        In1 = new Integer.In(this);
+        In2 = new Integer.In(this);
 
         AdditionalInputs = new List<Integer.In>();
     }
