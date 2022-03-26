@@ -1,5 +1,6 @@
-﻿
-namespace BlueprintsNet.Generator.Generators;
+using BlueprintsNet.Core.Models.Blueprints;
+
+namespace BlueprintsNet.Generator.Generators.BlueprintGenerators;
 
 internal partial class BlueprintGenerator : BlueprintGeneratorBase
 {
