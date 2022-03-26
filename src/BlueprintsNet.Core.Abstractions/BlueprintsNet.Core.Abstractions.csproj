@@ -9,6 +9,10 @@
 		<AssemblyName>BlueprintsNet.Core.Abstractions</AssemblyName>
 		<RootNamespace>BlueprintsNet.Core</RootNamespace>
 	</PropertyGroup>
+
+	<ItemGroup>
+		<InternalsVisibleTo Include="BlueprintsNet.Generator" />
+	</ItemGroup>
 	
 	<ItemGroup>
 	  <Folder Include="Models\Blueprints\Operators\Bitwise\" />
