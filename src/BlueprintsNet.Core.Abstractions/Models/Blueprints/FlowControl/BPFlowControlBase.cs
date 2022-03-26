@@ -5,7 +5,7 @@ public abstract class BPFlowControlBase : BPBase, IBPFlowControl
 {
     protected BPFlowControlBase()
     {
-        In = new Connection.In();
+        In = new Connection.In(this);
     }
 
     public Connection.In In { get; init; }

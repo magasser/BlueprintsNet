@@ -7,8 +7,8 @@ public class BPSet : BPBase, IBPFlow
     {
         InValue = inValue.MustNotBeNull();
 
-        In = new Connection.In();
-        Out = new Connection.Out();
+        In = new Connection.In(this);
+        Out = new Connection.Out(this);
 
         DisplayName = BPNames.Set;
     }

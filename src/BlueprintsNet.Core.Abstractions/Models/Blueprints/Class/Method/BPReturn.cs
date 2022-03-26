@@ -7,7 +7,7 @@ public class BPReturn : BPBase
     {
         OutValue = outValue;
 
-        In = new Connection.In();
+        In = new Connection.In(this);
 
         DisplayName = BPNames.Return;
     }

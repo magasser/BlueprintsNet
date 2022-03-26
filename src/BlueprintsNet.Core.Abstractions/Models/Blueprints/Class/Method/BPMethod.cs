@@ -11,8 +11,8 @@ public class BPMethod : BPBase, IBPFlow
         InValues = inValues;
         OutValue = outValue;
 
-        In = new Connection.In();
-        Out = new Connection.Out();
+        In = new Connection.In(this);
+        Out = new Connection.Out(this);
     }
 
     public BPMethod(string displayName, IReadOnlyList<IInValue>? inValues) : this(displayName, inValues, null) { }

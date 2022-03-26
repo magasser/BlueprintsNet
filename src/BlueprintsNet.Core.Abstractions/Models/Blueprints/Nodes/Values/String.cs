@@ -3,30 +3,33 @@ namespace BlueprintsNet.Core.Models.Blueprints;
 
 public class String : ValueBase
 {
-    private String(string displayName)
-        : base(displayName)
+    private String(IBlueprint parent, string displayName)
+        : base(parent, displayName)
     {
-        DataType = DataType.String;
+        DataType = DataType.Bool;
     }
 
-    private String()
+    private String(IBlueprint parent)
+        : base(parent)
     {
-        DataType = DataType.String;
+        DataType = DataType.Bool;
     }
 
     public override DataType DataType { get; init; }
 
     public class In : String, IInValue
     {
-        public In(string displayName) : base(displayName) { }
+        public In(IBlueprint parent, string displayName) : base(parent, displayName) { }
 
-        public In() { }
+        public In(IBlueprint parent) : base(parent) { }
+
+        public IOutValue? Previous { get; set; }
     }
 
     public class Out : String, IOutValue
     {
-        public Out(string displayName) : base(displayName) { }
+        public Out(IBlueprint parent, string displayName) : base(parent, displayName) { }
 
-        public Out() { }
+        public Out(IBlueprint parent) : base(parent) { }
     }
 }

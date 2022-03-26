@@ -3,13 +3,14 @@ namespace BlueprintsNet.Core.Models.Blueprints;
 
 public class Bool : ValueBase
 {
-    private Bool(string displayName)
-        : base(displayName)
+    private Bool(IBlueprint parent, string displayName)
+        : base(parent, displayName)
     {
         DataType = DataType.Bool;
     }
 
-    private Bool()
+    private Bool(IBlueprint parent)
+        : base(parent)
     {
         DataType = DataType.Bool;
     }
@@ -18,15 +19,17 @@ public class Bool : ValueBase
 
     public class In : Bool, IInValue
     {
-        public In(string displayName) : base(displayName) { }
+        public In(IBlueprint parent, string displayName) : base(parent, displayName) { }
 
-        public In() { }
+        public In(IBlueprint parent) : base(parent) { }
+
+        public IOutValue? Previous { get; set; }
     }
 
     public class Out : Bool, IOutValue
     {
-        public Out(string displayName) : base(displayName) { }
+        public Out(IBlueprint parent, string displayName) : base(parent, displayName) { }
 
-        public Out() { }
+        public Out(IBlueprint parent) : base(parent) { }
     }
 }

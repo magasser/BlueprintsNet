@@ -5,9 +5,9 @@ public class BPIf : BPFlowControlBase
 {
     public BPIf()
     {
-        OutTrue = new Connection.Out(NodeNames.True);
-        OutFalse = new Connection.Out(NodeNames.False);
-        Condition = new Bool.In(NodeNames.Condition);
+        OutTrue = new Connection.Out(this, NodeNames.True);
+        OutFalse = new Connection.Out(this, NodeNames.False);
+        Condition = new Bool.In(this, NodeNames.Condition);
 
         DisplayName = BPNames.If;
         Out = OutTrue;

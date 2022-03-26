@@ -3,9 +3,9 @@ namespace BlueprintsNet.Core.Models.Blueprints;
 
 public abstract class ValueBase : NodeBase, IValue
 {
-    protected ValueBase(string displayName) : base(displayName) { }
+    protected ValueBase(IBlueprint parent, string displayName) : base(parent, displayName) { }
 
-    protected ValueBase() { }
+    protected ValueBase(IBlueprint parent) : base(parent) { }
 
     public abstract DataType DataType { get; init; }
 }

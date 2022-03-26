@@ -3,12 +3,15 @@ namespace BlueprintsNet.Core.Models.Blueprints;
 
 public abstract class NodeBase : INode
 {
-    protected NodeBase(string displayName)
+    protected NodeBase(IBlueprint parent, string displayName)
     {
+        Parent = parent.MustNotBeNull();
         DisplayName = displayName.MustNotBeNull();
     }
 
-    protected NodeBase() : this(string.Empty) { }
+    protected NodeBase(IBlueprint parent) : this(parent, string.Empty) { }
+
+    public IBlueprint Parent { get; init; }
 
     public string DisplayName { get; init; }
 }

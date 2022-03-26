@@ -11,7 +11,7 @@ public class BPMethodIn : BPBase
         DisplayName = displayName.MustNotBeNullOrWhiteSpace();
         InValues = inValues;
 
-        Out = new Connection.Out();
+        Out = new Connection.Out(this);
     }
 
     public BPMethodIn(string displayName) : this(displayName, new List<IInValue>()) { }
