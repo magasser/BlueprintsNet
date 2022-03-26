@@ -4,8 +4,8 @@
     <TargetFramework>netstandard2.0</TargetFramework>
 	  <LangVersion>latest</LangVersion>
 	  
-	  <AssemblyName>BlueprintsNet.SourceGenerator</AssemblyName>
-	  <RootNamespace>BlueprintsNet.SourceGenerator</RootNamespace>
+	  <AssemblyName>BlueprintsNet.SourceGenerators</AssemblyName>
+	  <RootNamespace>BlueprintsNet.SourceGenerators</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
