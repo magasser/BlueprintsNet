@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Text;
@@ -20,9 +19,15 @@ namespace BlueprintsNet.SourceGenerators.Generators
 
 namespace BlueprintsNet.Generator.Generators
 {
-    internal abstract class BlueprintGeneratorBase : IBlueprintGenerator
+    public abstract class BlueprintGeneratorBase : IBlueprintGenerator
     {
-        public abstract string Generate(IBlueprint bp);
+        public string Generate(IBlueprint bp)
+        {
+            bp.MustNotBeNull();
+
+            return bp.Generate(this);
+        }
+
 ");
 
             blueprints.ForEach(blueprint => sourceBuilder.Append("        ")
@@ -47,6 +52,7 @@ namespace BlueprintsNet.Generator.Generators
             {
                 Debugger.Launch();
             }*/
+#endif
         }
     }
 }

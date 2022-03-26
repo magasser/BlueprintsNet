@@ -1,4 +1,6 @@
-﻿using BlueprintsNet.Generator.Services;
+﻿using Light.GuardClauses;
+using BlueprintsNet.Generator.Services;
+using BlueprintsNet.Core.Models.Classes;
 using BlueprintsNet.Generator.Generators;
 
 namespace Microsoft.Extensions.DependencyInjection;

@@ -19,17 +19,20 @@ namespace BlueprintsNet.SourceGenerators
 
 namespace BlueprintsNet.Generator.Generators
 {
-    internal partial class BlueprintGenerator : BlueprintGeneratorBase
+    internal static class BlueprintExtensions
     {
-        public override string Generate(IBlueprint bp)
+        public static string Generate(this IBlueprint bp, IBlueprintGenerator bpGenerator)
         {
+            bp.MustNotBeNull();
+            bpGenerator.MustNotBeNull();
+            
             return bp switch
             {
 ");
 
             blueprints.ForEach(blueprint => sourceBuilder.Append("                ")
                                                 .Append(blueprint.Identifier.ValueText)
-                                                .Append("=> Generate((")
+                                                .Append("=> bpGenerator.Generate((")
                                                 .Append(blueprint.Identifier.ValueText)
                                                 .Append(")bp),")
                                                 .Append(Environment.NewLine));
