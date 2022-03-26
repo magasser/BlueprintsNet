@@ -18,7 +18,7 @@
 		<InternalsVisibleTo Include="$(AssemblyName).Tests" />
 		<InternalsVisibleTo Include="$(AssemblyName).IntegrationTests" />
 		<InternalsVisibleTo Include="$(AssemblyName).DependencyInjection" />
-		<InternalsVisibleTo Include="DynamicProxyGenAssembly2"/>
+		<InternalsVisibleTo Include="DynamicProxyGenAssembly2" />
 	</ItemGroup>
 
 	<ItemGroup>

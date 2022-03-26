@@ -24,6 +24,7 @@ namespace BlueprintsNet.Core
 {
     public interface IBlueprintGenerator
     {
+        string Generate(IBlueprint bp);
 ");
 
             blueprints.ForEach(blueprint => sourceBuilder.Append("        ")
