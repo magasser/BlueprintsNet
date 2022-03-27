@@ -8,11 +8,21 @@ public class BPFor : BPFlowControlBase
         OutBody = new Connection.Out(this, NodeNames.Body);
         OutCompleted = new Connection.Out(this, NodeNames.Completed);
 
+        StartIndex = new Integer.In(this, NodeNames.StartIndex);
+        StopIndex = new Integer.In(this, NodeNames.StopIndex);
+        Index = new Integer.Out(this, NodeNames.Index);
+
         DisplayName = BPNames.For;
-        Out = OutBody;
+        Out = OutCompleted;
     }
 
     public override string DisplayName { get; init; }
+
+    public Integer.In StartIndex { get; init; }
+
+    public Integer.In StopIndex { get; init; }
+
+    public Integer.Out Index { get; init; }
 
     public override Connection.Out Out { get; init; }
 

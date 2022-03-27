@@ -19,17 +19,33 @@ public class String : ValueBase
 
     public class In : String, IInValue
     {
-        public In(IBlueprint parent, string displayName) : base(parent, displayName) { }
+        public In(IBlueprint parent, string displayName)
+            : base(parent, displayName)
+        {
+            ConstantValue = "\"\"";
+        }
 
-        public In(IBlueprint parent) : base(parent) { }
+        public In(IBlueprint parent)
+            : base(parent)
+        {
+            ConstantValue = "\"\"";
+        }
 
         public IOutValue? Previous { get; set; }
     }
 
     public class Out : String, IOutValue
     {
-        public Out(IBlueprint parent, string displayName) : base(parent, displayName) { }
+        public Out(IBlueprint parent, string displayName)
+            : base(parent, displayName)
+        {
+            ConstantValue = "\"\"";
+        }
 
-        public Out(IBlueprint parent) : base(parent) { }
+        public Out(IBlueprint parent)
+            : base(parent)
+        {
+            ConstantValue = "\"\"";
+        }
     }
 }

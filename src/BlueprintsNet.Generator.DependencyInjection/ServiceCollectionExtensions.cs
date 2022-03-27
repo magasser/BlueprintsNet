@@ -1,4 +1,5 @@
 ﻿using Light.GuardClauses;
+using BlueprintsNet.Core;
 using BlueprintsNet.Generator.Services;
 using BlueprintsNet.Core.Models.Classes;
 using BlueprintsNet.Generator.Generators;
@@ -15,8 +16,8 @@ public static class ServiceCollectionExtensions
             .AddSingleton<IGenerator<Class>, ClassGenerator>()
             .AddSingleton<IGenerator<Constructor>, ConstructorGenerator>()
             .AddSingleton<IGenerator<Field>, FieldGenerator>()
-            .AddSingleton<IGenerator<Method>, MethodGenerator>();
-        // .AddSingleton<IBlueprintGenerator, BlueprintGenerator>();
+            .AddSingleton<IGenerator<Method>, MethodGenerator>()
+            .AddSingleton<IBlueprintGenerator, BlueprintGenerator>();
 
         return services;
     }

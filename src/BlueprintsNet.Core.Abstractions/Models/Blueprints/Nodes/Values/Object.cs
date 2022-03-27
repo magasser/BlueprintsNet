@@ -27,9 +27,16 @@ public class Object : ValueBase
         public In(IBlueprint parent,
                   string displayName,
                   string objectType)
-            : base(parent, displayName, objectType) { }
+            : base(parent, displayName, objectType)
+        {
+            ConstantValue = "null";
+        }
 
-        public In(IBlueprint parent, string objectType) : base(parent, objectType) { }
+        public In(IBlueprint parent, string objectType)
+            : base(parent, objectType)
+        {
+            ConstantValue = "null";
+        }
 
         public IOutValue? Previous { get; set; }
     }
@@ -39,8 +46,15 @@ public class Object : ValueBase
         public Out(IBlueprint parent,
                    string displayName,
                    string objectType)
-            : base(parent, displayName, objectType) { }
+            : base(parent, displayName, objectType)
+        {
+            ConstantValue = "null";
+        }
 
-        public Out(IBlueprint parent, string objectType) : base(parent, objectType) { }
+        public Out(IBlueprint parent, string objectType)
+            : base(parent, objectType)
+        {
+            ConstantValue = "null";
+        }
     }
 }

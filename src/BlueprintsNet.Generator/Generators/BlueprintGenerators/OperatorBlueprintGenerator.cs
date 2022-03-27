@@ -5,28 +5,12 @@ internal partial class BlueprintGenerator : BlueprintGeneratorBase
 {
     public override string Generate(BPLogicalAnd bp)
     {
-        /*var builder = new StringBuilder();
+        bp.MustNotBeNull();
 
-        var in1 = bp.In1.Previous?.Parent.Generate(this) ?? "true";
-        var in2 = bp.In2.Previous?.Parent.Generate(this) ?? "true";
+        var inValues = new List<IInValue> { bp.In1, bp.In2 };
+        inValues.AddRange(bp.AdditionalInputs);
 
-        builder.Append("(")
-            .Append(in1)
-            .Append(" && ")
-            .Append(in2);
-
-        bp.AdditionalInputs
-            .ForEach(input =>
-            {
-                var gen = input.Previous?.Parent.Generate(this) ?? true;
-
-                builder.Append(" && ")
-                    .Append(gen);
-            });
-
-        builder.Append(")");
-
-        return builder.ToString();*/
-        throw new NotImplementedException();
+        return AddOperator(@operator: "&&",
+                           inValues);
     }
 }

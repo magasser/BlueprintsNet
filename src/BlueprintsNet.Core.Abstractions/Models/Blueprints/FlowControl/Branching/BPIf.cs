@@ -21,5 +21,5 @@ public class BPIf : BPFlowControlBase
 
     public Connection.Out OutFalse { get; init; }
 
-    public Bool Condition { get; init; }
+    public Bool.In Condition { get; init; }
 }
