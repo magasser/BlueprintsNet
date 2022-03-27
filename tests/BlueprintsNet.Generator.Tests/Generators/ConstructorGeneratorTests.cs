@@ -16,6 +16,6 @@ public class ConstructorGeneratorTests
     {
         _bpGenerator = A.Fake<IBlueprintGenerator>(options => options.Strict());
 
-        _subject = new ConstructorGenerator(_bpGenerator);
+        // _subject = new ConstructorGenerator(_bpGenerator);
     }
 }
