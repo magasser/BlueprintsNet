@@ -3,9 +3,9 @@ namespace BlueprintsNet.Core.Models.Blueprints;
 
 public class BPReturn : BPBase
 {
-    public BPReturn(IOutValue? outValue)
+    public BPReturn(IInValue? returnValue)
     {
-        OutValue = outValue;
+        ReturnValue = returnValue;
 
         In = new Connection.In(this);
 
@@ -18,7 +18,7 @@ public class BPReturn : BPBase
 
     public Connection.In In { get; init; }
 
-    public bool HasOutValue => OutValue is not null;
+    public bool HasReturnValue => ReturnValue is not null;
 
-    public IOutValue? OutValue { get; set; }
+    public IInValue? ReturnValue { get; set; }
 }

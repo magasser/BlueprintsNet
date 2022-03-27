@@ -3,13 +3,17 @@ namespace BlueprintsNet.Core.Models.Blueprints;
 
 public class BPField : BPBase
 {
-    public BPField(string displayName, IOutValue outValue)
+    public BPField(Field field, IOutValue outValue)
     {
-        DisplayName = displayName.MustNotBeNullOrWhiteSpace();
+        Field = field.MustNotBeNull();
         OutValue = outValue.MustNotBeNull();
+
+        DisplayName = Field.Name;
     }
 
     public override string DisplayName { get; init; }
 
     public IOutValue OutValue { get; init; }
+
+    public Field Field { get; init; }
 }

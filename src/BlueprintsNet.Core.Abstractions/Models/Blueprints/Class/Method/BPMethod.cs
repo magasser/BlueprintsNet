@@ -3,21 +3,23 @@ namespace BlueprintsNet.Core.Models.Blueprints;
 
 public class BPMethod : BPBase, IBPFlow
 {
-    public BPMethod(string displayName,
+    public BPMethod(Method method,
                     IReadOnlyList<IInValue>? inValues,
                     IOutValue? outValue)
     {
-        DisplayName = displayName.MustNotBeNullOrWhiteSpace();
+        Method = method.MustNotBeNull();
         InValues = inValues;
         OutValue = outValue;
+
+        DisplayName = Method.Name;
 
         In = new Connection.In(this);
         Out = new Connection.Out(this);
     }
 
-    public BPMethod(string displayName, IReadOnlyList<IInValue>? inValues) : this(displayName, inValues, null) { }
+    public BPMethod(Method method, IReadOnlyList<IInValue>? inValues) : this(method, inValues, null) { }
 
-    public BPMethod(string displayName) : this(displayName, null) { }
+    public BPMethod(Method method) : this(method, null) { }
 
     public override string DisplayName { get; init; }
 
@@ -32,4 +34,6 @@ public class BPMethod : BPBase, IBPFlow
     public bool HasOutValue => OutValue is not null;
 
     public IOutValue? OutValue { get; init; }
+
+    public Method Method { get; init; }
 }

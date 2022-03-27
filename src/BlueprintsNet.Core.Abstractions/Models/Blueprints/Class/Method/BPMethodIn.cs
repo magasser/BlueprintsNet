@@ -5,16 +5,17 @@ public class BPMethodIn : BPBase
 {
     private BPMethodIn() { }
 
-    public BPMethodIn(string displayName,
+    public BPMethodIn(Method method,
         List<IInValue> inValues)
     {
-        DisplayName = displayName.MustNotBeNullOrWhiteSpace();
-        InValues = inValues;
+        Method = method.MustNotBeNull();
+        InValues = inValues.MustNotBeNull();
 
+        DisplayName = Method.Name;
         Out = new Connection.Out(this);
     }
 
-    public BPMethodIn(string displayName) : this(displayName, new List<IInValue>()) { }
+    public BPMethodIn(Method method) : this(method, new List<IInValue>()) { }
 
     public override string DisplayName { get; init; }
 
@@ -23,4 +24,6 @@ public class BPMethodIn : BPBase
     public bool HasInValues => !InValues.IsNullOrEmpty();
 
     public List<IInValue> InValues { get; init; }
+
+    public Method Method { get; init; }
 }

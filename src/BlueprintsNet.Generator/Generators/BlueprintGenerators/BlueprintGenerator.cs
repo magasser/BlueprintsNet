@@ -3,6 +3,13 @@ namespace BlueprintsNet.Generator.Generators
 {
     internal partial class BlueprintGenerator : BlueprintGeneratorBase
     {
+        private readonly StringBuilder _builder;
+
+        public BlueprintGenerator()
+        {
+            _builder = new StringBuilder();
+        }
+
         private string AddOperator(string @operator,
                                    IEnumerable<IInValue> inValues)
         {
@@ -14,24 +21,24 @@ namespace BlueprintsNet.Generator.Generators
             values.Length
                   .MustBeGreaterThanOrEqualTo(2);
 
-            var builder = new StringBuilder();
+            _builder.Clear();
 
             var in1 = values[0].Previous?.Parent.Generate(this) ?? values[0].ConstantValue;
 
-            builder.Append('(')
-                   .Append(in1);
+            _builder.OpenBracket()
+                    .Append(in1);
 
             Array.ForEach(values[1..], input =>
             {
                 var gen = input.Previous?.Parent.Generate(this) ?? input.ConstantValue;
 
-                builder.Append(@operator)
-                       .Append(gen);
+                _builder.Append(@operator)
+                        .Append(gen);
             });
 
-            builder.Append(')');
+            _builder.CloseBracket();
 
-            return builder.ToString();
+            return _builder.ToString();
         }
     }
 }

@@ -12,7 +12,7 @@ public class Method
 
         _parameters = new List<Parameter>();
 
-        Start = new BPMethodIn(name);
+        Start = new BPMethodIn(this);
         Return = new BPReturn();
 
         Blueprints = new List<IBlueprint>();
@@ -40,7 +40,7 @@ public class Method
         _parameters.Add(parameter);
 
         Start.InValues
-            .Add(parameter.GetInValue(Start));
+             .Add(parameter.GetInValue(Start));
 
         return true;
     }
@@ -50,7 +50,7 @@ public class Method
         _parameters.Remove(parameter);
 
         Start.InValues
-            .Remove(Start.InValues
-                        .First(value => value.DisplayName == parameter.Name));
+             .Remove(Start.InValues
+                          .First(value => value.DisplayName == parameter.Name));
     }
 }

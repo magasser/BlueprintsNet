@@ -39,7 +39,7 @@ internal partial class BlueprintGenerator : BlueprintGeneratorBase
             var elseBody = next.Parent
                                .Generate(this);
 
-            builder.Append(ifBody.IndentLines(indentLevel: 1))
+            builder.Append(elseBody.IndentLines(indentLevel: 1))
                    .NewLine()
                    .Append('}')
                    .NewLine();
@@ -70,5 +70,7 @@ internal partial class BlueprintGenerator : BlueprintGeneratorBase
                .Append(body.IndentLines(indentLevel: 1))
                .NewLine()
                .Append('}');
+
+        return builder.ToString();
     }
 }

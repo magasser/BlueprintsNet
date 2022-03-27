@@ -3,21 +3,25 @@ namespace BlueprintsNet.Core.Models.Blueprints;
 
 public class BPConstructor : BPBase, IBPFlow
 {
-    public BPConstructor(string displayName,
+    public BPConstructor(Constructor constructor,
                          IReadOnlyList<IInValue>? inValues,
                          IOutValue? outValue)
     {
-        DisplayName = displayName.MustNotBeNullOrWhiteSpace();
+        Constructor = constructor.MustNotBeNull();
+
         InValues = inValues;
         OutValue = outValue;
+
+        DisplayName = Constructor.ClassName;
 
         In = new Connection.In(this);
         Out = new Connection.Out(this);
     }
 
-    public BPConstructor(string displayName, IReadOnlyList<IInValue>? inValues) : this(displayName, inValues, null) { }
+    public BPConstructor(Constructor constructor, IReadOnlyList<IInValue>? inValues)
+        : this(constructor, inValues, null) { }
 
-    public BPConstructor(string displayName) : this(displayName, null) { }
+    public BPConstructor(Constructor constructor) : this(constructor, null) { }
 
     public override string DisplayName { get; init; }
 
@@ -32,4 +36,6 @@ public class BPConstructor : BPBase, IBPFlow
     public bool HasOutValue => OutValue is not null;
 
     public IOutValue? OutValue { get; init; }
+
+    public Constructor Constructor { get; init; }
 }

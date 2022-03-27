@@ -7,8 +7,69 @@ internal static class StringBuilderExtensions
     {
         stringBuilder.MustNotBeNull();
 
-        stringBuilder.Append(Environment.NewLine);
+        return stringBuilder.Append(Environment.NewLine);
+    }
 
-        return stringBuilder;
+    public static StringBuilder OpenBracket(this StringBuilder stringBuilder)
+    {
+        stringBuilder.MustNotBeNull();
+
+        return stringBuilder.Append('(');
+    }
+
+    public static StringBuilder OpenCurlyBracket(this StringBuilder stringBuilder)
+    {
+        stringBuilder.MustNotBeNull();
+
+        return stringBuilder.Append('{');
+    }
+
+    public static StringBuilder CloseBracket(this StringBuilder stringBuilder)
+    {
+        stringBuilder.MustNotBeNull();
+
+        return stringBuilder.Append(')');
+    }
+
+    public static StringBuilder CloseCurlyBracket(this StringBuilder stringBuilder)
+    {
+        stringBuilder.MustNotBeNull();
+
+        return stringBuilder.Append('}');
+    }
+
+    public static StringBuilder Semicolon(this StringBuilder stringBuilder)
+    {
+        stringBuilder.MustNotBeNull();
+
+        return stringBuilder.Append('}');
+    }
+
+    public static StringBuilder Space(this StringBuilder stringBuilder)
+    {
+        stringBuilder.MustNotBeNull();
+
+        return stringBuilder.Append(' ');
+    }
+
+    public static StringBuilder Comma(this StringBuilder stringBuilder)
+    {
+        stringBuilder.MustNotBeNull();
+
+        return stringBuilder.Append(',');
+    }
+
+    public static StringBuilder Dot(this StringBuilder stringBuilder)
+    {
+        stringBuilder.MustNotBeNull();
+
+        return stringBuilder.Append('.');
+    }
+
+    public static StringBuilder Equal(this StringBuilder stringBuilder)
+    {
+        stringBuilder.MustNotBeNull();
+
+        return stringBuilder.Append('=');
     }
 }
