@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using BlueprintsNet.Core.Models.Blueprints;
 
 namespace BlueprintsNet.Generator.Generators;
 
