@@ -15,9 +15,11 @@ namespace BlueprintsNet.SourceGenerators
             var sourceBuilder = new StringBuilder();
 
             sourceBuilder.Append(
-@"using BlueprintsNet.Core.Models.Blueprints;
+@"using System;
 
-namespace BlueprintsNet.Generator.Generators
+using BlueprintsNet.Core.Models.Blueprints;
+
+namespace BlueprintsNet.Core
 {
     public interface IBlueprintGenerator
     {
@@ -41,7 +43,7 @@ namespace BlueprintsNet.Generator.Generators
         {
             context.RegisterForSyntaxNotifications(() => new BlueprintFinder());
 
-#if DEBUG
+        #if DEBUG
             /*if (!Debugger.IsAttached)
             {
                 Debugger.Launch();
