@@ -4,8 +4,8 @@ namespace BlueprintsNet.Core.Models.Blueprints;
 public class BPMethod : BPBase, IBPFlow
 {
     public BPMethod(Method method,
-                    IReadOnlyList<IInValue>? inValues,
-                    IOutValue? outValue)
+                    IReadOnlyList<IOutValue>? inValues,
+                    IInValue? outValue)
     {
         Method = method.MustNotBeNull();
         InValues = inValues;
@@ -17,7 +17,7 @@ public class BPMethod : BPBase, IBPFlow
         Out = new Connection.Out(this);
     }
 
-    public BPMethod(Method method, IReadOnlyList<IInValue>? inValues) : this(method, inValues, null) { }
+    public BPMethod(Method method, IReadOnlyList<IOutValue>? inValues) : this(method, inValues, null) { }
 
     public BPMethod(Method method) : this(method, null) { }
 
@@ -29,11 +29,11 @@ public class BPMethod : BPBase, IBPFlow
 
     public bool HasInValues => !InValues.IsNullOrEmpty();
 
-    public IReadOnlyList<IInValue>? InValues { get; init; }
+    public IReadOnlyList<IOutValue>? InValues { get; init; }
 
     public bool HasOutValue => OutValue is not null;
 
-    public IOutValue? OutValue { get; init; }
+    public IInValue? OutValue { get; init; }
 
     public Method Method { get; init; }
 }
