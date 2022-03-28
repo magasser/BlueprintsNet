@@ -78,18 +78,13 @@ internal partial class BlueprintGenerator : BlueprintGeneratorBase
                 .OpenBracket();
 
 
-        if (bp.InValues is not null)
+        if (bp.Method.Parameters.Count != 0)
         {
-            bp.InValues
-              .ToList()
-              .ForEach(value =>
-              {
-                  var gen = value.Previous?.Parent.Generate(this) ?? value.ConstantValue;
-
-                  _builder.Append(gen)
-                          .Comma()
-                          .Space();
-              });
+            bp.Method.Parameters
+                     .ToList()
+                     .ForEach(value => _builder.Append(value.Name)
+                                               .Comma()
+                                               .Space());
 
             _builder.Remove(_builder.Length - 2, length: 2);
         }
@@ -121,18 +116,13 @@ internal partial class BlueprintGenerator : BlueprintGeneratorBase
                 .OpenBracket();
 
 
-        if (bp.InValues is not null)
+        if (bp.Constructor.Parameters.Count != 0)
         {
-            bp.InValues
-              .ToList()
-              .ForEach(value =>
-              {
-                  var gen = value.Previous?.Parent.Generate(this) ?? value.ConstantValue;
-
-                  _builder.Append(gen)
-                          .Comma()
-                          .Space();
-              });
+            bp.Constructor.Parameters
+                          .ToList()
+                          .ForEach(value => _builder.Append(value.Name)
+                                                    .Comma()
+                                                    .Space());
 
             _builder.Remove(_builder.Length - 2, length: 2);
         }

@@ -62,14 +62,14 @@ public class ProjectHandlingIntegrationTests
 
         var method = new Method("SomeMethod1", AccessModifier.Public);
         method.Start.InValues
-                    .Add(new Bool.In(method.Start, "boolIn1"));
+                    .Add(new Bool.Out(method.Start, "boolIn1"));
         method.Start.InValues
-                    .Add(new Bool.In(method.Start, "boolIn2"));
+                    .Add(new Bool.Out(method.Start, "boolIn2"));
         method.Start.InValues
-                    .Add(new Models.Blueprints.Object.In(method.Start, "objectIn", "Test"));
+                    .Add(new Models.Blueprints.Object.Out(method.Start, "objectIn", "Test"));
         method.Blueprints
               .Add(new BPLogicalAnd());
-        method.Return.ReturnValue = new Bool.Out(method.Start, "boolOut");
+        method.Return.ReturnValue = new Bool.In(method.Start, "boolOut");
 
         @class.Constructors
               .Add(new Constructor(@class.Name, AccessModifier.Public));
@@ -107,14 +107,14 @@ public class ProjectHandlingIntegrationTests
 
         var method = new Method("SomeMethod1", AccessModifier.Public);
         method.Start.InValues
-                    .Add(new Bool.In(method.Start, "boolIn1"));
+                    .Add(new Bool.Out(method.Start, "boolIn1"));
         method.Start.InValues
-                    .Add(new Bool.In(method.Start, "boolIn2"));
+                    .Add(new Bool.Out(method.Start, "boolIn2"));
         method.Start.InValues
-                    .Add(new Models.Blueprints.Object.In(method.Start, "objectIn", "Test"));
+                    .Add(new Models.Blueprints.Object.Out(method.Start, "objectIn", "Test"));
         method.Blueprints
               .Add(new BPLogicalAnd());
-        method.Return.ReturnValue = new Bool.Out(method.Start, "boolOut");
+        method.Return.ReturnValue = new Bool.In(method.Start, "boolOut");
 
         @class.Constructors
               .Add(new Constructor(@class.Name, AccessModifier.Public));

@@ -32,6 +32,8 @@ internal class ClassGenerator : IGenerator<Class>
         value.Usings
              .ForEach(u => builder.AppendLine($"using {u};".Indent(indentLevel)));
 
+        builder.NewLine();
+
         builder.Append($"namespace {value.Namespace}{Environment.NewLine}{{{Environment.NewLine}".IndentLines(indentLevel++));
 
         builder.Append($"{value.AccessModifier.ToString().ToLower()} class {value.Name}{Environment.NewLine}{{".IndentLines(indentLevel++));
@@ -41,7 +43,7 @@ internal class ClassGenerator : IGenerator<Class>
         value.Fields
              .ForEach(f => builder.Append(_fieldGenerator.Generate(f)
                                                          .IndentLines(indentLevel))
-                                  .Append(Environment.NewLine));
+                                  .NewLine());
 
         builder.Append(Environment.NewLine
                                   .Indent(indentLevel));
@@ -49,7 +51,7 @@ internal class ClassGenerator : IGenerator<Class>
         value.Constructors
              .ForEach(c => builder.Append(_constrcutorGenerator.Generate(c)
                                                                .IndentLines(indentLevel))
-                                  .Append(Environment.NewLine));
+                                  .NewLine());
 
         builder.Append(Environment.NewLine
                                   .Indent(indentLevel));
@@ -57,12 +59,12 @@ internal class ClassGenerator : IGenerator<Class>
         value.Methods
              .ForEach(m => builder.Append(_methodGenerator.Generate(m)
                                                           .IndentLines(indentLevel))
-                                  .Append(Environment.NewLine));
+                                  .NewLine());
 
         builder.Append("}".Indent(--indentLevel))
-               .Append(Environment.NewLine)
+               .NewLine()
                .Append("}".Indent(--indentLevel))
-               .Append(Environment.NewLine);
+               .NewLine();
 
         return builder.ToString();
     }

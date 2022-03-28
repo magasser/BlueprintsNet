@@ -4,8 +4,8 @@ namespace BlueprintsNet.Core.Models.Blueprints;
 public class BPConstructor : BPBase, IBPFlow
 {
     public BPConstructor(Constructor constructor,
-                         IReadOnlyList<IOutValue>? inValues,
-                         IInValue? outValue)
+                         IReadOnlyList<IInValue>? inValues,
+                         IOutValue? outValue)
     {
         Constructor = constructor.MustNotBeNull();
 
@@ -18,7 +18,7 @@ public class BPConstructor : BPBase, IBPFlow
         Out = new Connection.Out(this);
     }
 
-    public BPConstructor(Constructor constructor, IReadOnlyList<IOutValue>? inValues)
+    public BPConstructor(Constructor constructor, IReadOnlyList<IInValue>? inValues)
         : this(constructor, inValues, null) { }
 
     public BPConstructor(Constructor constructor) : this(constructor, null) { }
@@ -31,11 +31,11 @@ public class BPConstructor : BPBase, IBPFlow
 
     public bool HasInValues => !InValues.IsNullOrEmpty();
 
-    public IReadOnlyList<IOutValue>? InValues { get; init; }
+    public IReadOnlyList<IInValue>? InValues { get; init; }
 
     public bool HasOutValue => OutValue is not null;
 
-    public IInValue? OutValue { get; init; }
+    public IOutValue? OutValue { get; init; }
 
     public Constructor Constructor { get; init; }
 }
