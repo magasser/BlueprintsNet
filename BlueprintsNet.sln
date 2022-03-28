@@ -37,7 +37,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlueprintsNet.Generator.Dep
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlueprintsNet.Generator.Tests", "tests\BlueprintsNet.Generator.Tests\BlueprintsNet.Generator.Tests.csproj", "{50E68D07-C423-475A-A022-F10DFCF2C8CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlueprintsNet.SourceGenerators", "src\BlueprintsNet.SourceGenerators\BlueprintsNet.SourceGenerators.csproj", "{9988A809-7E68-4695-89DA-2FB99DFE9BBD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlueprintsNet.SourceGenerators", "src\BlueprintsNet.SourceGenerators\BlueprintsNet.SourceGenerators.csproj", "{9988A809-7E68-4695-89DA-2FB99DFE9BBD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

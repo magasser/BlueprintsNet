@@ -19,17 +19,33 @@ public class Bool : ValueBase
 
     public class In : Bool, IInValue
     {
-        public In(IBlueprint parent, string displayName) : base(parent, displayName) { }
+        public In(IBlueprint parent, string displayName)
+            : base(parent, displayName)
+        {
+            ConstantValue = "true";
+        }
 
-        public In(IBlueprint parent) : base(parent) { }
+        public In(IBlueprint parent)
+            : base(parent)
+        {
+            ConstantValue = "true";
+        }
 
         public IOutValue? Previous { get; set; }
     }
 
     public class Out : Bool, IOutValue
     {
-        public Out(IBlueprint parent, string displayName) : base(parent, displayName) { }
+        public Out(IBlueprint parent, string displayName)
+            : base(parent, displayName)
+        {
+            ConstantValue = "true";
+        }
 
-        public Out(IBlueprint parent) : base(parent) { }
+        public Out(IBlueprint parent)
+            : base(parent)
+        {
+            ConstantValue = "true";
+        }
     }
 }

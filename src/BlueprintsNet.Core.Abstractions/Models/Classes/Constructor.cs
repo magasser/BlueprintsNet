@@ -12,7 +12,7 @@ public class Constructor
 
         _parameters = new List<Parameter>();
 
-        Start = new BPConstructorIn(ClassName);
+        Start = new BPConstructorIn(this);
 
         Blueprints = new List<IBlueprint>();
     }
@@ -37,7 +37,7 @@ public class Constructor
         _parameters.Add(parameter);
 
         Start.InValues
-            .Add(parameter.GetInValue(Start));
+             .Add(parameter.GetInValue(Start));
 
         return true;
     }
@@ -47,7 +47,7 @@ public class Constructor
         _parameters.Remove(parameter);
 
         Start.InValues
-            .Remove(Start.InValues
-                        .First(value => value.DisplayName == parameter.Name));
+             .Remove(Start.InValues
+                          .First(value => value.DisplayName == parameter.Name));
     }
 }

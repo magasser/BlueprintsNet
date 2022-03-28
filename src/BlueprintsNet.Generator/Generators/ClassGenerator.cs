@@ -1,5 +1,4 @@
-﻿using System.Text;
-
+﻿
 namespace BlueprintsNet.Generator.Generators;
 
 internal class ClassGenerator : IGenerator<Class>
@@ -31,9 +30,9 @@ internal class ClassGenerator : IGenerator<Class>
         var indentLevel = 0;
 
         value.Usings
-            .ForEach(u => builder.AppendLine($"using {u};".Indent(indentLevel)));
+             .ForEach(u => builder.AppendLine($"using {u};".Indent(indentLevel)));
 
-        builder.Append(Environment.NewLine);
+        builder.NewLine();
 
         builder.Append($"namespace {value.Namespace}{Environment.NewLine}{{{Environment.NewLine}".IndentLines(indentLevel++));
 
@@ -42,30 +41,30 @@ internal class ClassGenerator : IGenerator<Class>
         builder.Append(Environment.NewLine);
 
         value.Fields
-            .ForEach(f => builder.Append(_fieldGenerator.Generate(f)
-                                             .IndentLines(indentLevel))
-                              .Append(Environment.NewLine));
+             .ForEach(f => builder.Append(_fieldGenerator.Generate(f)
+                                                         .IndentLines(indentLevel))
+                                  .NewLine());
 
         builder.Append(Environment.NewLine
-                           .Indent(indentLevel));
+                                  .Indent(indentLevel));
 
         value.Constructors
-            .ForEach(c => builder.Append(_constrcutorGenerator.Generate(c)
-                                             .IndentLines(indentLevel))
-                              .Append(Environment.NewLine));
+             .ForEach(c => builder.Append(_constrcutorGenerator.Generate(c)
+                                                               .IndentLines(indentLevel))
+                                  .NewLine());
 
         builder.Append(Environment.NewLine
-                           .Indent(indentLevel));
+                                  .Indent(indentLevel));
 
         value.Methods
-            .ForEach(m => builder.Append(_methodGenerator.Generate(m)
-                                             .IndentLines(indentLevel))
-                              .Append(Environment.NewLine));
+             .ForEach(m => builder.Append(_methodGenerator.Generate(m)
+                                                          .IndentLines(indentLevel))
+                                  .NewLine());
 
         builder.Append("}".Indent(--indentLevel))
-            .Append(Environment.NewLine)
-            .Append("}".Indent(--indentLevel))
-            .Append(Environment.NewLine);
+               .NewLine()
+               .Append("}".Indent(--indentLevel))
+               .NewLine();
 
         return builder.ToString();
     }

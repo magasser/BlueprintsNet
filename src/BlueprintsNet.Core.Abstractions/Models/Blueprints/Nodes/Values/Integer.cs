@@ -6,30 +6,46 @@ public class Integer : ValueBase
     private Integer(IBlueprint parent, string displayName)
         : base(parent, displayName)
     {
-        DataType = DataType.Bool;
+        DataType = DataType.Integer;
     }
 
     private Integer(IBlueprint parent)
         : base(parent)
     {
-        DataType = DataType.Bool;
+        DataType = DataType.Integer;
     }
 
     public override DataType DataType { get; init; }
 
     public class In : Integer, IInValue
     {
-        public In(IBlueprint parent, string displayName) : base(parent, displayName) { }
+        public In(IBlueprint parent, string displayName)
+            : base(parent, displayName)
+        {
+            ConstantValue = "0";
+        }
 
-        public In(IBlueprint parent) : base(parent) { }
+        public In(IBlueprint parent)
+            : base(parent)
+        {
+            ConstantValue = "0";
+        }
 
         public IOutValue? Previous { get; set; }
     }
 
     public class Out : Integer, IOutValue
     {
-        public Out(IBlueprint parent, string displayName) : base(parent, displayName) { }
+        public Out(IBlueprint parent, string displayName)
+            : base(parent, displayName)
+        {
+            ConstantValue = "0";
+        }
 
-        public Out(IBlueprint parent) : base(parent) { }
+        public Out(IBlueprint parent)
+            : base(parent)
+        {
+            ConstantValue = "0";
+        }
     }
 }

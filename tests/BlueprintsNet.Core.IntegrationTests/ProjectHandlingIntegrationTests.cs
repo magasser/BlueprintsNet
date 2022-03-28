@@ -62,25 +62,25 @@ public class ProjectHandlingIntegrationTests
 
         var method = new Method("SomeMethod1", AccessModifier.Public);
         method.Start.InValues
-            .Add(new Bool.In(method.Start, "boolIn1"));
+                    .Add(new Bool.Out(method.Start, "boolIn1"));
         method.Start.InValues
-            .Add(new Bool.In(method.Start, "boolIn2"));
+                    .Add(new Bool.Out(method.Start, "boolIn2"));
         method.Start.InValues
-            .Add(new Models.Blueprints.Object.In(method.Start, "objectIn", "Test"));
+                    .Add(new Models.Blueprints.Object.Out(method.Start, "objectIn", "Test"));
         method.Blueprints
-            .Add(new BPLogicalAnd());
-        method.Return.OutValue = new Bool.Out(method.Start, "boolOut");
+              .Add(new BPLogicalAnd());
+        method.Return.ReturnValue = new Bool.In(method.Start, "boolOut");
 
         @class.Constructors
-            .Add(new Constructor(@class.Name, AccessModifier.Public));
+              .Add(new Constructor(@class.Name, AccessModifier.Public));
         @class.Methods
-            .AddRange(new Method[] { method, new Method("SomeMethod2", AccessModifier.Private) });
+              .AddRange(new Method[] { method, new Method("SomeMethod2", AccessModifier.Private) });
         @class.Fields
-            .AddRange(new Field[]
-            {
-                new Field("SomeField1", AccessModifier.Public, "bool"),
-                new Field("SomeField2", AccessModifier.Private, "string")
-            });
+              .AddRange(new Field[]
+              {
+                  new Field("SomeField1", AccessModifier.Public, "bool"),
+                  new Field("SomeField2", AccessModifier.Private, "string")
+              });
         // Act
         _projectService.SaveClass(@class);
         var loadedClass = _projectService.LoadClass(@class.Name, ProjectDirectoryPath);
@@ -89,10 +89,10 @@ public class ProjectHandlingIntegrationTests
         var classFileExists = File.Exists(_classFilePath);
 
         classFileExists.Should()
-            .BeTrue();
+                       .BeTrue();
 
         loadedClass.Should()
-            .BeEquivalentTo(@class);
+                   .BeEquivalentTo(@class);
     }
 
     [Ignore("Serialization has to be adjusted")]
@@ -107,25 +107,25 @@ public class ProjectHandlingIntegrationTests
 
         var method = new Method("SomeMethod1", AccessModifier.Public);
         method.Start.InValues
-            .Add(new Bool.In(method.Start, "boolIn1"));
+                    .Add(new Bool.Out(method.Start, "boolIn1"));
         method.Start.InValues
-            .Add(new Bool.In(method.Start, "boolIn2"));
+                    .Add(new Bool.Out(method.Start, "boolIn2"));
         method.Start.InValues
-            .Add(new Models.Blueprints.Object.In(method.Start, "objectIn", "Test"));
+                    .Add(new Models.Blueprints.Object.Out(method.Start, "objectIn", "Test"));
         method.Blueprints
-            .Add(new BPLogicalAnd());
-        method.Return.OutValue = new Bool.Out(method.Start, "boolOut");
+              .Add(new BPLogicalAnd());
+        method.Return.ReturnValue = new Bool.In(method.Start, "boolOut");
 
         @class.Constructors
-            .Add(new Constructor(@class.Name, AccessModifier.Public));
+              .Add(new Constructor(@class.Name, AccessModifier.Public));
         @class.Methods
-            .AddRange(new Method[] { method, new Method("SomeMethod2", AccessModifier.Private) });
+              .AddRange(new Method[] { method, new Method("SomeMethod2", AccessModifier.Private) });
         @class.Fields
-            .AddRange(new Field[]
-            {
-                new Field("SomeField1", AccessModifier.Public, "bool"),
-                new Field("SomeField2", AccessModifier.Private, "string")
-            });
+              .AddRange(new Field[]
+              {
+                  new Field("SomeField1", AccessModifier.Public, "bool"),
+                  new Field("SomeField2", AccessModifier.Private, "string")
+              });
 
         var project = new Project(new Guid("4BA267AD-5341-4085-8E7F-3C1EA2CFD2A7"),
                                   ProjectName,
@@ -139,9 +139,9 @@ public class ProjectHandlingIntegrationTests
         var projectFileExists = File.Exists(_projectFilePath);
 
         projectFileExists.Should()
-            .BeTrue();
+                         .BeTrue();
 
         loadedProject.Should()
-            .BeEquivalentTo(project);
+                     .BeEquivalentTo(project);
     }
 }
