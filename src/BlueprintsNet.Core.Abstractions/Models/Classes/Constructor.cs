@@ -4,6 +4,7 @@ namespace BlueprintsNet.Core.Models.Classes;
 public class Constructor
 {
     private readonly List<Parameter> _parameters;
+    private readonly List<BPConstructor> _references;
 
     public Constructor(string className, AccessModifier accessModifier)
     {
@@ -11,6 +12,7 @@ public class Constructor
         AccessModifier = accessModifier.MustBeValidEnumValue();
 
         _parameters = new List<Parameter>();
+        _references = new List<BPConstructor>();
 
         Start = new BPConstructorIn(this);
 
@@ -25,7 +27,23 @@ public class Constructor
 
     public BPConstructorIn Start { get; init; }
 
+    public IReadOnlyList<BPConstructor> References => _references;
+
     public List<IBlueprint> Blueprints { get; init; }
+
+    public BPConstructor CreateBlueprint()
+    {
+        var bp = new BPConstructor(this);
+
+        _references.Add(bp);
+
+        return bp;
+    }
+
+    public bool DeleteBlueprint(BPConstructor bp)
+    {
+        return _references.Remove(bp);
+    }
 
     public bool AddParameter(Parameter parameter)
     {
@@ -36,8 +54,8 @@ public class Constructor
 
         _parameters.Add(parameter);
 
-        Start.InValues
-             .Add(parameter.GetInValue(Start));
+        Start.Parameters
+             .Add(parameter.ToOut(Start));
 
         return true;
     }
@@ -46,8 +64,8 @@ public class Constructor
     {
         _parameters.Remove(parameter);
 
-        Start.InValues
-             .Remove(Start.InValues
+        Start.Parameters
+             .Remove(Start.Parameters
                           .First(value => value.DisplayName == parameter.Name));
     }
 }

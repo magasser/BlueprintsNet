@@ -24,16 +24,18 @@ namespace BlueprintsNet.Core
     public interface IBlueprintGenerator
     {
         string Generate(IBlueprint bp);
+
 ");
 
             blueprints.ForEach(blueprint => sourceBuilder.Append("        ")
-                                                .Append("string Generate(")
-                                                .Append(blueprint.Identifier.ValueText)
-                                                .AppendLine(" bp);")
-                                                .Append(Environment.NewLine));
+                                                         .Append("string Generate(")
+                                                         .Append(blueprint.Identifier.ValueText)
+                                                         .AppendLine(" bp);")
+                                                         .Append(Environment.NewLine));
 
             sourceBuilder.Append(
-    @"    }
+@"        void Reset();
+    }
 }");
 
             context.AddSource("IBlueprintGenerator.g.cs", SourceText.From(sourceBuilder.ToString(), Encoding.UTF8));

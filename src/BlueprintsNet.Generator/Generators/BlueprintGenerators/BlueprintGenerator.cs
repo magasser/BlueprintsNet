@@ -4,14 +4,22 @@ namespace BlueprintsNet.Generator.Generators
     internal partial class BlueprintGenerator : BlueprintGeneratorBase
     {
         private readonly StringBuilder _builder;
+        private readonly Dictionary<IBlueprint, string> _generatedBlueprints;
 
         public BlueprintGenerator()
         {
             _builder = new StringBuilder();
+            _generatedBlueprints = new Dictionary<IBlueprint, string>();
+        }
+
+        public void Reset()
+        {
+            _builder.Clear();
+            _generatedBlueprints.Clear();
         }
 
         private string AddOperator(string @operator,
-                                   IEnumerable<IInValue> inValues)
+                                   IEnumerable<IIn> inValues)
         {
             @operator.MustNotBeNullOrWhiteSpace();
             inValues.MustNotBeNullOrEmpty();
@@ -39,6 +47,16 @@ namespace BlueprintsNet.Generator.Generators
             _builder.CloseBracket();
 
             return _builder.ToString();
+        }
+
+        private void AddGenerated(IBlueprint bp, string value)
+        {
+            _generatedBlueprints.Add(bp, value);
+        }
+
+        private bool IsGenerated(IBlueprint bp, out string? generatedValue)
+        {
+            return _generatedBlueprints.TryGetValue(bp, out generatedValue);
         }
     }
 }

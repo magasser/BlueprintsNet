@@ -5,25 +5,25 @@ public class BPMethodIn : BPBase
 {
     private BPMethodIn() { }
 
-    public BPMethodIn(Method method,
-        List<IOutValue> inValues)
+    public BPMethodIn(Method method)
     {
         Method = method.MustNotBeNull();
-        InValues = inValues.MustNotBeNull();
+
+        Parameters = Method.Parameters
+                           .Select(parameter => parameter.ToOut(this))
+                           .ToList();
 
         DisplayName = Method.Name;
         Out = new Connection.Out(this);
     }
 
-    public BPMethodIn(Method method) : this(method, new List<IOutValue>()) { }
-
     public override string DisplayName { get; init; }
 
     public Connection.Out Out { get; init; }
 
-    public bool HasInValues => !InValues.IsNullOrEmpty();
+    public bool HasParameters => !Parameters.IsNullOrEmpty();
 
-    public List<IOutValue> InValues { get; init; }
+    public List<IOut> Parameters { get; init; }
 
     public Method Method { get; init; }
 }

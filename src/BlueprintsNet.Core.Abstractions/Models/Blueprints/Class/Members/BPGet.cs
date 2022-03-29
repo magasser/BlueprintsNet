@@ -1,19 +1,20 @@
 ﻿
 namespace BlueprintsNet.Core.Models.Blueprints;
 
-public class BPField : BPBase
+public class BPGet : BPBase
 {
-    public BPField(Field field, IOutValue outValue)
+    public BPGet(Field field)
     {
         Field = field.MustNotBeNull();
-        OutValue = outValue.MustNotBeNull();
 
         DisplayName = Field.Name;
+
+        OutValue = Field.ToOut(this);
     }
 
     public override string DisplayName { get; init; }
 
-    public IOutValue OutValue { get; init; }
+    public IOut OutValue { get; init; }
 
     public Field Field { get; init; }
 }

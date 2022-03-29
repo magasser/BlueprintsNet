@@ -9,20 +9,20 @@ public class Object : ValueBase
         : base(parent, displayName)
     {
         ObjectType = objectType.MustNotBeNullOrWhiteSpace();
-        DataType = DataType.Object;
+        DataType = NodeType.Object;
     }
 
     private Object(IBlueprint parent, string objectType)
         : this(parent, string.Empty, objectType)
     {
-        DataType = DataType.Object;
+        DataType = NodeType.Object;
     }
 
     public string ObjectType { get; init; }
 
-    public override DataType DataType { get; init; }
+    public override NodeType DataType { get; init; }
 
-    public class In : Object, IInValue
+    public class In : Object, IIn
     {
         public In(IBlueprint parent,
                   string displayName,
@@ -38,10 +38,10 @@ public class Object : ValueBase
             ConstantValue = "null";
         }
 
-        public IOutValue? Previous { get; set; }
+        public IOut? Previous { get; set; }
     }
 
-    public class Out : Object, IOutValue
+    public class Out : Object, IOut
     {
         public Out(IBlueprint parent,
                    string displayName,

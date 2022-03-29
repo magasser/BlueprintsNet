@@ -61,11 +61,11 @@ public class ProjectHandlingIntegrationTests
                                AccessModifier.Public);
 
         var method = new Method("SomeMethod1", AccessModifier.Public);
-        method.Start.InValues
+        method.Start.Parameters
                     .Add(new Bool.Out(method.Start, "boolIn1"));
-        method.Start.InValues
+        method.Start.Parameters
                     .Add(new Bool.Out(method.Start, "boolIn2"));
-        method.Start.InValues
+        method.Start.Parameters
                     .Add(new Models.Blueprints.Object.Out(method.Start, "objectIn", "Test"));
         method.Blueprints
               .Add(new BPLogicalAnd());
@@ -78,8 +78,8 @@ public class ProjectHandlingIntegrationTests
         @class.Fields
               .AddRange(new Field[]
               {
-                  new Field("SomeField1", AccessModifier.Public, "bool"),
-                  new Field("SomeField2", AccessModifier.Private, "string")
+                  new Field("SomeField1", AccessModifier.Public, NodeType.Bool),
+                  new Field("SomeField2", AccessModifier.Private, NodeType.String)
               });
         // Act
         _projectService.SaveClass(@class);
@@ -106,11 +106,11 @@ public class ProjectHandlingIntegrationTests
                                AccessModifier.Public);
 
         var method = new Method("SomeMethod1", AccessModifier.Public);
-        method.Start.InValues
+        method.Start.Parameters
                     .Add(new Bool.Out(method.Start, "boolIn1"));
-        method.Start.InValues
+        method.Start.Parameters
                     .Add(new Bool.Out(method.Start, "boolIn2"));
-        method.Start.InValues
+        method.Start.Parameters
                     .Add(new Models.Blueprints.Object.Out(method.Start, "objectIn", "Test"));
         method.Blueprints
               .Add(new BPLogicalAnd());
@@ -123,8 +123,8 @@ public class ProjectHandlingIntegrationTests
         @class.Fields
               .AddRange(new Field[]
               {
-                  new Field("SomeField1", AccessModifier.Public, "bool"),
-                  new Field("SomeField2", AccessModifier.Private, "string")
+                  new Field("SomeField1", AccessModifier.Public, NodeType.Bool),
+                  new Field("SomeField2", AccessModifier.Private, NodeType.String)
               });
 
         var project = new Project(new Guid("4BA267AD-5341-4085-8E7F-3C1EA2CFD2A7"),

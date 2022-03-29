@@ -7,7 +7,10 @@ internal partial class BlueprintGenerator : BlueprintGeneratorBase
     {
         bp.MustNotBeNull();
 
-        _builder.Clear();
+        if (IsGenerated(bp, out var generatedValue))
+        {
+            return generatedValue!;
+        }
 
         var value = bp.Field.Name;
         var newValue = bp.InValue.Previous?.Parent.Generate(this) ?? bp.InValue.ConstantValue;
@@ -20,28 +23,46 @@ internal partial class BlueprintGenerator : BlueprintGeneratorBase
                 .Semicolon()
                 .NewLine();
 
-        return _builder.ToString();
+        var result = _builder.ToString();
+
+        AddGenerated(bp, result);
+
+        _builder.Clear();
+
+        return result;
     }
 
-    public override string Generate(BPField bp)
+    public override string Generate(BPGet bp)
     {
         bp.MustNotBeNull();
 
-        return bp.Field.Name;
+        if (IsGenerated(bp, out var generatedValue))
+        {
+            return generatedValue!;
+        }
+
+        var result = bp.Field.Name;
+
+        AddGenerated(bp, result);
+
+        return result;
     }
 
     public override string Generate(BPMethod bp)
     {
         bp.MustNotBeNull();
 
-        _builder.Clear();
+        if (IsGenerated(bp, out var generatedValue))
+        {
+            return generatedValue!;
+        }
 
         _builder.Append(bp.Method.Name)
                 .OpenBracket();
 
-        if (bp.InValues is not null)
+        if (bp.Parameters is not null)
         {
-            bp.InValues
+            bp.Parameters
               .ToList()
               .ForEach(value =>
               {
@@ -59,17 +80,27 @@ internal partial class BlueprintGenerator : BlueprintGeneratorBase
                 .Semicolon()
                 .NewLine();
 
-        return _builder.ToString();
+        var result = _builder.ToString();
+
+        AddGenerated(bp, result);
+
+        _builder.Clear();
+
+        return result;
     }
 
     public override string Generate(BPMethodIn bp)
     {
         bp.MustNotBeNull();
 
-        _builder.Clear();
+        if (IsGenerated(bp, out var generatedValue))
+        {
+            return generatedValue!;
+        }
 
-        var body = bp.Out.Parent
-                         .Generate(this);
+        // TODO: Check if it has next
+        var body = bp.Out.Next.Parent
+                              .Generate(this);
 
         _builder.Append(bp.Method.AccessModifier
                                  .ToString()
@@ -97,14 +128,23 @@ internal partial class BlueprintGenerator : BlueprintGeneratorBase
                 .CloseCurlyBracket()
                 .NewLine();
 
-        return _builder.ToString();
+        var result = _builder.ToString();
+
+        AddGenerated(bp, result);
+
+        _builder.Clear();
+
+        return result;
     }
 
     public override string Generate(BPConstructorIn bp)
     {
         bp.MustNotBeNull();
 
-        _builder.Clear();
+        if (IsGenerated(bp, out var generatedValue))
+        {
+            return generatedValue!;
+        }
 
         var body = bp.Out.Parent
                          .Generate(this);
@@ -135,23 +175,32 @@ internal partial class BlueprintGenerator : BlueprintGeneratorBase
                 .CloseCurlyBracket()
                 .NewLine();
 
-        return _builder.ToString();
+        var result = _builder.ToString();
+
+        AddGenerated(bp, result);
+
+        _builder.Clear();
+
+        return result;
     }
 
     public override string Generate(BPConstructor bp)
     {
         bp.MustNotBeNull();
 
-        _builder.Clear();
+        if (IsGenerated(bp, out var generatedValue))
+        {
+            return generatedValue!;
+        }
 
         _builder.Append("new")
                 .Space()
                 .Append(bp.Constructor.ClassName)
                 .OpenBracket();
 
-        if (bp.InValues is not null)
+        if (bp.Parameters is not null)
         {
-            bp.InValues
+            bp.Parameters
               .ToList()
               .ForEach(value =>
               {
@@ -168,14 +217,23 @@ internal partial class BlueprintGenerator : BlueprintGeneratorBase
         _builder.CloseBracket()
                 .NewLine();
 
-        return _builder.ToString();
+        var result = _builder.ToString();
+
+        AddGenerated(bp, result);
+
+        _builder.Clear();
+
+        return result;
     }
 
     public override string Generate(BPReturn bp)
     {
         bp.MustNotBeNull();
 
-        _builder.Clear();
+        if (IsGenerated(bp, out var generatedValue))
+        {
+            return generatedValue!;
+        }
 
         _builder.Append("return");
 
@@ -189,6 +247,12 @@ internal partial class BlueprintGenerator : BlueprintGeneratorBase
 
         _builder.Semicolon();
 
-        return _builder.ToString();
+        var result = _builder.ToString();
+
+        AddGenerated(bp, result);
+
+        _builder.Clear();
+
+        return result;
     }
 }

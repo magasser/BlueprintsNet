@@ -26,7 +26,7 @@ namespace BlueprintsNet.Generator.Tests.Generators
             {
                 () => _subject.Generate((BPSet)null),
                 () => _subject.Generate((BPIf)null),
-                () => _subject.Generate((BPField)null),
+                () => _subject.Generate((BPGet)null),
                 () => _subject.Generate((BPPlus)null),
                 () => _subject.Generate((BPMethod)null),
                 () => _subject.Generate((BPMethodIn)null),
@@ -54,8 +54,8 @@ namespace BlueprintsNet.Generator.Tests.Generators
         {
             // Arrange
             var bp = new BPLogicalAnd();
-            var fakeIn1 = A.Fake<IOutValue>(options => options.Strict());
-            var fakeIn2 = A.Fake<IOutValue>(options => options.Strict());
+            var fakeIn1 = A.Fake<IOut>(options => options.Strict());
+            var fakeIn2 = A.Fake<IOut>(options => options.Strict());
             var fakeParent1 = A.Fake<IBlueprint>(options => options.Strict());
             var fakeParent2 = A.Fake<IBlueprint>(options => options.Strict());
             A.CallTo(() => fakeIn1.Parent).Returns(fakeParent1);

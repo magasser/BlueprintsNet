@@ -21,18 +21,55 @@ public class BlueprintGenerationIntegrationTests
     public void Generating_blueprint_Should_create_correct_code()
     {
         // Arrange
-        var method = new Method("MethodTest", AccessModifier.Public);
-        var blueprint = new BPMethodIn(method);
-        blueprint.Method
-                 .AddParameter(new Parameter("boolIn", typeof(Bool)));
-        blueprint.Method
-                 .AddParameter(new Parameter("stringIn", typeof(Core.Models.Blueprints.String)));
-        blueprint.Method
-                 .AddParameter(new Parameter("intIn", typeof(Integer)));
+
+        // Value connections
+        var method = new ObjectMethod("MethodTest", AccessModifier.Public, "Test");
+        var field = new Field("intField", AccessModifier.Public, NodeType.Integer);
+        var toUpMethod = new Method("ToUp", AccessModifier.Public, NodeType.String);
+        var addStrMethod = new Method("AddStr", AccessModifier.Public, NodeType.String);
+        var testConstructor = new Constructor("Test", AccessModifier.Public);
+        method.AddParameter(new Parameter("stringIn", NodeType.String));
+        method.AddParameter(new Parameter("boolIn", NodeType.Bool));
+        method.AddParameter(new Parameter("intIn", NodeType.Integer));
+        toUpMethod.AddParameter(new Parameter("stringIn", NodeType.String));
+        addStrMethod.AddParameter(new Parameter("stringIn", NodeType.String));
+        addStrMethod.AddParameter(new Parameter("intIn", NodeType.Integer));
+        testConstructor.AddParameter(new Parameter("stringIn", NodeType.String));
+        var strIn = method.Start.Parameters[0];
+        var boolIn = method.Start.Parameters[1];
+        var intIn = method.Start.Parameters[2];
         var ifStatement = new BPIf();
         var plusStatement = new BPPlus();
-        var field = new BPField(new Field("intField", AccessModifier.Public, "int"));
-        ifStatement.Condition.Previous = blueprint.InValues[0];
-        plusStatement.In1.Previous = blueprint.InValues[2];
+        var toUpStatement = toUpMethod.CreateBlueprint();
+        var addStrStatement = addStrMethod.CreateBlueprint();
+        var getStatement = field.CreateGetBlueprint();
+        var testConstructorIf = testConstructor.CreateBlueprint();
+        var testConstructorElse = testConstructor.CreateBlueprint();
+        var returnIf = method.CreateReturn();
+        var returnElse = method.CreateReturn();
+        ifStatement.Condition.Previous = boolIn;
+        plusStatement.In1.Previous = strIn;
+        plusStatement.In2.Previous = getStatement.OutValue;
+        toUpStatement.Parameters[0].Previous = strIn;
+        addStrStatement.Parameters[0].Previous = strIn;
+        addStrStatement.Parameters[1].Previous = intIn;
+        testConstructorIf.Parameters[0].Previous = toUpStatement.OutValue;
+        testConstructorElse.Parameters[0].Previous = addStrStatement.OutValue;
+        returnIf.ReturnValue.Previous = testConstructorIf.OutValue;
+        returnElse.ReturnValue.Previous = testConstructorElse.OutValue;
+
+        // Flow connections
+        method.Start.Out.Next = ifStatement.In;
+        ifStatement.OutTrue.Next = toUpStatement.In;
+        ifStatement.OutFalse.Next = addStrStatement.In;
+        toUpStatement.Out.Next = testConstructorIf.In;
+        addStrStatement.Out.Next = testConstructorElse.In;
+        testConstructorIf.Out.Next = returnIf.In;
+        testConstructorElse.Out.Next = returnElse.In;
+
+        // Act
+        var result = _blueprintGenerator.Generate(method.Start);
+
+        // Assert
     }
 }

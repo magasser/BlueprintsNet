@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace BlueprintsNet.Core.Domain;
 
-public enum DataType
+public enum NodeType
 {
     Object = 1,
     Bool = 2,

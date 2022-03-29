@@ -24,19 +24,28 @@ public class FieldGeneratorTests
 
         // Assert
         nullFieldCall.Should()
-            .ThrowExactly<ArgumentNullException>()
-            .WithParameterName("value");
+                     .ThrowExactly<ArgumentNullException>()
+                     .WithParameterName("value");
     }
     #endregion Validation
 
-    [TestCase("fieldPrivate", "bool", AccessModifier.Private, ExpectedResult = "private bool fieldPrivate;")]
-    [TestCase("fieldProtected", "string", AccessModifier.Protected, ExpectedResult = "protected string fieldProtected;")]
-    [TestCase("fieldInternal", "int", AccessModifier.Internal, ExpectedResult = "internal int fieldInternal;")]
-    [TestCase("fieldPublic", "Test", AccessModifier.Public, ExpectedResult = "public Test fieldPublic;")]
-    public string When_Generate_Then_return_correct_field_string(string name,
-                                                                 string type,
-                                                                 AccessModifier accessModifier)
+    [TestCase("fieldPrivate", NodeType.Bool, AccessModifier.Private, ExpectedResult = "private bool fieldPrivate;")]
+    [TestCase("fieldProtected", NodeType.String, AccessModifier.Protected, ExpectedResult = "protected string fieldProtected;")]
+    [TestCase("fieldInternal", NodeType.Integer, AccessModifier.Internal, ExpectedResult = "internal int fieldInternal;")]
+    public string Given_Field_When_Generate_Then_return_correct_field_string(string name,
+                                                                             NodeType nodeType,
+                                                                             AccessModifier accessModifier)
     {
-        return _subject.Generate(new Field(name, accessModifier, type));
+        return _subject.Generate(new Field(name, accessModifier, nodeType));
+    }
+
+    [TestCase("fieldPrivate", "Test", AccessModifier.Private, ExpectedResult = "private Test fieldPrivate;")]
+    [TestCase("fieldProtected", "Person", AccessModifier.Protected, ExpectedResult = "protected Person fieldProtected;")]
+    [TestCase("fieldInternal", "IInterface", AccessModifier.Internal, ExpectedResult = "internal IInterface fieldInternal;")]
+    public string Give_ObjectField_When_Generate_Then_return_correct_field_string(string name,
+                                                                                  string objectType,
+                                                                                  AccessModifier accessModifier)
+    {
+        return _subject.Generate(new ObjectField(name, accessModifier, objectType));
     }
 }

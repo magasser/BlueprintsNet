@@ -7,7 +7,7 @@ public abstract class ValueBase : NodeBase, IValue
 
     protected ValueBase(IBlueprint parent) : base(parent) { }
 
-    public abstract DataType DataType { get; init; }
+    public abstract NodeType DataType { get; init; }
 
     public string ConstantValue { get; set; }
 }

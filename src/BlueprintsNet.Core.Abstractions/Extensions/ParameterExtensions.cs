@@ -1,20 +1,28 @@
 ﻿
-namespace BlueprintsNet.Core.Models.Blueprints;
+namespace BlueprintsNet.Core.Models.Classes;
 
 public static class ParameterExtensions
 {
-    public static IOutValue GetInValue(this Parameter parameter, IBlueprint parent)
+    public static IOut ToOut(this Parameter parameter, IBlueprint parent)
     {
         parameter.MustNotBeNull();
+        parent.MustNotBeNull();
 
-        return parameter.Type switch
-        {
-            var type when type == typeof(Bool) => new Bool.Out(parent, parameter.Name),
-            var type when type == typeof(Integer) => new Integer.Out(parent, parameter.Name),
-            var type when type == typeof(String) => new String.Out(parent, parameter.Name),
-            var type when type == typeof(Object) && parameter is ObjectParameter objectParameter =>
-                    new Object.Out(parent, objectParameter.Name, objectParameter.ObjectType),
-            _ => throw new NotSupportedException($"The parameter type {parameter.Type} is not supported.")
-        };
+        var objectType = parameter is ObjectParameter objectParameter ? objectParameter.ObjectType : null;
+
+        return parameter.NodeType
+                        .ToOut(parent, parameter.Name, objectType);
+    }
+
+    public static IIn ToIn(this Parameter parameter, IBlueprint parent)
+    {
+        parameter.MustNotBeNull();
+        parent.MustNotBeNull();
+
+        var objectType = parameter is ObjectParameter objectParameter ? objectParameter.ObjectType : null;
+
+        return parameter.NodeType
+                        .ToIn(parent, parameter.Name, objectType);
     }
 }
+

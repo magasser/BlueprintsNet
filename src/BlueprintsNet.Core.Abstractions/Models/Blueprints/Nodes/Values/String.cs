@@ -6,18 +6,18 @@ public class String : ValueBase
     private String(IBlueprint parent, string displayName)
         : base(parent, displayName)
     {
-        DataType = DataType.Bool;
+        DataType = NodeType.Bool;
     }
 
     private String(IBlueprint parent)
         : base(parent)
     {
-        DataType = DataType.Bool;
+        DataType = NodeType.Bool;
     }
 
-    public override DataType DataType { get; init; }
+    public override NodeType DataType { get; init; }
 
-    public class In : String, IInValue
+    public class In : String, IIn
     {
         public In(IBlueprint parent, string displayName)
             : base(parent, displayName)
@@ -31,10 +31,10 @@ public class String : ValueBase
             ConstantValue = "\"\"";
         }
 
-        public IOutValue? Previous { get; set; }
+        public IOut? Previous { get; set; }
     }
 
-    public class Out : String, IOutValue
+    public class Out : String, IOut
     {
         public Out(IBlueprint parent, string displayName)
             : base(parent, displayName)
