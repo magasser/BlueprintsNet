@@ -53,5 +53,15 @@ namespace BlueprintsNet.Generator.Generators
         {
             return _generatedBlueprints.TryGetValue(bp, out generatedValue);
         }
+
+        private void AddGenerated(IBlueprint bp, string value)
+        {
+            _generatedBlueprints.Add(bp, value);
+        }
+
+        private bool IsGenerated(IBlueprint bp, out string? generatedValue)
+        {
+            return _generatedBlueprints.TryGetValue(bp, out generatedValue);
+        }
     }
 }
