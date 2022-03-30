@@ -14,13 +14,13 @@ internal partial class BlueprintGenerator : BlueprintGeneratorBase
             return generatedValue!;
         }
 
-        var condition = bp.Condition.Previous?.Parent.Generate(this) ?? bp.Condition.ConstantValue;
+        var condition = bp.Condition
+                          .Evaluate(this);
 
-        var ifBody = bp.OutTrue.Next?.Parent.Generate(this) ?? string.Empty;
+        var ifBody = bp.OutTrue
+                       .Evaluate(this);
 
-        _builder.Append("if (")
-                .Append(condition)
-                .Append(')')
+        _builder.Append($"if ({condition})")
                 .NewLine()
                 .Append('{')
                 .NewLine();
@@ -37,8 +37,8 @@ internal partial class BlueprintGenerator : BlueprintGeneratorBase
                     .Append('{')
                     .NewLine();
 
-            var elseBody = bp.OutFalse.Next!.Parent
-                                            .Generate(this);
+            var elseBody = bp.OutFalse
+                             .Evaluate(this);
 
             _builder.Append(elseBody.IndentLines(indentLevel: 1))
                     .NewLine()
@@ -64,22 +64,22 @@ internal partial class BlueprintGenerator : BlueprintGeneratorBase
             return generatedValue!;
         }
 
-        var startIndex = bp.StartIndex.Previous?.Parent.Generate(this) ?? bp.StartIndex.ConstantValue;
-        var stopIndex = bp.StopIndex.Previous?.Parent.Generate(this) ?? bp.StopIndex.ConstantValue;
+        var startIndex = bp.StartIndex
+                           .Evaluate(this);
+        var stopIndex = bp.StopIndex
+                          .Evaluate(this);
 
-        var body = bp.OutBody.Next?.Parent.Generate(this) ?? string.Empty;
+        var body = bp.OutBody
+                     .Evaluate(this);
 
-        _builder.Append("for (var i = ")
-                .Append(startIndex)
-                .Append("; i <= ")
-                .Append(stopIndex)
-                .Append("; i++)")
+        _builder.Append($"for (var i = {startIndex}; i <= {stopIndex}; i++)")
                 .NewLine()
                 .Append('{')
                 .NewLine()
                 .Append(body.IndentLines(indentLevel: 1))
                 .NewLine()
-                .Append('}');
+                .Append('}')
+                .NewLine();
 
         var result = _builder.ToString();
 

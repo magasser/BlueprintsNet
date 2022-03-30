@@ -1,7 +1,7 @@
 ﻿
 namespace BlueprintsNet.Core.Models.Blueprints;
 
-public class BPConstructorIn : BPBase
+public class BPConstructorIn : BPBase, IEntryPoint
 {
     private BPConstructorIn() { }
 

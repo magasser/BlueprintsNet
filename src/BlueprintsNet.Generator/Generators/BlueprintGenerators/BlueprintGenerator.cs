@@ -12,7 +12,7 @@ namespace BlueprintsNet.Generator.Generators
             _generatedBlueprints = new Dictionary<IBlueprint, string>();
         }
 
-        public void Reset()
+        public override void Reset()
         {
             _builder.Clear();
             _generatedBlueprints.Clear();
@@ -31,20 +31,18 @@ namespace BlueprintsNet.Generator.Generators
 
             _builder.Clear();
 
-            var in1 = values[0].Previous?.Parent.Generate(this) ?? values[0].ConstantValue;
+            var in1 = values[0].Evaluate(this);
 
-            _builder.OpenBracket()
-                    .Append(in1);
+            _builder.Append($"({in1} ");
 
             Array.ForEach(values[1..], input =>
             {
-                var gen = input.Previous?.Parent.Generate(this) ?? input.ConstantValue;
+                var gen = input.Evaluate(this);
 
-                _builder.Append(@operator)
-                        .Append(gen);
+                _builder.Append($"{@operator} {gen}");
             });
 
-            _builder.CloseBracket();
+            _builder.Append(')');
 
             return _builder.ToString();
         }

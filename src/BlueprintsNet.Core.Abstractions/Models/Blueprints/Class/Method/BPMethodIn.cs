@@ -1,7 +1,7 @@
 ﻿
 namespace BlueprintsNet.Core.Models.Blueprints;
 
-public class BPMethodIn : BPBase
+public class BPMethodIn : BPBase, IEntryPoint
 {
     private BPMethodIn() { }
 
