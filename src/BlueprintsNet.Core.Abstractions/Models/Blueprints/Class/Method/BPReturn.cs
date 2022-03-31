@@ -3,22 +3,30 @@ namespace BlueprintsNet.Core.Models.Blueprints;
 
 public class BPReturn : BPBase
 {
-    public BPReturn(IInValue? returnValue)
+    internal BPReturn(Method method)
     {
-        ReturnValue = returnValue;
+        Method = method.MustNotBeNull();
+
+        ReturnValue = Method.HasReturnValue
+            ? Method is ObjectMethod objectMethod
+                ? Method.ReturnNodeType!.Value
+                                        .ToIn(this, NodeNames.Result, objectMethod.ObjectType)
+                : Method.ReturnNodeType!.Value
+                                        .ToIn(this, NodeNames.Result)
+            : null;
 
         In = new Connection.In(this);
 
         DisplayName = BPNames.Return;
     }
 
-    public BPReturn() : this(null) { }
-
     public override string DisplayName { get; init; }
+
+    public Method Method { get; init; }
 
     public Connection.In In { get; init; }
 
     public bool HasReturnValue => ReturnValue is not null;
 
-    public IInValue? ReturnValue { get; set; }
+    public IIn? ReturnValue { get; set; }
 }

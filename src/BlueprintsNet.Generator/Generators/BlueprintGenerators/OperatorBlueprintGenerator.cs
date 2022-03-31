@@ -1,4 +1,4 @@
-﻿
+
 namespace BlueprintsNet.Generator.Generators;
 
 internal partial class BlueprintGenerator : BlueprintGeneratorBase
@@ -7,10 +7,19 @@ internal partial class BlueprintGenerator : BlueprintGeneratorBase
     {
         bp.MustNotBeNull();
 
-        var inValues = new List<IInValue> { bp.In1, bp.In2 };
+        if (IsGenerated(bp, out var generatedValue))
+        {
+            return generatedValue!;
+        }
+
+        var inValues = new List<IIn> { bp.In1, bp.In2 };
         inValues.AddRange(bp.AdditionalInputs);
 
-        return AddOperator(@operator: "&&",
+        var result = AddOperator(@operator: "&&",
                            inValues);
+
+        AddGenerated(bp, result);
+
+        return result;
     }
 }

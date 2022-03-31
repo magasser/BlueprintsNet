@@ -56,17 +56,17 @@ public class ClassGeneratorTests
         using (new AssertionScope())
         {
             nullLoggerCall.Should()
-                .ThrowExactly<ArgumentNullException>()
-                .WithParameterName("logger");
+                          .ThrowExactly<ArgumentNullException>()
+                          .WithParameterName("logger");
             nullConstructorGeneratorCall.Should()
-                .ThrowExactly<ArgumentNullException>()
-                .WithParameterName("constructorGenerator");
+                                        .ThrowExactly<ArgumentNullException>()
+                                        .WithParameterName("constructorGenerator");
             nullFieldGeneratorCall.Should()
-                .ThrowExactly<ArgumentNullException>()
-                .WithParameterName("fieldGenerator");
+                                  .ThrowExactly<ArgumentNullException>()
+                                  .WithParameterName("fieldGenerator");
             nullMethodGeneratorCall.Should()
-                .ThrowExactly<ArgumentNullException>()
-                .WithParameterName("methodGenerator");
+                                   .ThrowExactly<ArgumentNullException>()
+                                   .WithParameterName("methodGenerator");
         }
     }
 
@@ -78,8 +78,8 @@ public class ClassGeneratorTests
 
         // Assert
         nullClassCall.Should()
-            .ThrowExactly<ArgumentNullException>()
-            .WithParameterName("value");
+                     .ThrowExactly<ArgumentNullException>()
+                     .WithParameterName("value");
     }
     #endregion Validation
 
@@ -98,29 +98,29 @@ public class ClassGeneratorTests
                                folderPath,
                                accessModifier);
         @class.Usings
-            .AddRange(new string[] { "System", "System.Linq" });
+              .AddRange(new string[] { "System", "System.Linq" });
         @class.Fields
-            .AddRange(new Field[]
-            {
-                new Field("field1", AccessModifier.Private, "bool"),
-                new Field("field2", AccessModifier.Private, "string")
-            });
+              .AddRange(new Field[]
+              {
+                  new Field("field1", AccessModifier.Private, NodeType.Bool),
+                  new Field("field2", AccessModifier.Private, NodeType.String)
+              });
         @class.Constructors
-            .Add(new Constructor(name, AccessModifier.Public));
+              .Add(new Constructor(name, AccessModifier.Public));
         @class.Methods
-            .AddRange(new Method[]
-            {
-                new Method("Method1", AccessModifier.Public),
-                new Method("Method2", AccessModifier.Public),
-                new Method("Method3", AccessModifier.Public)
-            });
+              .AddRange(new Method[]
+              {
+                  new Method("Method1", AccessModifier.Public),
+                  new Method("Method2", AccessModifier.Public),
+                  new Method("Method3", AccessModifier.Public)
+              });
 
         A.CallTo(() => _fieldGenerator.Generate(A<Field>._))
-            .Returns($"GeneratedField;");
+         .Returns($"GeneratedField;");
         A.CallTo(() => _constructorGenerator.Generate(A<Constructor>._))
-            .Returns($"GeneratedConstructor");
+         .Returns($"GeneratedConstructor");
         A.CallTo(() => _methodGenerator.Generate(A<Method>._))
-            .Returns($"GeneratedMethod");
+         .Returns($"GeneratedMethod");
 
         var expected =
 $@"using System;
@@ -147,6 +147,6 @@ namespace TestClasses.Tests
 
         // Assert
         result.Should()
-            .Be(expected);
+              .Be(expected);
     }
 }

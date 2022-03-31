@@ -35,13 +35,14 @@ namespace BlueprintsNet.Core
 ");
 
             blueprints.ForEach(blueprint => sourceBuilder.Append("        ")
-                                                .Append("public abstract string Generate(")
-                                                .Append(blueprint.Identifier.ValueText)
-                                                .Append(" bp);")
-                                                .Append(Environment.NewLine));
+                                                         .Append("public abstract string Generate(")
+                                                         .Append(blueprint.Identifier.ValueText)
+                                                         .Append(" bp);")
+                                                         .Append(Environment.NewLine));
 
             sourceBuilder.Append(
-@"    }
+@"        public abstract void Reset();
+    }
 }");
 
             context.AddSource("BlueprintGeneratorBase.g.cs", SourceText.From(sourceBuilder.ToString(), Encoding.UTF8));

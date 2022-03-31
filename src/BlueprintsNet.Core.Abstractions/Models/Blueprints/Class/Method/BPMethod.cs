@@ -3,13 +3,21 @@ namespace BlueprintsNet.Core.Models.Blueprints;
 
 public class BPMethod : BPBase, IBPFlow
 {
-    public BPMethod(Method method,
-                    IReadOnlyList<IInValue>? inValues,
-                    IOutValue? outValue)
+    public BPMethod(Method method)
     {
         Method = method.MustNotBeNull();
-        InValues = inValues;
-        OutValue = outValue;
+
+        Parameters = Method.Parameters
+                           .Select(parameter => parameter.ToIn(this))
+                           .ToList();
+
+        OutValue = Method.HasReturnValue
+            ? Method is ObjectMethod objectMethod
+                ? Method.ReturnNodeType!.Value
+                                        .ToOut(this, NodeNames.Result, objectMethod.ObjectType)
+                : Method.ReturnNodeType!.Value
+                                        .ToOut(this, NodeNames.Result)
+            : null;
 
         DisplayName = Method.Name;
 
@@ -17,23 +25,19 @@ public class BPMethod : BPBase, IBPFlow
         Out = new Connection.Out(this);
     }
 
-    public BPMethod(Method method, IReadOnlyList<IInValue>? inValues) : this(method, inValues, null) { }
-
-    public BPMethod(Method method) : this(method, null) { }
-
     public override string DisplayName { get; init; }
 
     public Connection.In In { get; init; }
 
     public Connection.Out Out { get; init; }
 
-    public bool HasInValues => !InValues.IsNullOrEmpty();
+    public bool HasParameters => !Parameters.IsNullOrEmpty();
 
-    public IReadOnlyList<IInValue>? InValues { get; init; }
+    public List<IIn> Parameters { get; init; }
 
     public bool HasOutValue => OutValue is not null;
 
-    public IOutValue? OutValue { get; init; }
+    public IOut? OutValue { get; init; }
 
     public Method Method { get; init; }
 }

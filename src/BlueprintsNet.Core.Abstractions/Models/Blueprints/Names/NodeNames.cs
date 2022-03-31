@@ -15,5 +15,6 @@ internal static class NodeNames
     public const string StartIndex = "Start Index";
     public const string StopIndex = "Stop Index";
     public const string Index = "Index";
+    public const string Result = "Result";
     #endregion Value
 }

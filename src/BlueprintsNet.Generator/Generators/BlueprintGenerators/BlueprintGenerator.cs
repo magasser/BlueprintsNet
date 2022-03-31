@@ -3,15 +3,20 @@ namespace BlueprintsNet.Generator.Generators
 {
     internal partial class BlueprintGenerator : BlueprintGeneratorBase
     {
-        private readonly StringBuilder _builder;
+        private readonly Dictionary<IBlueprint, string> _generatedBlueprints;
 
         public BlueprintGenerator()
         {
-            _builder = new StringBuilder();
+            _generatedBlueprints = new Dictionary<IBlueprint, string>();
+        }
+
+        public override void Reset()
+        {
+            _generatedBlueprints.Clear();
         }
 
         private string AddOperator(string @operator,
-                                   IEnumerable<IInValue> inValues)
+                                   IEnumerable<IIn> inValues)
         {
             @operator.MustNotBeNullOrWhiteSpace();
             inValues.MustNotBeNullOrEmpty();
@@ -21,24 +26,32 @@ namespace BlueprintsNet.Generator.Generators
             values.Length
                   .MustBeGreaterThanOrEqualTo(2);
 
-            _builder.Clear();
+            var builder = new StringBuilder();
 
-            var in1 = values[0].Previous?.Parent.Generate(this) ?? values[0].ConstantValue;
+            var in1 = values[0].Evaluate(this);
 
-            _builder.OpenBracket()
-                    .Append(in1);
+            builder.Append($"({in1} ");
 
             Array.ForEach(values[1..], input =>
             {
-                var gen = input.Previous?.Parent.Generate(this) ?? input.ConstantValue;
+                var gen = input.Evaluate(this);
 
-                _builder.Append(@operator)
-                        .Append(gen);
+                builder.Append($"{@operator} {gen}");
             });
 
-            _builder.CloseBracket();
+            builder.Append(')');
 
-            return _builder.ToString();
+            return builder.ToString();
+        }
+
+        private void AddGenerated(IBlueprint bp, string value)
+        {
+            _generatedBlueprints.Add(bp, value);
+        }
+
+        private bool IsGenerated(IBlueprint bp, out string? generatedValue)
+        {
+            return _generatedBlueprints.TryGetValue(bp, out generatedValue);
         }
     }
 }

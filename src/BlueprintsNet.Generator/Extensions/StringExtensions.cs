@@ -30,4 +30,21 @@ internal static class StringExtensions
 
         return indentLevel > 0 ? $"{indentFormat}{source.Indent(indentLevel - 1)}" : source;
     }
+
+    public static IIn GetInValue(this string source,
+                                      IBlueprint parent,
+                                      string displayName)
+    {
+        source.MustNotBeNullOrWhiteSpace();
+        displayName.MustNotBeNullOrWhiteSpace();
+        parent.MustNotBeNull();
+
+        return source switch
+        {
+            "int" => new Integer.In(parent, displayName),
+            "bool" => new Bool.In(parent, displayName),
+            "string" => new BlueprintsNet.Core.Models.Blueprints.String.In(parent, displayName),
+            _ => new BlueprintsNet.Core.Models.Blueprints.Object.In(parent, displayName),
+        };
+    }
 }

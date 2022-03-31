@@ -3,13 +3,13 @@ namespace BlueprintsNet.Core.Models.Classes;
 
 public record Parameter
 {
-    public Parameter(string name, Type type)
+    public Parameter(string name, NodeType nodeType)
     {
         Name = name.MustNotBeNullOrWhiteSpace();
-        Type = type.MustNotBeNull();
+        NodeType = nodeType.MustBeValidEnumValue();
     }
 
     public string Name { get; set; }
 
-    public Type Type { get; set; }
+    public NodeType NodeType { get; set; }
 }

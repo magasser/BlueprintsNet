@@ -6,18 +6,18 @@ public class Integer : ValueBase
     private Integer(IBlueprint parent, string displayName)
         : base(parent, displayName)
     {
-        DataType = DataType.Integer;
+        DataType = NodeType.Integer;
     }
 
     private Integer(IBlueprint parent)
         : base(parent)
     {
-        DataType = DataType.Integer;
+        DataType = NodeType.Integer;
     }
 
-    public override DataType DataType { get; init; }
+    public override NodeType DataType { get; init; }
 
-    public class In : Integer, IInValue
+    public class In : Integer, IIn
     {
         public In(IBlueprint parent, string displayName)
             : base(parent, displayName)
@@ -31,10 +31,10 @@ public class Integer : ValueBase
             ConstantValue = "0";
         }
 
-        public IOutValue? Previous { get; set; }
+        public IOut? Previous { get; set; }
     }
 
-    public class Out : Integer, IOutValue
+    public class Out : Integer, IOut
     {
         public Out(IBlueprint parent, string displayName)
             : base(parent, displayName)

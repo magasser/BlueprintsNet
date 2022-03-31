@@ -1,4 +1,4 @@
-﻿
+
 namespace BlueprintsNet.Generator.Generators;
 
 internal partial class BlueprintGenerator : BlueprintGeneratorBase
@@ -7,188 +7,241 @@ internal partial class BlueprintGenerator : BlueprintGeneratorBase
     {
         bp.MustNotBeNull();
 
-        _builder.Clear();
+        if (IsGenerated(bp, out var generatedValue))
+        {
+            return generatedValue!;
+        }
 
         var value = bp.Field.Name;
-        var newValue = bp.InValue.Previous?.Parent.Generate(this) ?? bp.InValue.ConstantValue;
 
-        _builder.Append(value)
-                .Space()
-                .Equal()
-                .Space()
-                .Append(newValue)
-                .Semicolon()
-                .NewLine();
+        var newValue = bp.InValue
+                         .Evaluate(this);
 
-        return _builder.ToString();
+        var builder = new StringBuilder();
+
+        builder.Append($"{value} = {newValue};")
+               .NewLine();
+
+        var result = builder.ToString();
+
+        AddGenerated(bp, result);
+
+        return result;
     }
 
-    public override string Generate(BPField bp)
+    public override string Generate(BPGet bp)
     {
         bp.MustNotBeNull();
 
-        return bp.Field.Name;
+        if (IsGenerated(bp, out var generatedValue))
+        {
+            return generatedValue!;
+        }
+
+        var result = bp.Field.Name;
+
+        AddGenerated(bp, result);
+
+        return result;
     }
 
     public override string Generate(BPMethod bp)
     {
         bp.MustNotBeNull();
 
-        _builder.Clear();
-
-        _builder.Append(bp.Method.Name)
-                .OpenBracket();
-
-        if (bp.InValues is not null)
+        if (IsGenerated(bp, out var generatedValue))
         {
-            bp.InValues
+            return generatedValue!;
+        }
+
+        var builder = new StringBuilder();
+
+        builder.Append($"{bp.Method.Name}(");
+
+        if (bp.Parameters is not null)
+        {
+            bp.Parameters
               .ToList()
               .ForEach(value =>
               {
-                  var gen = value.Previous?.Parent.Generate(this) ?? value.ConstantValue;
+                  var gen = value.Evaluate(this);
 
-                  _builder.Append(gen)
-                          .Comma()
-                          .Space();
+                  builder.Append($"{gen}, ");
               });
 
-            _builder.Remove(_builder.Length - 2, length: 2);
+            builder.Remove(builder.Length - 2, length: 2);
         }
 
-        _builder.CloseBracket()
-                .Semicolon()
-                .NewLine();
+        builder.Append(')');
 
-        return _builder.ToString();
+        var result = builder.ToString();
+
+        AddGenerated(bp, result);
+
+        return result;
     }
 
     public override string Generate(BPMethodIn bp)
     {
         bp.MustNotBeNull();
 
-        _builder.Clear();
+        if (IsGenerated(bp, out var generatedValue))
+        {
+            return generatedValue!;
+        }
 
-        var body = bp.Out.Parent
-                         .Generate(this);
+        var builder = new StringBuilder();
 
-        _builder.Append(bp.Method.AccessModifier
-                                 .ToString()
-                                 .ToLower())
-                .Space()
-                .OpenBracket();
+        var body = bp.Out
+                     .Evaluate(this);
+
+        var accessModifier = bp.Method.AccessModifier
+                                      .ToString()
+                                      .ToLower();
+
+        builder.Append($"{accessModifier} {bp.Method.Name}(");
 
 
         if (bp.Method.Parameters.Count != 0)
         {
             bp.Method.Parameters
                      .ToList()
-                     .ForEach(value => _builder.Append(value.Name)
-                                               .Comma()
-                                               .Space());
+                     .ForEach(value =>
+                     {
+                         var parameterType = value is ObjectParameter objectParameter
+                             ? objectParameter.ObjectType
+                             : value.NodeType
+                                    .GetBuiltInType();
+                         builder.Append($"{parameterType} {value.Name}, ");
+                     });
 
-            _builder.Remove(_builder.Length - 2, length: 2);
+            builder.Remove(builder.Length - 2, length: 2);
         }
 
-        _builder.CloseBracket()
-                .NewLine()
-                .OpenCurlyBracket()
-                .Append(body.IndentLines(indentLevel: 1))
-                .NewLine()
-                .CloseCurlyBracket()
-                .NewLine();
+        builder.Append(")")
+               .NewLine()
+               .Append('{')
+               .NewLine()
+               .Append(body.IndentLines(indentLevel: 1))
+               .NewLine()
+               .Append('}')
+               .NewLine();
 
-        return _builder.ToString();
+        var result = builder.ToString();
+
+        AddGenerated(bp, result);
+
+        return result;
     }
 
     public override string Generate(BPConstructorIn bp)
     {
         bp.MustNotBeNull();
 
-        _builder.Clear();
+        if (IsGenerated(bp, out var generatedValue))
+        {
+            return generatedValue!;
+        }
 
-        var body = bp.Out.Parent
-                         .Generate(this);
+        var builder = new StringBuilder();
 
-        _builder.Append(bp.Constructor.AccessModifier
-                                      .ToString()
-                                      .ToLower())
-                .Space()
-                .OpenBracket();
+        var body = bp.Out
+                     .Evaluate(this);
+
+        var accessModifier = bp.Constructor.AccessModifier
+                                           .ToString()
+                                           .ToLower();
+
+        builder.Append($"{accessModifier} (");
 
 
         if (bp.Constructor.Parameters.Count != 0)
         {
             bp.Constructor.Parameters
                           .ToList()
-                          .ForEach(value => _builder.Append(value.Name)
-                                                    .Comma()
-                                                    .Space());
+                          .ForEach(value => builder.Append($"{value.Name}, "));
 
-            _builder.Remove(_builder.Length - 2, length: 2);
+            builder.Remove(builder.Length - 2, length: 2);
         }
 
-        _builder.CloseBracket()
-                .NewLine()
-                .OpenCurlyBracket()
-                .Append(body.IndentLines(indentLevel: 1))
-                .NewLine()
-                .CloseCurlyBracket()
-                .NewLine();
+        builder.Append(')')
+               .NewLine()
+               .Append('{')
+               .NewLine()
+               .Append(body.IndentLines(indentLevel: 1))
+               .NewLine()
+               .Append('}')
+               .NewLine();
 
-        return _builder.ToString();
+        var result = builder.ToString();
+
+        AddGenerated(bp, result);
+
+        return result;
     }
 
     public override string Generate(BPConstructor bp)
     {
         bp.MustNotBeNull();
 
-        _builder.Clear();
-
-        _builder.Append("new")
-                .Space()
-                .Append(bp.Constructor.ClassName)
-                .OpenBracket();
-
-        if (bp.InValues is not null)
+        if (IsGenerated(bp, out var generatedValue))
         {
-            bp.InValues
+            return generatedValue!;
+        }
+
+        var builder = new StringBuilder();
+
+        builder.Append($"new {bp.Constructor.ClassName}(");
+
+        if (bp.Parameters is not null)
+        {
+            bp.Parameters
               .ToList()
               .ForEach(value =>
               {
-                  var gen = value.Previous?.Parent.Generate(this) ?? value.ConstantValue;
+                  var gen = value.Evaluate(this);
 
-                  _builder.Append(gen)
-                          .Comma()
-                          .Space();
+                  builder.Append($"{gen}, ");
               });
 
-            _builder.Remove(_builder.Length - 2, length: 2);
+            builder.Remove(builder.Length - 2, length: 2);
         }
 
-        _builder.CloseBracket()
-                .NewLine();
+        builder.Append(')');
 
-        return _builder.ToString();
+        var result = builder.ToString();
+
+        AddGenerated(bp, result);
+
+        return result;
     }
 
     public override string Generate(BPReturn bp)
     {
         bp.MustNotBeNull();
 
-        _builder.Clear();
+        if (IsGenerated(bp, out var generatedValue))
+        {
+            return generatedValue!;
+        }
 
-        _builder.Append("return");
+        var builder = new StringBuilder();
+
+        builder.Append("return");
 
         if (bp.HasReturnValue)
         {
-            var value = bp.ReturnValue!.Previous?.Parent.Generate(this) ?? bp.ReturnValue!.ConstantValue;
+            var value = bp.ReturnValue!.Evaluate(this);
 
-            _builder.Space()
-                    .Append(value);
+            builder.Append($" {value}");
         }
 
-        _builder.Semicolon();
+        builder.Append(';');
 
-        return _builder.ToString();
+        var result = builder.ToString();
+
+        AddGenerated(bp, result);
+
+        return result;
     }
 }

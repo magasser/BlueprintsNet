@@ -3,14 +3,15 @@ namespace BlueprintsNet.Core.Models.Blueprints;
 
 public class BPConstructor : BPBase, IBPFlow
 {
-    public BPConstructor(Constructor constructor,
-                         IReadOnlyList<IInValue>? inValues,
-                         IOutValue? outValue)
+    internal BPConstructor(Constructor constructor)
     {
         Constructor = constructor.MustNotBeNull();
 
-        InValues = inValues;
-        OutValue = outValue;
+        Parameters = Constructor.Parameters
+                                .Select(parameter => parameter.ToIn(this))
+                                .ToList();
+
+        OutValue = new Object.Out(this, Constructor.ClassName);
 
         DisplayName = Constructor.ClassName;
 
@@ -18,24 +19,17 @@ public class BPConstructor : BPBase, IBPFlow
         Out = new Connection.Out(this);
     }
 
-    public BPConstructor(Constructor constructor, IReadOnlyList<IInValue>? inValues)
-        : this(constructor, inValues, null) { }
-
-    public BPConstructor(Constructor constructor) : this(constructor, null) { }
-
     public override string DisplayName { get; init; }
 
     public Connection.In In { get; init; }
 
     public Connection.Out Out { get; init; }
 
-    public bool HasInValues => !InValues.IsNullOrEmpty();
+    public bool HasParameters => !Parameters.IsNullOrEmpty();
 
-    public IReadOnlyList<IInValue>? InValues { get; init; }
+    public List<IIn> Parameters { get; init; }
 
-    public bool HasOutValue => OutValue is not null;
-
-    public IOutValue? OutValue { get; init; }
+    public IOut OutValue { get; init; }
 
     public Constructor Constructor { get; init; }
 }
