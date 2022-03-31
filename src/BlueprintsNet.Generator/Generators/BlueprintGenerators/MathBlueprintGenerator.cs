@@ -20,8 +20,6 @@ internal partial class BlueprintGenerator : BlueprintGeneratorBase
 
         AddGenerated(bp, result);
 
-        _builder.Clear();
-
         return result;
     }
 }

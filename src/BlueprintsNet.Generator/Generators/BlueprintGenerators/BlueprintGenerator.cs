@@ -3,18 +3,15 @@ namespace BlueprintsNet.Generator.Generators
 {
     internal partial class BlueprintGenerator : BlueprintGeneratorBase
     {
-        private readonly StringBuilder _builder;
         private readonly Dictionary<IBlueprint, string> _generatedBlueprints;
 
         public BlueprintGenerator()
         {
-            _builder = new StringBuilder();
             _generatedBlueprints = new Dictionary<IBlueprint, string>();
         }
 
         public override void Reset()
         {
-            _builder.Clear();
             _generatedBlueprints.Clear();
         }
 
@@ -29,22 +26,22 @@ namespace BlueprintsNet.Generator.Generators
             values.Length
                   .MustBeGreaterThanOrEqualTo(2);
 
-            _builder.Clear();
+            var builder = new StringBuilder();
 
             var in1 = values[0].Evaluate(this);
 
-            _builder.Append($"({in1} ");
+            builder.Append($"({in1} ");
 
             Array.ForEach(values[1..], input =>
             {
                 var gen = input.Evaluate(this);
 
-                _builder.Append($"{@operator} {gen}");
+                builder.Append($"{@operator} {gen}");
             });
 
-            _builder.Append(')');
+            builder.Append(')');
 
-            return _builder.ToString();
+            return builder.ToString();
         }
 
         private void AddGenerated(IBlueprint bp, string value)

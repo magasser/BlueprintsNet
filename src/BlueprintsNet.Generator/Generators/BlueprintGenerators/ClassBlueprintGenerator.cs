@@ -17,14 +17,14 @@ internal partial class BlueprintGenerator : BlueprintGeneratorBase
         var newValue = bp.InValue
                          .Evaluate(this);
 
-        _builder.Append($"{value} = {newValue};")
-                .NewLine();
+        var builder = new StringBuilder();
 
-        var result = _builder.ToString();
+        builder.Append($"{value} = {newValue};")
+               .NewLine();
+
+        var result = builder.ToString();
 
         AddGenerated(bp, result);
-
-        _builder.Clear();
 
         return result;
     }
@@ -54,7 +54,9 @@ internal partial class BlueprintGenerator : BlueprintGeneratorBase
             return generatedValue!;
         }
 
-        _builder.Append($"{bp.Method.Name}(");
+        var builder = new StringBuilder();
+
+        builder.Append($"{bp.Method.Name}(");
 
         if (bp.Parameters is not null)
         {
@@ -64,20 +66,17 @@ internal partial class BlueprintGenerator : BlueprintGeneratorBase
               {
                   var gen = value.Evaluate(this);
 
-                  _builder.Append($"{gen}, ");
+                  builder.Append($"{gen}, ");
               });
 
-            _builder.Remove(_builder.Length - 2, length: 2);
+            builder.Remove(builder.Length - 2, length: 2);
         }
 
-        _builder.Append(");")
-                .NewLine();
+        builder.Append(')');
 
-        var result = _builder.ToString();
+        var result = builder.ToString();
 
         AddGenerated(bp, result);
-
-        _builder.Clear();
 
         return result;
     }
@@ -91,6 +90,8 @@ internal partial class BlueprintGenerator : BlueprintGeneratorBase
             return generatedValue!;
         }
 
+        var builder = new StringBuilder();
+
         var body = bp.Out
                      .Evaluate(this);
 
@@ -98,7 +99,7 @@ internal partial class BlueprintGenerator : BlueprintGeneratorBase
                                       .ToString()
                                       .ToLower();
 
-        _builder.Append($"{accessModifier} {bp.Method.Name}(");
+        builder.Append($"{accessModifier} {bp.Method.Name}(");
 
 
         if (bp.Method.Parameters.Count != 0)
@@ -111,26 +112,24 @@ internal partial class BlueprintGenerator : BlueprintGeneratorBase
                              ? objectParameter.ObjectType
                              : value.NodeType
                                     .GetBuiltInType();
-                         _builder.Append($"{parameterType} {value.Name}, ");
+                         builder.Append($"{parameterType} {value.Name}, ");
                      });
 
-            _builder.Remove(_builder.Length - 2, length: 2);
+            builder.Remove(builder.Length - 2, length: 2);
         }
 
-        _builder.Append(")")
-                .NewLine()
-                .Append('{')
-                .NewLine()
-                .Append(body.IndentLines(indentLevel: 1))
-                .NewLine()
-                .Append('}')
-                .NewLine();
+        builder.Append(")")
+               .NewLine()
+               .Append('{')
+               .NewLine()
+               .Append(body.IndentLines(indentLevel: 1))
+               .NewLine()
+               .Append('}')
+               .NewLine();
 
-        var result = _builder.ToString();
+        var result = builder.ToString();
 
         AddGenerated(bp, result);
-
-        _builder.Clear();
 
         return result;
     }
@@ -144,6 +143,8 @@ internal partial class BlueprintGenerator : BlueprintGeneratorBase
             return generatedValue!;
         }
 
+        var builder = new StringBuilder();
+
         var body = bp.Out
                      .Evaluate(this);
 
@@ -151,32 +152,30 @@ internal partial class BlueprintGenerator : BlueprintGeneratorBase
                                            .ToString()
                                            .ToLower();
 
-        _builder.Append($"{accessModifier} (");
+        builder.Append($"{accessModifier} (");
 
 
         if (bp.Constructor.Parameters.Count != 0)
         {
             bp.Constructor.Parameters
                           .ToList()
-                          .ForEach(value => _builder.Append($"{value.Name}, "));
+                          .ForEach(value => builder.Append($"{value.Name}, "));
 
-            _builder.Remove(_builder.Length - 2, length: 2);
+            builder.Remove(builder.Length - 2, length: 2);
         }
 
-        _builder.Append(')')
-                .NewLine()
-                .Append('{')
-                .NewLine()
-                .Append(body.IndentLines(indentLevel: 1))
-                .NewLine()
-                .Append('}')
-                .NewLine();
+        builder.Append(')')
+               .NewLine()
+               .Append('{')
+               .NewLine()
+               .Append(body.IndentLines(indentLevel: 1))
+               .NewLine()
+               .Append('}')
+               .NewLine();
 
-        var result = _builder.ToString();
+        var result = builder.ToString();
 
         AddGenerated(bp, result);
-
-        _builder.Clear();
 
         return result;
     }
@@ -190,7 +189,9 @@ internal partial class BlueprintGenerator : BlueprintGeneratorBase
             return generatedValue!;
         }
 
-        _builder.Append($"new {bp.Constructor.ClassName}(");
+        var builder = new StringBuilder();
+
+        builder.Append($"new {bp.Constructor.ClassName}(");
 
         if (bp.Parameters is not null)
         {
@@ -200,20 +201,17 @@ internal partial class BlueprintGenerator : BlueprintGeneratorBase
               {
                   var gen = value.Evaluate(this);
 
-                  _builder.Append($"{gen}, ");
+                  builder.Append($"{gen}, ");
               });
 
-            _builder.Remove(_builder.Length - 2, length: 2);
+            builder.Remove(builder.Length - 2, length: 2);
         }
 
-        _builder.Append(')')
-                .NewLine();
+        builder.Append(')');
 
-        var result = _builder.ToString();
+        var result = builder.ToString();
 
         AddGenerated(bp, result);
-
-        _builder.Clear();
 
         return result;
     }
@@ -227,22 +225,22 @@ internal partial class BlueprintGenerator : BlueprintGeneratorBase
             return generatedValue!;
         }
 
-        _builder.Append("return");
+        var builder = new StringBuilder();
+
+        builder.Append("return");
 
         if (bp.HasReturnValue)
         {
             var value = bp.ReturnValue!.Evaluate(this);
 
-            _builder.Append($" {value}");
+            builder.Append($" {value}");
         }
 
-        _builder.Append(';');
+        builder.Append(';');
 
-        var result = _builder.ToString();
+        var result = builder.ToString();
 
         AddGenerated(bp, result);
-
-        _builder.Clear();
 
         return result;
     }

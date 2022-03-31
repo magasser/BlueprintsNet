@@ -14,43 +14,42 @@ internal partial class BlueprintGenerator : BlueprintGeneratorBase
             return generatedValue!;
         }
 
+        var builder = new StringBuilder();
+
         var condition = bp.Condition
                           .Evaluate(this);
 
         var ifBody = bp.OutTrue
                        .Evaluate(this);
 
-        _builder.Append($"if ({condition})")
-                .NewLine()
-                .Append('{')
-                .NewLine();
+        builder.Append($"if ({condition})")
+               .NewLine()
+               .Append('{')
+               .NewLine();
 
-        _builder.Append(ifBody.IndentLines(indentLevel: 1))
-                .NewLine()
-                .Append('}')
-                .NewLine();
+        builder.Append(ifBody.IndentLines(indentLevel: 1))
+               .NewLine()
+               .Append('}')
+               .NewLine();
 
         if (bp.OutFalse.HasNext)
         {
-            _builder.Append("else")
-                    .NewLine()
-                    .Append('{')
-                    .NewLine();
+            builder.Append("else")
+                   .NewLine()
+                   .Append('{')
+                   .NewLine();
 
             var elseBody = bp.OutFalse
                              .Evaluate(this);
 
-            _builder.Append(elseBody.IndentLines(indentLevel: 1))
-                    .NewLine()
-                    .Append('}')
-                    .NewLine();
+            builder.Append(elseBody.IndentLines(indentLevel: 1))
+                   .NewLine()
+                   .Append('}');
         }
 
-        var result = _builder.ToString();
+        var result = builder.ToString();
 
         AddGenerated(bp, result);
-
-        _builder.Clear();
 
         return result;
     }
@@ -64,6 +63,8 @@ internal partial class BlueprintGenerator : BlueprintGeneratorBase
             return generatedValue!;
         }
 
+        var builder = new StringBuilder();
+
         var startIndex = bp.StartIndex
                            .Evaluate(this);
         var stopIndex = bp.StopIndex
@@ -72,20 +73,18 @@ internal partial class BlueprintGenerator : BlueprintGeneratorBase
         var body = bp.OutBody
                      .Evaluate(this);
 
-        _builder.Append($"for (var i = {startIndex}; i <= {stopIndex}; i++)")
-                .NewLine()
-                .Append('{')
-                .NewLine()
-                .Append(body.IndentLines(indentLevel: 1))
-                .NewLine()
-                .Append('}')
-                .NewLine();
+        builder.Append($"for (var i = {startIndex}; i <= {stopIndex}; i++)")
+               .NewLine()
+               .Append('{')
+               .NewLine()
+               .Append(body.IndentLines(indentLevel: 1))
+               .NewLine()
+               .Append('}')
+               .NewLine();
 
-        var result = _builder.ToString();
+        var result = builder.ToString();
 
         AddGenerated(bp, result);
-
-        _builder.Clear();
 
         return result;
     }

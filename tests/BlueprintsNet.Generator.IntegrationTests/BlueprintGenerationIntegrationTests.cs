@@ -60,16 +60,28 @@ public class BlueprintGenerationIntegrationTests
 
         // Flow connections
         method.Start.Out.Next = ifStatement.In;
-        ifStatement.OutTrue.Next = toUpStatement.In;
-        ifStatement.OutFalse.Next = addStrStatement.In;
-        toUpStatement.Out.Next = testConstructorIf.In;
-        addStrStatement.Out.Next = testConstructorElse.In;
-        testConstructorIf.Out.Next = returnIf.In;
-        testConstructorElse.Out.Next = returnElse.In;
+        ifStatement.OutTrue.Next = returnIf.In;
+        ifStatement.OutFalse.Next = returnElse.In;
+
+        var expected = 
+@"public MethodTest(string stringIn, bool boolIn, int intIn)
+{
+    if (boolIn)
+    {
+        return new Test(ToUp(stringIn));
+    }
+    else
+    {
+        return new Test(AddStr(stringIn, intIn));
+    }
+}
+";
 
         // Act
         var result = _blueprintGenerator.Generate(method.Start);
 
         // Assert
+        result.Should()
+              .Be(expected);
     }
 }
