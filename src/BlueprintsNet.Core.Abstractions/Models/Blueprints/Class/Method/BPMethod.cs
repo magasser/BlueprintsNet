@@ -1,7 +1,7 @@
 ﻿
 namespace BlueprintsNet.Core.Models.Blueprints;
 
-public class BPMethod : BPBase, IBPFlow
+public class BPMethod : BPBase
 {
     public BPMethod(Method method)
     {
@@ -20,16 +20,9 @@ public class BPMethod : BPBase, IBPFlow
             : null;
 
         DisplayName = Method.Name;
-
-        In = new Connection.In(this);
-        Out = new Connection.Out(this);
     }
 
     public override string DisplayName { get; init; }
-
-    public Connection.In In { get; init; }
-
-    public Connection.Out Out { get; init; }
 
     public bool HasParameters => !Parameters.IsNullOrEmpty();
 

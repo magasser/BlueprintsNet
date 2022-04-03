@@ -3,6 +3,8 @@ namespace BlueprintsNet.Core.Models.Classes;
 
 public class Class
 {
+    private readonly List<BlueprintReference> _blueprintReferences;
+
     private Class() { }
 
     public Class(string name,
@@ -19,9 +21,13 @@ public class Class
         Constructors = new List<Constructor>();
         Fields = new List<Field>();
         Methods = new List<Method>();
+
+        _blueprintReferences = new List<BlueprintReference>();
     }
 
     public string FolderPath { get; set; }
+
+    public IReadOnlyList<BlueprintReference> BlueprintReferences => _blueprintReferences;
 
     public string Name { get; set; }
 
@@ -36,4 +42,25 @@ public class Class
     public List<Field> Fields { get; init; }
 
     public List<Method> Methods { get; init; }
+
+    public void AddReference(IBlueprint blueprint, IEntryPoint parent)
+    {
+        blueprint.MustNotBeNull();
+
+        _blueprintReferences.Add(new BlueprintReference(new Guid(), blueprint, parent));
+    }
+
+    public void RemoveReference(IBlueprint blueprint)
+    {
+        blueprint.MustNotBeNull();
+
+        var reference = _blueprintReferences.SingleOrDefault(x => x.Blueprint == blueprint);
+
+        if (reference is null)
+        {
+            return;
+        }
+
+        _blueprintReferences.Remove(reference);
+    }
 }

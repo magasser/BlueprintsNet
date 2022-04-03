@@ -50,52 +50,6 @@ public class ProjectHandlingIntegrationTests
         Directory.Delete(ProjectDirectoryPath);
     }
 
-    [Ignore("Serialization has to be adjusted")]
-    [Test]
-    public void Saving_and_then_loading_class_Should_create_class_file_And_load_equivalent_class()
-    {
-        // Arrange
-        var @class = new Class(ClassName,
-                               ProjectName,
-                               ProjectDirectoryPath,
-                               AccessModifier.Public);
-
-        var method = new Method("SomeMethod1", AccessModifier.Public);
-        method.Start.Parameters
-                    .Add(new Bool.Out(method.Start, "boolIn1"));
-        method.Start.Parameters
-                    .Add(new Bool.Out(method.Start, "boolIn2"));
-        method.Start.Parameters
-                    .Add(new Models.Blueprints.Object.Out(method.Start, "objectIn", "Test"));
-        method.Blueprints
-              .Add(new BPLogicalAnd());
-        method.Return.ReturnValue = new Bool.In(method.Start, "boolOut");
-
-        @class.Constructors
-              .Add(new Constructor(@class.Name, AccessModifier.Public));
-        @class.Methods
-              .AddRange(new Method[] { method, new Method("SomeMethod2", AccessModifier.Private) });
-        @class.Fields
-              .AddRange(new Field[]
-              {
-                  new Field("SomeField1", AccessModifier.Public, NodeType.Bool),
-                  new Field("SomeField2", AccessModifier.Private, NodeType.String)
-              });
-        // Act
-        _projectService.SaveClass(@class);
-        var loadedClass = _projectService.LoadClass(@class.Name, ProjectDirectoryPath);
-
-        // Assert
-        var classFileExists = File.Exists(_classFilePath);
-
-        classFileExists.Should()
-                       .BeTrue();
-
-        loadedClass.Should()
-                   .BeEquivalentTo(@class);
-    }
-
-    [Ignore("Serialization has to be adjusted")]
     [Test]
     public void Saving_and_then_loading_project_Should_create_project_file_And_load_equivalent_project()
     {
@@ -105,27 +59,53 @@ public class ProjectHandlingIntegrationTests
                                ProjectDirectoryPath,
                                AccessModifier.Public);
 
-        var method = new Method("SomeMethod1", AccessModifier.Public);
-        method.Start.Parameters
-                    .Add(new Bool.Out(method.Start, "boolIn1"));
-        method.Start.Parameters
-                    .Add(new Bool.Out(method.Start, "boolIn2"));
-        method.Start.Parameters
-                    .Add(new Models.Blueprints.Object.Out(method.Start, "objectIn", "Test"));
-        method.Blueprints
-              .Add(new BPLogicalAnd());
-        method.Return.ReturnValue = new Bool.In(method.Start, "boolOut");
+        // Value connections
+        var method = new ObjectMethod("MethodTest", AccessModifier.Public, "Test");
+        var field = new Field("intField", AccessModifier.Public, NodeType.Integer);
+        var toUpMethod = new Method("ToUp", AccessModifier.Public, NodeType.String);
+        var addStrMethod = new Method("AddStr", AccessModifier.Public, NodeType.String);
+        var testConstructor = new Constructor("Test", AccessModifier.Public);
+        method.AddParameter(new Parameter("stringIn", NodeType.String));
+        method.AddParameter(new Parameter("boolIn", NodeType.Bool));
+        method.AddParameter(new Parameter("intIn", NodeType.Integer));
+        toUpMethod.AddParameter(new Parameter("stringIn", NodeType.String));
+        addStrMethod.AddParameter(new Parameter("stringIn", NodeType.String));
+        addStrMethod.AddParameter(new Parameter("intIn", NodeType.Integer));
+        testConstructor.AddParameter(new Parameter("stringIn", NodeType.String));
+        var strIn = method.Start.Parameters[0];
+        var boolIn = method.Start.Parameters[1];
+        var intIn = method.Start.Parameters[2];
+        var ifStatement = new BPIf();
+        var plusStatement = new BPPlus();
+        var toUpStatement = toUpMethod.CreateBlueprint();
+        var addStrStatement = addStrMethod.CreateBlueprint();
+        var getStatement = field.CreateGetBlueprint();
+        var testConstructorIf = testConstructor.CreateBlueprint();
+        var testConstructorElse = testConstructor.CreateBlueprint();
+        var returnIf = method.CreateReturn();
+        var returnElse = method.CreateReturn();
+        ifStatement.Condition.Previous = boolIn;
+        plusStatement.In1.Previous = strIn;
+        plusStatement.In2.Previous = getStatement.OutValue;
+        toUpStatement.Parameters[0].Previous = strIn;
+        addStrStatement.Parameters[0].Previous = strIn;
+        addStrStatement.Parameters[1].Previous = intIn;
+        testConstructorIf.Parameters[0].Previous = toUpStatement.OutValue;
+        testConstructorElse.Parameters[0].Previous = addStrStatement.OutValue;
+        returnIf.ReturnValue.Previous = testConstructorIf.OutValue;
+        returnElse.ReturnValue.Previous = testConstructorElse.OutValue;
+
+        // Flow connections
+        method.Start.Out.Next = ifStatement.In;
+        ifStatement.OutTrue.Next = returnIf.In;
+        ifStatement.OutFalse.Next = returnElse.In;
 
         @class.Constructors
-              .Add(new Constructor(@class.Name, AccessModifier.Public));
+              .Add(testConstructor);
         @class.Methods
-              .AddRange(new Method[] { method, new Method("SomeMethod2", AccessModifier.Private) });
+              .AddRange(new Method[] { method, toUpMethod, addStrMethod });
         @class.Fields
-              .AddRange(new Field[]
-              {
-                  new Field("SomeField1", AccessModifier.Public, NodeType.Bool),
-                  new Field("SomeField2", AccessModifier.Private, NodeType.String)
-              });
+              .Add(field);
 
         var project = new Project(new Guid("4BA267AD-5341-4085-8E7F-3C1EA2CFD2A7"),
                                   ProjectName,
